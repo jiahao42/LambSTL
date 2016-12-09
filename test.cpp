@@ -1,5 +1,4 @@
-#include "__malloc_alloc_template.h"
-#include "__default_alloc_template.h"
+#include "simple_alloc.h"
 #include "vector.h"
 #include <iostream>
 

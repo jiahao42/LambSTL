@@ -1,3 +1,3 @@
-test: test.cpp __default_alloc_template.h __malloc_alloc_template.h
+test: test.cpp simple_alloc.h 
 	g++ test.cpp -o test
 

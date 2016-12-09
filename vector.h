@@ -6,12 +6,20 @@
 template <class T, class Alloc = alloc>
 class Vector {//primary template
 private:
-	typedef T value_type;
 
 public:
+	typedef T value_type;
+	typedef value_type* pointer;
+	typedef value_type* iterator;
+	typedef value_type& reference;
+	typedef size_t	size_type;
+	typedef ptrdiff_t	difference_type;
+
 	inline value_type add(value_type a, value_type b){
 		return a + b;
 	}
+protected:
+
 };
 
 

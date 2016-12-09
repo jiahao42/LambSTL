@@ -1,5 +1,5 @@
-#ifndef __DEFAULT_ALLOC_TEMPLATE_H_
-#define __DEFAULT_ALLOC_TEMPLATE_H_
+#ifndef __DEFAULT_ALLOC_H_
+#define __DEFAULT_ALLOC_H_
 
 
 #include <new>		/* placement new */
