@@ -1,6 +1,8 @@
+#ifndef __SIMPLE_ALLOC_H_
+#define __SIMPLE_ALLOC_H_
+
 #include "malloc_alloc.h"
 #include "default_alloc.h"
-
 
 template <class T, class Alloc>
 class simple_alloc{
@@ -23,3 +25,6 @@ public:
 		Alloc::deallocate(p,sizeof(T));
 	}
 };
+
+#endif
+

@@ -1,3 +1,6 @@
+#ifndef __CONSTRUCT_H_
+#define __CONSTRUCT_H_
+
 #include <new>
 
 template <class T1, class T2>
@@ -36,21 +39,7 @@ inline void __destory_aux(ForwardIterator, ForwardIterator, __true_type){}
 inline void destroy(char*, char*){}
 inline void destroy(wchar_t*, wchar_t*){}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif
 
 
 
