@@ -7,6 +7,6 @@
 using namespace std;
 
 int main(){
-	Vector<int> v;
+	Vector<int*> v;
 	cout<<v.add(1,2)<<endl;
 }
