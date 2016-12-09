@@ -13,6 +13,11 @@
 #endif
 
 
+/*
+第一级配置器，使用malloc(),free(),realloc()来配置内存
+如果配置失败，则调用private的oom_malloc(),oom_realloc()来反复配置内存
+要注意的是，内存分配失败的处理例程要有客户自行设计并设置
+*/
 template <int inst>
 class __malloc_alloc_template{
 private:
