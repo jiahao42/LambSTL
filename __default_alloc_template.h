@@ -1,3 +1,7 @@
+#ifndef __DEFAULT_ALLOC_TEMPLATE_H_
+#define __DEFAULT_ALLOC_TEMPLATE_H_
+
+
 #include <new>		/* placement new */
 #include <cstddef>	/* for ptrdiff_t, size_t */
 #include <cstdlib>	/* exit() */
@@ -104,7 +108,7 @@ template <bool threads, int inst>
 size_t __default_alloc_template<threads,inst>::heap_size = 0;
 
 template <bool threads, int inst>
-__default_alloc_template<threads, inst>::obj* volatile
+typename __default_alloc_template<threads, inst>::obj* volatile
 __default_alloc_template<threads, inst>::free_list[__NFREELISTS] = {
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 };
@@ -158,7 +162,7 @@ char* __default_alloc_template<threads, inst>::chunk_alloc(size_t size, int& nob
 
 
 
-
+#endif
 
 
 

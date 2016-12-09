@@ -1,23 +1,27 @@
+#ifndef __MALLOC_ALLOC_TEMPLATE_H_
+#define __MALLOC_ALLOC_TEMPLATE_H_
+
 #include <new>		/* placement new */
 #include <cstddef>	/* for ptrdiff_t, size_t */
 #include <cstdlib>	/* exit() */
 #include <climits>	/* UINT_MAX */
 #include <iostream> /* cerr */
 
+
 #if 0
 #	include <new>
 #	define __THROW_BAD_ALLOC throw bad_alloc
-#elif	!define(__THROW_BAD_ALLOC)
-#	include <iostream.h>
-#	define __THROW_BAD_ALLOC cerr<<"out of memory"<<endl;	exit(1);
+#elif	!defined(__THROW_BAD_ALLOC)
+#	include <iostream>
+#	define __THROW_BAD_ALLOC std::cerr<<"out of memory"<<std::endl;	exit(1);
 #endif
-
 
 /*
 第一级配置器，使用malloc(),free(),realloc()来配置内存
 如果配置失败，则调用private的oom_malloc(),oom_realloc()来反复配置内存
 要注意的是，内存分配失败的处理例程要有客户自行设计并设置
 */
+
 template <int inst>
 class __malloc_alloc_template{
 private:
@@ -82,7 +86,7 @@ void* __malloc_alloc_template<inst>::oom_realloc(void* p, size_t n){
 
 typedef __malloc_alloc_template<0> malloc_alloc;
 
-
+#endif
 
 
 
