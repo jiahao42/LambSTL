@@ -7,6 +7,8 @@
 using namespace std;
 
 int main(){
-	Vector<int*> v;
-	cout<<v.add(1,2)<<endl;
+	Vector<int*> v1;
+	Vector<int> v2;
+	cout<<"v1: "<<v1.add(1,2)<<endl;
+	cout<<"v2: "<<v2.add(2,2)<<endl;
 }

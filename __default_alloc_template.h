@@ -161,6 +161,15 @@ char* __default_alloc_template<threads, inst>::chunk_alloc(size_t size, int& nob
 }
 
 
+# ifdef __USE_MALLOC
+typedef __malloc_alloc_template<0> malloc_alloc
+typedef malloc_alloc alloc
+# else
+//typedef __default_alloc_template<__NODE_ALLOCATOR_THREADS,0> alloc;
+typedef __default_alloc_template<0,0> alloc;
+# endif
+
+
 
 #endif
 

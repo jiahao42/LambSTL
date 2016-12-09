@@ -3,7 +3,7 @@
 #ifndef __VECTOR_H_
 #define __VECTOR_H_
 
-template <class T>
+template <class T, class Alloc = alloc>
 class Vector {//primary template
 private:
 	typedef T value_type;
@@ -22,7 +22,7 @@ private:
 
 public:
 	inline value_type add(value_type a, value_type b){
-		return a + b + 1;
+		return a + b;
 	}
 };
 
