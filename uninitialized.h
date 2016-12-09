@@ -48,25 +48,63 @@ parameters：
 
 template <class InputIterator, class ForwardIterator>
 inline ForwardIterator uninitialized_copy(InputIterator first, InputIterator last, ForwardIterator result){
-	return __uninitialized_copy(first, last, result, value_type(result));
+	return __uninitialized_copy(first, last, result, value_type(result));//先取出type
 }
 
 template <class InputIterator, class ForwardIterator, class T>
 inline ForwardIterator __uninitialized_copy(class InputIterator, InputIterator last, ForwardIterator result, T*){
 	typedef typename __type_traits<T>::is_POD_type is_POD;
-	return __uninitialized_copy_aux(first, last, result, is_POD());
+	return __uninitialized_copy_aux(first, last, result, is_POD());//is POD?
+}
+
+template <class InputIterator, class ForwardIterator>
+inline ForwardIterator __uninitialized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result, __true_type){
+	return copy(first,last,result);//高阶函数
+}
+
+template <class InputIterator, class ForwardIterator>
+ForwardIterator __uninitialized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result, __false_type){
+	ForwardIterator cur = result;
+	for ( ; first != last; ++first, ++cur)
+		construct(&*cur,*first);
+	return cur;
+}
+
+/* end of uninitialized_copy */
+
+
+/* start of uninitialized_fill */
+/*
+parameters：
+	first:指向欲初始化空间的起始处
+	last:指向欲初始化空间的结束处
+	x:表示初值
+*/
+template <class ForwardIterator, class T>
+inline void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T& x){
+	__uninitialized_fill(first,last,x,value_type(first));
+}
+
+template <class ForwardIterator, class T, class T1>
+inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last, const T& x, T1*){
+	typedef typename __type_traits<T1>::is_POD_type is_POD;
+	__uninitialized_fill_aux(first, last, x, is_POD());
 }
 
 
+template <class ForwardIterator, class T>
+inline void __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x, __false_type){
+	fill(first, last, x);
+}
 
+template <class ForwardIterator, class T>
+void __uninitialized_fill_aux(ForwardIterator first, ForwardIterator last, const T& x,__false_type){
+	ForwardIterator cur = first;
+	for ( ; cur != last; ++cur)
+		construct(&*cur,x);
+}
 
-
-
-
-
-
-
-
+/* end of uninitialized_fill */
 
 
 
