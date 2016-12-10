@@ -1,6 +1,6 @@
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h"
-
+#include "iterator.h"
 #ifndef __VECTOR_H_
 #define __VECTOR_H_
 
