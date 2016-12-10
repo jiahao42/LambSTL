@@ -1,6 +1,5 @@
 #include "vector.h"
 
-
 template<class BidirectionalIterator1, class BidirectionalIterator2>
   BidirectionalIterator2 copy_backward ( BidirectionalIterator1 first,
                                          BidirectionalIterator1 last,
@@ -44,4 +43,5 @@ void Vector<T,Alloc>::insert_aux (iterator position, const T& x){
 		end_of_storage = new_start + len;
 	}
 }
+
 
