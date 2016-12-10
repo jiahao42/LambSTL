@@ -1,6 +1,6 @@
 #ifndef __CONSTRUCT_H_
 #define __CONSTRUCT_H_
-
+#include "type_traits.h"
 #include <new>
 
 template <class T1, class T2>
@@ -20,7 +20,7 @@ inline void destroy(ForwardIterator first, ForwardIterator last){
 
 template <class ForwardIterator, class T>
 inline void __destory(ForwardIterator first, ForwardIterator last, T*){
-	typedef typename  <T>::has_trivial_destructor trivial_destructor;
+	typedef typename  __type_traits<T>::has_trivial_destructor trivial_destructor;
 	__destory_aux(first, last, trivial_destructor());
 }
 
