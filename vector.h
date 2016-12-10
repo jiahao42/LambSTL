@@ -103,7 +103,9 @@ protected:
 	iterator start;
 	iterator finish;
 	iterator end_of_storage;
+	//do not know why can not define outside class
 	void insert_aux(iterator position, const T& x){}
+	//void insert_aux(iterator position, const T& x);
 	void deallocate(){
 		//std::cout<<"deallocate!"<<std::endl;
 		if (start)
