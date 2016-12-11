@@ -17,9 +17,11 @@ class Reference = T&
 >
 struct iterator{
 	typedef Category	iterator_category;
-	typedef T			value_typel;
+	typedef T			value_type;
 	typedef Distance	difference_type;
 	typedef Pointer		pointer;
 	typedef Reference	reference;
 };
+
+
 #endif

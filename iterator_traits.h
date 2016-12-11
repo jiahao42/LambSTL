@@ -40,4 +40,8 @@ struct iterator_traits<const T*>{//原生指针，必定是random access
 	typedef  T&								reference;
 };
 
+template <class Iterator>
+inline typename iterator_traits<Iterator>::value_type* value_type(const Iterator&){
+	return static_cast<typename iterator_traits<Iterator>::value_type*>(0);
+}
 #endif
