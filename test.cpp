@@ -18,25 +18,33 @@ int main_ret = 0;
 		}	\
 	}while (0)
 
-#define TEST_NUMBER(expect,actual)	TEST_EQ_BASE((expect) == (actual),expect,actual,"%d")
+#define TEST_INT(expect,actual)	TEST_EQ_BASE((expect) == (actual),expect,actual,"%d")
+#define TEST_SIZE_TYPE(expect,actual)	TEST_EQ_BASE \
+((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
 void test_vector(){
 	Vector<int> v2;
-	TEST_NUMBER(0,v2.capacity());
+	TEST_SIZE_TYPE(0,v2.capacity());
+	
 	v2.push_back(1);
-	TEST_NUMBER(1,v2.size());
-	TEST_NUMBER(1,v2.capacity());
-	TEST_NUMBER(1,*v2.begin());
-	TEST_NUMBER(1,v2[0]);
+	TEST_SIZE_TYPE(1,v2.size());
+	TEST_SIZE_TYPE(1,v2.capacity());
+	TEST_INT(1,*v2.begin());
+	TEST_INT(1,v2[0]);
+	
 	v2.push_back(2);
-	TEST_NUMBER(2,v2[1]);
-	TEST_NUMBER(2,v2.capacity());
-	TEST_NUMBER(2,v2.size());
+	TEST_INT(2,v2[1]);
+	TEST_SIZE_TYPE(2,v2.capacity());
+	TEST_SIZE_TYPE(2,v2.size());
+	
 	v2.push_back(3);
 	v2.push_back(4);
 	v2.push_back(5);
-	TEST_NUMBER(8,v2.capacity());
-	TEST_NUMBER(5,v2.size());
+	TEST_INT(3,v2[2]);
+	TEST_INT(4,v2[3]);
+	TEST_INT(5,v2[4]);
+	TEST_SIZE_TYPE(8,v2.capacity());
+	TEST_SIZE_TYPE(5,v2.size());
 }
 
 
