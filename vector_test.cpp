@@ -22,36 +22,71 @@ int main_ret = 0;
 #define TEST_SIZE_TYPE(expect,actual)	TEST_EQ_BASE \
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
-void test_vector(){
-	Vector<int> v2;
-	TEST_SIZE_TYPE(0,v2.capacity());
+
+void test_push_pop(){
+	Vector<int> v;
 	
-	v2.push_back(1);
-	TEST_SIZE_TYPE(1,v2.size());
-	TEST_SIZE_TYPE(1,v2.capacity());
-	TEST_INT(1,*v2.begin());
-	TEST_INT(1,v2[0]);
+	TEST_INT(1,v.empty());
 	
-	v2.push_back(2);
-	TEST_INT(2,v2[1]);
-	TEST_SIZE_TYPE(2,v2.capacity());
-	TEST_SIZE_TYPE(2,v2.size());
+	for (int i = 0; i < 30; i++){
+		v.push_back(i);
+		TEST_INT(i, v[i]);
+	}
 	
-	v2.push_back(3);
-	v2.push_back(4);
-	v2.push_back(5);
-	TEST_INT(3,v2[2]);
-	TEST_INT(4,v2[3]);
-	TEST_INT(5,v2[4]);
-	TEST_SIZE_TYPE(8,v2.capacity());
-	TEST_SIZE_TYPE(5,v2.size());
+	TEST_INT(0,v.empty());
 	
+	for (int i = 29; i >= 0; i--){
+		v.pop_back();
+		TEST_INT(i, v[i]);
+	}
 	
+	TEST_INT(1,v.empty());
 }
 
+void test_size(){
+	Vector<int> v;
+	
+	TEST_INT(1,v.empty());
+	TEST_SIZE_TYPE(0,v.capacity());
+	
+	v.push_back(1);
+	TEST_SIZE_TYPE(1,v.size());
+	TEST_SIZE_TYPE(1,v.capacity());
+	
+	v.push_back(2);
+	TEST_SIZE_TYPE(2,v.capacity());
+	TEST_SIZE_TYPE(2,v.size());
+	
+	v.push_back(3);
+	v.push_back(4);
+	v.push_back(5);
+	TEST_SIZE_TYPE(8,v.capacity());
+	TEST_SIZE_TYPE(5,v.size());
+	
+	TEST_INT(0,v.empty());
+}
+
+void test_iterator(){
+	Vector<int> v;
+	
+	TEST_INT(1,v.empty());
+	for (int i = 0; i < 30; i++){
+		v.push_back(i);
+	}
+	Vector<int>::iterator begin = v.begin();
+	Vector<int>::iterator end = v.end();
+	for (int i = 0; i < 30; i++){
+		TEST_INT(i, *begin++);
+	}
+	for (int i = 29; i != 0; i--){
+		TEST_INT(i, *--end);
+	}
+}
 
 int main(){
-	test_vector();
+	test_push_pop();
+	test_size();
+	test_iterator();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
