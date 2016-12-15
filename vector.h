@@ -5,6 +5,7 @@
 #include "iterator.h"
 #include "construct.h"
 #include "uninitialized.h"
+#include <iostream>
 
 template<class BidirectionalIterator1, class BidirectionalIterator2>
   BidirectionalIterator2 copy_backward ( BidirectionalIterator1 first,
@@ -68,7 +69,7 @@ protected:
 			data_allocator::deallocate(start,end_of_storage - start);
 	}
 	void fill_initialize(size_type n, const T& value){
-		//start = allocate_and_fill(n,value);
+		start = allocate_and_fill(n,value);
 		finish = start + n;
 		end_of_storage = finish;
 	}
@@ -86,7 +87,7 @@ public:
 	reference operator[](size_type n){ return *(begin() + n); }
 	Vector():start(0),finish(0), end_of_storage(0){}
 	~Vector(){
-		//destroy(start,finish);
+		destroy(start,finish);
 		deallocate();
 	}
 	void pop_back(){
@@ -95,17 +96,17 @@ public:
 	}
 	
 	iterator erase(iterator first, iterator last){
-		iterator i = copy(last, finish, first);
-		destroy(i,finish);
-		finish = finish - (last - first);
+		iterator i = copy(last, finish, first);//将后半片旧数据往前移
+		destroy(i,finish);//销毁end()
+		finish = finish - (last - first);//确定finish的新位置
 		return first;
 	}
 	
 	iterator erase(iterator position){
 		if (position + 1 != end()){
-			copy(position + 1, finish, position);
+			copy(position + 1, finish, position);//后续元素往前移动
 		}
-		--finish;
+		--finish;//end()往前移，注意末尾是开区间，故销毁end()所在的元素
 		destroy(finish);
 		return position;
 	}
@@ -169,7 +170,7 @@ public:
 	reference operator[](size_type n){ return *(begin() + n); }
 	Vector():start(0),finish(0), end_of_storage(0){}
 	~Vector(){
-		//destroy(start,finish);
+		destroy(start,finish);
 		deallocate();
 	}
 	void pop_back(){

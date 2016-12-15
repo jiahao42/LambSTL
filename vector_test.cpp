@@ -83,10 +83,34 @@ void test_iterator(){
 	}
 }
 
+void test_erase(){
+	/* TEST iterator erase(iterator position) */
+	Vector<int> v;
+	for (int i = 0; i < 30; i++){
+		v.push_back(i);
+	}
+	for (int i = 1; i < 30; i++){
+		int temp = *v.erase(v.begin());
+		TEST_INT(i, temp);
+	}
+	
+	/* TEST iterator erase(iterator first, iterator last) */
+	for (int i = 0; i < 30; i++){
+		v.push_back(i);
+	}
+	v.erase(v.begin(), v.begin() + 10);
+	for (int i = 10; i < 30; i++){
+		TEST_INT(i - 1, v[i - 10]);
+	}
+}
+
+
+
 int main(){
 	test_push_pop();
 	test_size();
 	test_iterator();
+	test_erase();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
