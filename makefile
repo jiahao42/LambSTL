@@ -1,11 +1,16 @@
-test: vector.o vector_test.o
-	g++ -g -o test vector.o vector_test.o
+objects = vector.o vector_test.o
+CXX=g++
+CXXFLAGS= -g -O3
+program=test
+
+test: $(objects)
+	$(CXX) $(CXXFLAGS) -o $(program) $(objects)
 
 vector_test.o:vector_test.cpp vector.h
-	g++ -g -c vector_test.cpp
+	$(CXX) $(CXXFLAGS) -c vector_test.cpp
 
 vector.o:vector.h vector.cpp
-	g++ -g -c vector.cpp
+	$(CXX) $(CXXFLAGS) -c vector.cpp
 
 clean:
-	rm *.o
+	rm $(objects)
