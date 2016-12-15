@@ -31,24 +31,24 @@ protected:
 	iterator start;
 	iterator finish;
 	iterator end_of_storage;
-	void insert_aux(iterator position, const T& x){
-		if (finish != end_of_storage){
+	void insert_aux(iterator position, const T& x){//调用来自push_back,则position = end()
+		if (finish != end_of_storage){//如果还有空余的空间
 			construct(finish, *(finish - 1));
 			++finish;
 			T x_copy = x;
 			copy_backward(position, finish - 2, finish - 1);
 			*position = x_copy;		
-		}else{
+		}else{//需要开辟新的空间
 			const size_type old_size = size();
-			const size_type len = old_size != 0 ? 2 * old_size : 1;
+			const size_type len = old_size != 0 ? 2 * old_size : 1;//初始化/扩大 size
 			
 			iterator new_start = data_allocator::allocate(len);
 			iterator new_finish = new_start;
 			try{
-				new_finish = uninitialized_copy(start, position, new_start);
-				construct(finish, x);
+				new_finish = uninitialized_copy(start, position, new_start);//将前半片旧数据拷贝到新开辟的空间内
+				construct(new_finish, x);//末尾元素被构造成x
 				++new_finish;
-				new_finish = uninitialized_copy(position, finish, new_finish);
+				new_finish = uninitialized_copy(position, finish, new_finish);//将后半片旧数据拷贝到新开辟的空间内
 			}catch(...){//catch all the exceptions
 				destroy(new_start, new_finish);
 				data_allocator::deallocate(new_start, len);
@@ -56,7 +56,7 @@ protected:
 			}
 			
 			destroy(begin(),end());
-			deallocate();
+			deallocate();//销毁原本的空间
 			
 			start = new_start;
 			finish = new_finish;

@@ -4,7 +4,7 @@
 #include <new>
 
 template <class T1, class T2>
-inline void construct(T1* p, const T2& value){
+inline void construct(T1* p, const T2& value){//placement new
 	new (p) T1 (value);
 }
 

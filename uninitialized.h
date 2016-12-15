@@ -1,6 +1,7 @@
 #ifndef __UNINITIALIZED_H_
 #define __UNINITIALIZED_H_
 #include "iterator.h"
+#include <iostream>
 
 /* start of uninitialized_fill_n */
 /*
@@ -47,7 +48,13 @@ inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first, Size n,
 //假装一个copy函数
 template <class InputIterator, class OutputIterator>
 inline OutputIterator  copy(InputIterator first, InputIterator last, OutputIterator result){
-	
+	//std::cout<<"copy() is invoked!!!"<<std::endl;
+	while (first != last){
+		*result = *first;
+		result++;
+		first++;
+	}
+	return result;
 }
 
 
