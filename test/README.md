@@ -1,2 +1,0 @@
-# LeanSTL
-SGI STL

@@ -1,8 +1,8 @@
-main: vector.o test.o
-	g++ -g -o main vector.o test.o
+test: vector.o vector_test.o
+	g++ -g -o test vector.o vector_test.o
 
-test.o:test.cpp vector.h
-	g++ -g -c test.cpp
+vector_test.o:vector_test.cpp vector.h
+	g++ -g -c vector_test.cpp
 
 vector.o:vector.h vector.cpp
 	g++ -g -c vector.cpp

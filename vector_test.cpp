@@ -45,6 +45,8 @@ void test_vector(){
 	TEST_INT(5,v2[4]);
 	TEST_SIZE_TYPE(8,v2.capacity());
 	TEST_SIZE_TYPE(5,v2.size());
+	
+	
 }
 
 
