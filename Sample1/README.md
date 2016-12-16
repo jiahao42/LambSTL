@@ -17,4 +17,4 @@ int main(){
 
 Run it, and you can see things below:
 
-!()[https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample1/screenshot0.png]
+![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample1/screenshot0.png)
