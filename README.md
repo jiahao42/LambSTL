@@ -1,6 +1,8 @@
 # LeanSTL
 SGI STL
 
+* Sample1 - Trace the memory
+print how STL works when using Vector
 
 
 ## TODO
