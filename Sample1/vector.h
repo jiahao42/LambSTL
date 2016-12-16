@@ -86,16 +86,19 @@ public:
 	bool empty() const { return begin() == end();}
 	reference operator[](size_type n){ return *(begin() + n); }
 	Vector():start(0),finish(0), end_of_storage(0){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"Vector is contructed"<<std::endl;
 	}
 	~Vector(){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"Vector is destructing..."<<std::endl;
 		destroy(start,finish);
 		deallocate();
 	}
 	void pop_back(){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"pop_back..."<<std::endl;
 		--finish;
@@ -103,6 +106,7 @@ public:
 	}
 	
 	iterator erase(iterator first, iterator last){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"erase from "<<*first<<" to "<<*last<<std::endl;
 		iterator i = copy(last, finish, first);//将后半片旧数据往前移
@@ -112,6 +116,7 @@ public:
 	}
 	
 	iterator erase(iterator position){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"erase "<<*position<<std::endl;
 		if (position + 1 != end()){
@@ -123,11 +128,13 @@ public:
 	}
 	
 	void clear(){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"clear..."<<std::endl;
 		erase(begin(),end());
 	}
 	void push_back(const T& x){
+		std::cout<<std::endl;
 		PRINT_LINE();
 		std::cout<<"push_back: "<<x<<std::endl;
 		if (finish != end_of_storage){

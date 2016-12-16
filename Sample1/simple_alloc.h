@@ -23,14 +23,14 @@ public:
 	
 	static void deallocate(T* p, size_t n){
 		PRINT_LINE();
-		std::cout<<"allocate memory of "<<n * sizeof (T)<<" bytes"<<std::endl;
+		std::cout<<"deallocate memory of "<<n * sizeof (T)<<" bytes"<<std::endl;
 		if (0 != n)
 			Alloc::deallocate(p, n * sizeof (T));
 	}
 	
 	static void deallocate(T *p){
 		PRINT_LINE();
-		std::cout<<"allocate memory of "<<sizeof (T)<<" bytes"<<std::endl;
+		std::cout<<"deallocate memory of "<<sizeof (T)<<" bytes"<<std::endl;
 		Alloc::deallocate(p,sizeof(T));
 	}
 };

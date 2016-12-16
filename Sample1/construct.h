@@ -6,7 +6,7 @@
 template <class T1, class T2>
 inline void construct(T1* p, const T2& value){//placement new
 	PRINT_LINE();
-	std::cout<<"construct "<<value<<" on allocated memory"<<std::endl;
+	std::cout<<"construct value ["<<value<<"] on allocated memory"<<std::endl;
 	new (p) T1 (value);
 }
 

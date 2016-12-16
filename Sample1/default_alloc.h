@@ -59,7 +59,7 @@ public:
 	}
 	static void deallocate(void* p,size_t n){
 		PRINT_LINE();
-		std::cout<<"deallocate "<<n<<" bytes from memory pool"<<std::endl;
+		std::cout<<"deallocate "<<n<<" bytes, adding to memory pool"<<std::endl;
 		obj* q = (obj*)p;
 		obj* volatile *my_free_list;
 		
@@ -84,7 +84,7 @@ void* __default_alloc_template<threads, inst>::refill(size_t n){
 	obj* current_obj, *next_obj;
 	int i;
 	PRINT_LINE();
-	std::cout<<"refill chunk of "<<n<<" bytes from memory pool, "<<n<<" chunks refilled"<<std::endl;
+	std::cout<<"refill chunk of "<<n<<" bytes from memory pool, "<<nobjs<<" chunks refilled"<<std::endl;
 	if (1 == nobjs){//如果只返回了一个区块，则直接给客户使用即可
 		return chunk;
 	}
