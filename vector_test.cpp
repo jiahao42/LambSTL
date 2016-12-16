@@ -102,6 +102,9 @@ void test_erase(){
 	for (int i = 10; i < 30; i++){
 		TEST_INT(i - 1, v[i - 10]);
 	}
+	
+	v.clear();
+	TEST_INT(1,v.empty());
 }
 
 
