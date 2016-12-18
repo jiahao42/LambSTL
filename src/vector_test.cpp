@@ -108,17 +108,24 @@ void test_erase(){
 }
 
 void test_insert(){
+	/*
+	Test capacity
+	const size_type len = old_size + max(old_size, n);	
+	*/
 	Vector<int> v;
-	v.insert(v.begin(), 10, 1);
+	v.insert(v.begin(), 10, 1);//capacity += 10
 	for(int i = 0; i < 10; i++){
 		TEST_INT(1,v[i]);
 	}
 	TEST_SIZE_TYPE(10,v.size());
 	TEST_SIZE_TYPE(10,v.capacity());
-	v.insert(v.begin(), 20, 1);
+	v.insert(v.begin(), 20, 1);//capacity += 20
 	TEST_SIZE_TYPE(30, v.capacity());
-	v.insert(v.begin(), 5, 1);
+	v.insert(v.begin(), 5, 1);//vector should double it's capacity
 	TEST_SIZE_TYPE(60, v.capacity());
+	for(int i = 0; i < 35; i++){
+		TEST_INT(1, v[i]);
+	}
 }
 
 int main(){
