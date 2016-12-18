@@ -17,4 +17,4 @@ int main(){
 
 Run it, and you can see things below:
 
-![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample1%20-%20Trace%20the%20memory/screenshot0.png)
+![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample1-Trace_the_memory/screenshot0.png)
