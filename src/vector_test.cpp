@@ -107,13 +107,26 @@ void test_erase(){
 	TEST_INT(1,v.empty());
 }
 
-
+void test_insert(){
+	Vector<int> v;
+	v.insert(v.begin(), 10, 1);
+	for(int i = 0; i < 10; i++){
+		TEST_INT(1,v[i]);
+	}
+	TEST_SIZE_TYPE(10,v.size());
+	TEST_SIZE_TYPE(10,v.capacity());
+	v.insert(v.begin(), 20, 1);
+	TEST_SIZE_TYPE(30, v.capacity());
+	v.insert(v.begin(), 5, 1);
+	TEST_SIZE_TYPE(60, v.capacity());
+}
 
 int main(){
 	test_push_pop();
 	test_size();
 	test_iterator();
 	test_erase();
+	test_insert();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
