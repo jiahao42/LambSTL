@@ -138,6 +138,26 @@ public:
 		tmp -> prev = position.node -> prev;
 		(link_type(position.node -> prev))->next = tmp;
 		position.node -> prev = tmp;
+		return tmp;//将数据插入在position前方，插入后返回插入数据
+	}
+	/* This function is not standard stl, just for convenient */
+	reference& operator[] (size_type n){
+		int count = 0;
+		iterator tmp = begin();
+		while (count != n){
+			tmp++;
+			count++;
+		}
+		return *tmp;
+	}
+	/* This function is not standard stl, just for convenient */
+	iterator get_iterator (size_type n){
+		int count = 0;
+		iterator tmp = begin();
+		while (count != n){
+			tmp++;
+			count++;
+		}
 		return tmp;
 	}
 };

@@ -130,13 +130,28 @@ void test_vector_insert(){
 }
 
 void test_list_push_pop(){
-	List<int> list;
-	TEST_INT(1, list.empty());
+	List<int> l;
+	TEST_INT(1, l.empty());
 	for(int i = 0; i < 30; i++){
-		TEST_SIZE_TYPE(i, list.size());
-		list.push_back(i);
-		TEST_INT(i, list.back());
+		TEST_SIZE_TYPE(i, l.size());
+		l.push_back(i);
+		TEST_INT(i, l.back());
 	}
+}
+
+void test_list_insert(){
+	List<int> l;
+	l.insert(l.begin(), 1);
+	TEST_INT(1, l.front());
+	for(int i = 0; i < 30; i++){
+		l.push_back(i);
+	}
+	//before insert : [1,0,1,2,3,4,5,6,7...]
+	l.insert(l.get_iterator(5),100);
+	//after insert : [1,0,1,2,3,100,4,5,6,7...]
+	TEST_INT(3, l[4]);
+	TEST_INT(100, l[5]);
+	TEST_INT(4, l[6]);
 }
 
 int main(){
@@ -149,6 +164,7 @@ int main(){
 	
 	/* test List */
 	test_list_push_pop();
+	test_list_insert();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
