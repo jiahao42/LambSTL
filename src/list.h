@@ -131,7 +131,6 @@ public:
 	}
 	reference front() { return *begin(); }//head的值
 	reference back() { return *(--end()); }//tail的值
-	void push_back(const T& x){	insert(end(),x); }
 	iterator insert(iterator position, const T& x){//只插入一个点
 		link_type tmp = create_node(x);
 		tmp -> next = position.node;
@@ -140,25 +139,44 @@ public:
 		position.node -> prev = tmp;
 		return tmp;//将数据插入在position前方，插入后返回插入数据
 	}
-	/* This function is not standard stl, just for convenient */
-	reference& operator[] (size_type n){
-		int count = 0;
-		iterator tmp = begin();
-		while (count != n){
-			tmp++;
-			count++;
-		}
-		return *tmp;
+	void push_front(const T& x){ insert(begin(), x); }
+	void push_back(const T& x) { insert(end(), x); }
+	iterator erase(iterator position){//移除position所在节点，并返回下一个节点的迭代器
+		link_type next_node = link_type(position.node -> next);
+		link_type prev_node = link_type(position.node -> prev);
+		prev_node -> next = next_node;
+		next_node -> prev = prev_node;
+		destroy_node(position.node);
+		return iterator(next_node);
 	}
-	/* This function is not standard stl, just for convenient */
-	iterator get_iterator (size_type n){
+	void pop_front(){
+		erase(begin());
+	}
+	void pop_back(){
+		iterator tmp = end();
+		erase(--tmp);
+	}
+	
+	void clear(){
+		link_type cur = (link_type)node -> next;
+		while (cur != node){
+			link_type tmp = cur;
+			cur = (link_type)cur -> next;
+			destroy_node(tmp);
+		}
+		node -> next = node;
+		node -> prev = node;
+	}
+	
+	/* This function is not standard stl, just for convenience */
+	iterator operator[] (size_type n){//根据下标返回迭代器
 		int count = 0;
-		iterator tmp = begin();
+		iterator cur = begin();
 		while (count != n){
-			tmp++;
+			cur++;
 			count++;
 		}
-		return tmp;
+		return cur;
 	}
 };
 

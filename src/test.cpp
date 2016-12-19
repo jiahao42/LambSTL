@@ -137,21 +137,31 @@ void test_list_push_pop(){
 		l.push_back(i);
 		TEST_INT(i, l.back());
 	}
+	l.push_front(999);//[999,0,1,2,3,...]
+	TEST_INT(999, *l[0]);
+	TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+
+	
+	TEST_INT(0, l.empty());
+	l.clear();
+	TEST_INT(1, l.empty());
 }
 
 void test_list_insert(){
 	List<int> l;
 	l.insert(l.begin(), 1);
+	//after insert : [1]
 	TEST_INT(1, l.front());
+	TEST_INT(1, *l[0]);
 	for(int i = 0; i < 30; i++){
 		l.push_back(i);
 	}
 	//before insert : [1,0,1,2,3,4,5,6,7...]
-	l.insert(l.get_iterator(5),100);
+	l.insert(l[5],100);
 	//after insert : [1,0,1,2,3,100,4,5,6,7...]
-	TEST_INT(3, l[4]);
-	TEST_INT(100, l[5]);
-	TEST_INT(4, l[6]);
+	TEST_INT(3, *l[4]);
+	TEST_INT(100, *l[5]);
+	TEST_INT(4, *l[6]);
 }
 
 int main(){
