@@ -11,5 +11,5 @@ Passing raw pointer such as int* to the template with **partial template special
 
 ## TODO
 
-* implement some algorithm
-
+* implement more algorithms
+* implement more containers

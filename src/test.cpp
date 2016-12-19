@@ -1,4 +1,5 @@
 #include "vector.h"
+#include "list.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -23,7 +24,7 @@ int main_ret = 0;
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
 
-void test_push_pop(){
+void test_vector_push_pop(){
 	Vector<int*> v;
 	
 	TEST_INT(1,v.empty());
@@ -43,7 +44,7 @@ void test_push_pop(){
 	TEST_INT(1,v.empty());
 }
 
-void test_size(){
+void test_vector_size(){
 	Vector<int*> v;
 	
 	TEST_INT(1,v.empty());
@@ -66,7 +67,7 @@ void test_size(){
 	TEST_INT(0,v.empty());
 }
 
-void test_iterator(){
+void test_vector_iterator(){
 	Vector<int*> v;
 	
 	TEST_INT(1,v.empty());
@@ -83,7 +84,7 @@ void test_iterator(){
 	}
 }
 
-void test_erase(){
+void test_vector_erase(){
 	/* TEST iterator erase(iterator position) */
 	Vector<int*> v;
 	for (int i = 0; i < 30; i++){
@@ -107,7 +108,7 @@ void test_erase(){
 	TEST_INT(1,v.empty());
 }
 
-void test_insert(){
+void test_vector_insert(){
 	/*
 	Test capacity
 	const size_type len = old_size + max(old_size, n);	
@@ -128,12 +129,20 @@ void test_insert(){
 	}
 }
 
+void test_list_push_back(){
+	list<int> list;
+	list.push_back(1);
+	auto i = list.begin();
+	TEST_INT(1, *i);
+}
+
 int main(){
-	test_push_pop();
-	test_size();
-	test_iterator();
-	test_erase();
-	test_insert();
+	test_vector_push_pop();
+	test_vector_size();
+	test_vector_iterator();
+	test_vector_erase();
+	test_vector_insert();
+	test_list_push_back();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
