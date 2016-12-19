@@ -40,7 +40,12 @@ struct iterator_traits<const T*>{//原生指针，必定是random access
 	typedef  T&								reference;
 };
 
-//取得value_type
+/*
+取得value_type
+
+为什么返回指针
+For an arbitrary type, T, we don't know how to construct it, or if it's copyable or movable. So passing a value_type directly could be impossible and could incur an entirely unwanted copy with side-effects that could be unelidable. But we do know for sure that we can construct a T* from 0. So using a zero-initialized pointer to value_type is a handy hack in this situation.
+*/
 template <class Iterator>
 inline typename iterator_traits<Iterator>::value_type* value_type(const Iterator&){
 	return static_cast<typename iterator_traits<Iterator>::value_type*>(0);

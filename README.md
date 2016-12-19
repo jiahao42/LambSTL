@@ -3,7 +3,7 @@ SGI STL
 
 * Sample1 - Trace the memory
 
-Print how STL works when using Vector
+Print how memory allocates and deallocates when using Vector
 
 * Sample2 - Pass the raw pointer
 

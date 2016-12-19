@@ -19,6 +19,8 @@ private:
 	static size_t ROUND_UP(size_t bytes){
 		PRINT_LINE();
 		std::cout<<"ROUNDING UP..."<<std::endl;
+		//~(__ALIGN - 1) == 0xfffffffffffffff8
+		//将bytes上升到8的倍数
 		return (((bytes) + __ALIGN - 1) & ~(__ALIGN - 1));
 	}
 	union obj {
@@ -44,7 +46,7 @@ public:
 		std::cout<<"allocate "<<n<<" bytes from memory pool"<<std::endl;
 		obj* volatile * my_free_list;
 		obj* result;
-		if (n > (size_t) __MAX_BYTES){
+		if (n > (size_t) __MAX_BYTES){//如果大于128bytes,则直接调用malloc,内存池中没那么大的chunk
 			return malloc_alloc::allocate(n);
 		}
 		my_free_list = free_list + FREELIST_INDEX(n);//找到对应大小的freelist位置
