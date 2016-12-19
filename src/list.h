@@ -179,7 +179,7 @@ public:
 		}
 	}
 	
-	void unique(){
+	void unique(){//去除所有[连续而相同的元素]
 		iterator first = begin();
 		iterator last = end();
 		if (first == last)	return;//empty
@@ -193,6 +193,18 @@ public:
 		}
 	}
 	
+	//将[first,last)内所有元素移动到position之前
+	void transfer(iterator position, iterator first, iterator last){
+		if (position != last){
+			(*(link_type((*last.node).prev))).next = position.node;
+			(*(link_type((*first.node).prev))).next = last.node;
+			(*(link_type((*position.node).prev))).next = first.node;
+			link_type tmp = link_type((*position.node).prev);
+			(*position.node).prev = (*last.node).prev;
+			(*last.node).prev = (*first.node).prev;
+			(*first.node).prev = tmp;
+		}
+	}
 	/* This function is not standard stl, just for convenience */
 	iterator operator[] (size_type n){//根据下标返回迭代器
 		int count = 0;

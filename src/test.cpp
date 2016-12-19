@@ -179,6 +179,16 @@ void test_list_remove(){
 	for (int i = 0; i < 15; i++){
 		TEST_INT(2, *l[i]);
 	}
+	l.unique();
+	TEST_SIZE_TYPE(1, l.size());
+	TEST_INT(2, *l[0]);
+}
+
+void test_list_transfer(){
+	List<int> l;
+	for(int i = 0; i < 30; i++){
+		l.push_back(i);
+	}
 	
 }
 
@@ -196,6 +206,7 @@ void test_list(){
 	test_list_push_pop();
 	test_list_insert();
 	test_list_remove();
+	test_list_transfer();
 }
 
 int main(){
