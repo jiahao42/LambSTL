@@ -164,17 +164,24 @@ void test_list_insert(){
 	TEST_INT(4, *l[6]);
 }
 
-int main(){
+void test_vector(){
 	/* test Vector */
 	test_vector_push_pop();
 	test_vector_size();
 	test_vector_iterator();
 	test_vector_erase();
 	test_vector_insert();
-	
+}
+
+void test_list(){
 	/* test List */
 	test_list_push_pop();
 	test_list_insert();
+}
+
+int main(){
+	test_vector();
+	test_list();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
