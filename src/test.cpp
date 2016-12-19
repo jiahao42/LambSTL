@@ -164,8 +164,26 @@ void test_list_insert(){
 	TEST_INT(4, *l[6]);
 }
 
+void test_list_remove(){
+	List<int> l;
+	for (int i = 0; i < 30; i++){
+		if (i % 2){
+			l.push_back(1);
+		}else{
+			l.push_back(2);
+		}
+	}//[2,1,2,1,2,1...]
+	TEST_SIZE_TYPE(30, l.size());
+	l.remove(1);//[2,2,2,2...]
+	TEST_SIZE_TYPE(15, l.size());
+	for (int i = 0; i < 15; i++){
+		TEST_INT(2, *l[i]);
+	}
+	
+}
+
+/* test Vector */
 void test_vector(){
-	/* test Vector */
 	test_vector_push_pop();
 	test_vector_size();
 	test_vector_iterator();
@@ -173,10 +191,11 @@ void test_vector(){
 	test_vector_insert();
 }
 
+/* test List */
 void test_list(){
-	/* test List */
 	test_list_push_pop();
 	test_list_insert();
+	test_list_remove();
 }
 
 int main(){

@@ -1,4 +1,4 @@
-#ifndef __LIST_H_
+ #ifndef __LIST_H_
 #define __LIST_H_
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h"
@@ -166,6 +166,31 @@ public:
 		}
 		node -> next = node;
 		node -> prev = node;
+	}
+	
+	void remove(const T& value){//将值为value的所有元素移除
+		iterator first = begin();
+		iterator last = end();
+		while (first != last){
+			iterator next = first;
+			++next;
+			if (*first == value)	erase(first);
+			first = next;
+		}
+	}
+	
+	void unique(){
+		iterator first = begin();
+		iterator last = end();
+		if (first == last)	return;//empty
+		iterator next = first;
+		while (++next != last){
+			if (*first == *next)
+				erase(next);
+			else
+				first = next;
+			next = first;
+		}
 	}
 	
 	/* This function is not standard stl, just for convenience */
