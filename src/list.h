@@ -20,7 +20,7 @@ struct __list_iterator {
 	typedef __list_iterator<T, T&, T*>	iterator;
 	typedef __list_iterator<T, Ref, Ptr>	self;
 	
-	typedef bidirectional_iterator_tag iterator_category;
+	typedef bidirectional_iterator_tag iterator_category;//不是原生指针，不支持随机存储
 	typedef T value_type;
 	typedef Ptr pointer;
 	typedef Ref reference;
@@ -104,6 +104,12 @@ public:
 	list() { empty_initialize(); }
 	iterator begin(){
 		return (link_type)((*node).next);
+	}
+	const_iterator begin() const {
+		return (link_type)((*node).next);
+	}
+	const_iterator end() const {
+		return node;
 	}
 	iterator end(){
 		return node;

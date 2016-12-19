@@ -129,11 +129,13 @@ void test_vector_insert(){
 	}
 }
 
-void test_list_push_back(){
+void test_list_push_pop(){
 	list<int> list;
-	list.push_back(1);
-	auto i = list.begin();
-	TEST_INT(1, *i);
+	TEST_INT(1, list.empty());
+	for(int i = 0; i < 30; i++){
+		TEST_SIZE_TYPE(i, list.size());
+		list.push_back(1);
+	}
 }
 
 int main(){
@@ -142,7 +144,7 @@ int main(){
 	test_vector_iterator();
 	test_vector_erase();
 	test_vector_insert();
-	test_list_push_back();
+	test_list_push_pop();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }

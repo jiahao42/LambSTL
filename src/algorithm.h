@@ -44,4 +44,12 @@ OutputIterator fill_n (OutputIterator first, Size n, const T& val)
   return first;     // since C++11
 }
 
+template <class InputIterator, class Size>
+void distance(InputIterator first, InputIterator last, Size& size){
+	while(first != last){
+		size++;
+		first = ++first;
+	}
+}
+
 #endif
