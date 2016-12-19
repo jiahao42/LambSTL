@@ -17,6 +17,9 @@ struct __list_node {//list结点，双向链表
 
 template<class T, class Ref, class Ptr>
 struct __list_iterator {
+	//为什么要分Ref,Ptr 与 T&,T*
+	//Ref = const T& Ptr = const T*
+	//而不影响iterator
 	typedef __list_iterator<T, T&, T*>	iterator;
 	typedef __list_iterator<T, Ref, Ptr>	self;
 	
@@ -37,25 +40,28 @@ struct __list_iterator {
 	
 	bool operator== (const self& x) const { return node == x.node; }
 	bool operator!= (const self& x) const { return node != x.node; }
-	reference operator*() const { return (*node).data; }
-	pointer operator->() const { return &(operator*()); }
+	reference operator*() const { return (*node).data; }//返回reference，返回左值
+	pointer operator->() const { return &(operator*()); }//迭代器成员存取(member access)的标准做法
 	
-	self& operator++(){
+	//pre-increment operator
+	self& operator++(){//移动自身，返回左值引用
 		node = (link_type)((*node).next);
 		return *this;
 	}
-	
-	self operator++(int){
+	//post-increment operator
+	self operator++(int){//移动结点，返回右值
 		self tmp = *this;
 		++*this;
 		return tmp;
 	}
 	
+	//pre-increment operator
 	self& operator--(){
 		node =  (link_type)((*node).prev);
 		return *this;
 	}
 	
+	//post-increment operator
 	self operator--(int){
 		self tmp = *this;
 		--*this;
@@ -64,7 +70,7 @@ struct __list_iterator {
 };
 
 template <class T, class Alloc = alloc>
-class list {
+class List {
 protected:
 	typedef __list_node<T> list_node;
 	typedef simple_alloc<list_node, Alloc> list_node_allocator;
@@ -95,15 +101,15 @@ protected:
 		destroy(&p -> data);
 		put_node(p);
 	}
-	void empty_initialize(){
+	void empty_initialize(){//初始化，申请一个空间，两个指针指向自身
 		node = get_node();
 		node -> next = node;
 		node -> prev = node;
 	}
 public:
-	list() { empty_initialize(); }
+	List() { empty_initialize(); }
 	iterator begin(){
-		return (link_type)((*node).next);
+		return (link_type)((*node).next);//node是尾端的空白结点
 	}
 	const_iterator begin() const {
 		return (link_type)((*node).next);
@@ -123,10 +129,10 @@ public:
 		distance(begin(), end(), result);
 		return result;
 	}
-	reference front() { return *begin(); }
-	reference back() { return *(--end()); }
+	reference front() { return *begin(); }//head的值
+	reference back() { return *(--end()); }//tail的值
 	void push_back(const T& x){	insert(end(),x); }
-	iterator insert(iterator position, const T& x){
+	iterator insert(iterator position, const T& x){//只插入一个点
 		link_type tmp = create_node(x);
 		tmp -> next = position.node;
 		tmp -> prev = position.node -> prev;
