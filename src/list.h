@@ -106,6 +106,21 @@ protected:
 		node -> next = node;
 		node -> prev = node;
 	}
+	
+	//将[first,last)内所有元素移动到position之前
+	//注意last是开区间
+	void transfer(iterator position, iterator first, iterator last){
+		if (position != last){
+			(*(link_type((*last.node).prev))).next = position.node;
+			(*(link_type((*first.node).prev))).next = last.node;
+			(*(link_type((*position.node).prev))).next = first.node;
+			link_type tmp = link_type((*position.node).prev);
+			(*position.node).prev = (*last.node).prev;
+			(*last.node).prev = (*first.node).prev;
+			(*first.node).prev = tmp;
+		}
+	}
+	
 public:
 	List() { empty_initialize(); }
 	iterator begin(){
@@ -193,16 +208,22 @@ public:
 		}
 	}
 	
-	//将[first,last)内所有元素移动到position之前
-	void transfer(iterator position, iterator first, iterator last){
-		if (position != last){
-			(*(link_type((*last.node).prev))).next = position.node;
-			(*(link_type((*first.node).prev))).next = last.node;
-			(*(link_type((*position.node).prev))).next = first.node;
-			link_type tmp = link_type((*position.node).prev);
-			(*position.node).prev = (*last.node).prev;
-			(*last.node).prev = (*first.node).prev;
-			(*first.node).prev = tmp;
+	void splice(iterator position, List& x){
+		if (!x.empty()){
+			transfer(position, x.begin(), x.end());
+		}
+	}
+	
+	void splice(iterator position, List&, iterator i){
+		iterator j = i;
+		++j;
+		if (position == i || position == j)	return;
+		transfer(position, i, j);
+	}
+	
+	void splice(iterator position, List&, iterator first, iterator last){
+		if (first != last){
+			transfer(position, first, last);
 		}
 	}
 	/* This function is not standard stl, just for convenience */

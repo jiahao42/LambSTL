@@ -185,11 +185,26 @@ void test_list_remove(){
 }
 
 void test_list_transfer(){
-	List<int> l;
+	List<int> l1;
+	List<int> l2;
 	for(int i = 0; i < 30; i++){
-		l.push_back(i);
+		l1.push_back(i);
+		l2.push_back(i + 30);
+	}//l1 : [0,1,2,3...]	l2 : [30,31,32,33...]
+	l1.splice(l1[10], l2);//l1 : [0,1,2...,9,30,31,...59,10,11...29]
+	for (int i = 10; i < 40; i++){
+		TEST_INT(i + 20, *l1[i]);
 	}
-	
+	l2.push_back(123);
+	l1.splice(l1[23], l2, l2.begin());
+	TEST_INT(123, *l1[23]);
+	for (int i = 777; i > 766; i--){
+		l2.push_back(i);
+	}
+	l1.splice(l1[5], l2, l2[2], l2[5]);
+	TEST_INT(775, *l1[5]);
+	TEST_INT(774, *l1[6]);
+	TEST_INT(773, *l1[7]);
 }
 
 /* test Vector */
