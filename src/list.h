@@ -6,6 +6,7 @@
 #include "construct.h"
 #include "uninitialized.h"
 #include "algorithm.h"
+#include <iostream>
 
 template <class T>
 struct __list_node {//list结点，双向链表
@@ -153,6 +154,12 @@ public:
 		(link_type(position.node -> prev))->next = tmp;
 		position.node -> prev = tmp;
 		return tmp;//将数据插入在position前方，插入后返回插入数据
+	}
+	iterator insert(iterator position, const T& x, size_type n){//TODO : fix return value
+		for (int i = 0; i < n; i++){
+			insert(position, x);
+		}
+		return position;
 	}
 	void push_front(const T& x){ insert(begin(), x); }
 	void push_back(const T& x) { insert(end(), x); }

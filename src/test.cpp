@@ -162,6 +162,18 @@ void test_list_insert(){
 	TEST_INT(3, *l[4]);
 	TEST_INT(100, *l[5]);
 	TEST_INT(4, *l[6]);
+	
+	l.clear();
+	l.insert(l[0], 2, 10);
+	TEST_SIZE_TYPE(10, l.size());
+	for (int i = 0; i < l.size(); i++){
+		TEST_INT(2, *l[i]);
+	}
+	l.insert(l[5], 1, 5);
+	TEST_SIZE_TYPE(15, l.size());
+	for (int i = 0; i < 5; i++){
+		TEST_INT(1, *l[5 + i]);
+	}
 }
 
 void test_list_remove(){
@@ -235,7 +247,7 @@ void test_list(){
 	test_list_insert();
 	test_list_remove();
 	test_list_transfer();
-	test_list_sort();
+	//test_list_sort();
 }
 
 int main(){
