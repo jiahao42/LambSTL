@@ -219,17 +219,30 @@ void test_list_transfer(){
 	TEST_INT(773, *l1[7]);
 }
 
+void test_list_swap(){
+	List<int> l1,l2;
+	for (int i = 0; i < 10; i++){
+		l1.push_back(i);
+		l2.push_back(9 - i);
+	}
+	l1.swap(l2);
+	for (int i = 0; i < 10; i++){
+		TEST_INT(i, *l2[i]);
+		TEST_INT(9 - i, *l1[i]);
+	}
+}
 void test_list_sort(){
 	List<int> l;
 	for (int i = 0; i < 30; i++)
-		l.push_back(i);
-	l.reverse();
+		l.push_back(i);//[0,1,2,3...29]
+	l.reverse();//[29,28,27,26...0]
 	for (int i = 0; i < 30; i++){
-		TEST_INT(i + 29, *l[i]);
+		TEST_INT(29 - i, *l[i]);
 	}
-	//l.sort();
+	l.sort();//[0,1,2,3...29]
 	for (int i = 0; i < 30; i++)
 		TEST_INT(i, *l[i]);
+	
 }
 
 /* test Vector */
@@ -247,12 +260,49 @@ void test_list(){
 	test_list_insert();
 	test_list_remove();
 	test_list_transfer();
+	test_list_swap();
 	//test_list_sort();
+}
+
+void test_list_vector_mixed(){
+	/* Vector contains List */
+	Vector<List<int>> v;
+	List<int> l[3];
+	for(int i = 0; i < 5; i++){
+		l[0].push_back(i);
+		l[1].push_back(i + 5);
+		l[2].push_back(i + 10);
+	}
+	for (int i = 0; i < 3; i++)
+		v.push_back(l[i]);
+	TEST_INT(0, *v[0][0]);
+	TEST_INT(0, *v[0].begin());
+	TEST_INT(1, *v[0][1]);
+	TEST_INT(5, *v[1][0]);
+	TEST_INT(14, *v[2][4]);
+	
+	/* List contains Vector */
+	List<Vector<int>> list;
+	Vector<int> vectors[3];
+	for(int i = 0; i < 5; i++){
+		vectors[0].push_back(i);
+		vectors[1].push_back(i + 5);
+		vectors[2].push_back(i + 10);
+	}
+	for (int i = 0; i < 3; i++)
+		list.push_back(vectors[i]);
+	TEST_INT(0, (*list[0])[0]);
+	TEST_INT(0, *(*list[0]).begin());
+	TEST_INT(1, (*list[0])[1]);
+	TEST_INT(5, (*list[1])[0]);
+	TEST_INT(14, (*list[2])[4]);
+	
 }
 
 int main(){
 	test_vector();
 	test_list();
+	test_list_vector_mixed();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }

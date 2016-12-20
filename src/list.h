@@ -215,20 +215,20 @@ public:
 		}
 	}
 	
-	void splice(iterator position, List& x){
+	void splice(iterator position, List& x){//将x连接到position所指位置之前
 		if (!x.empty()){
 			transfer(position, x.begin(), x.end());
 		}
 	}
 	
-	void splice(iterator position, List&, iterator i){
+	void splice(iterator position, List&, iterator i){//将i所指元素接合到position之前
 		iterator j = i;
 		++j;
 		if (position == i || position == j)	return;
 		transfer(position, i, j);
 	}
 	
-	void splice(iterator position, List&, iterator first, iterator last){
+	void splice(iterator position, List&, iterator first, iterator last){//将first-last接合到position之前
 		if (first != last){
 			transfer(position, first, last);
 		}
@@ -263,11 +263,14 @@ public:
 			transfer(begin(), old, first);//不停将first插到头部
 		}
 	}
-	/*
-	void swap(List &x){
-		swap(*this, x);
-	}
 	
+	void swap(List& x){
+		List<T> tmp;
+		tmp = x;
+		x = *this;
+		*this = tmp;
+	}
+	//quick sort
 	void sort(){
 		if (node -> next == node || link_type(node -> next) -> next == node)
 			return;
@@ -275,6 +278,7 @@ public:
 		List<T> counter[64];
 		int fill = 0;
 		while (!empty()){
+			std::cout<<"hello: "<<fill<<std::endl;
 			carry.splice(carry.begin(), *this, begin());
 			int i = 0;
 			while (i < fill && !counter[i].empty()){
@@ -285,11 +289,12 @@ public:
 			if (i == fill)	++fill;
 		}
 		for (int i = 1; i < fill; ++i){
-			counter.merge(counter[i - 1]);
+			counter[i].merge(counter[i - 1]);
 		}
 		swap(counter[fill - 1]);
 	}
-	*/
+	
+	
 	/* This function is not standard stl, just for convenience */
 	iterator operator[] (size_type n){//根据下标返回迭代器，STL标准应该使用advance()来移动迭代器
 		int count = 0;
