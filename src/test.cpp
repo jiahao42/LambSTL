@@ -207,6 +207,19 @@ void test_list_transfer(){
 	TEST_INT(773, *l1[7]);
 }
 
+void test_list_sort(){
+	List<int> l;
+	for (int i = 0; i < 30; i++)
+		l.push_back(i);
+	l.reverse();
+	for (int i = 0; i < 30; i++){
+		TEST_INT(i + 29, *l[i]);
+	}
+	//l.sort();
+	for (int i = 0; i < 30; i++)
+		TEST_INT(i, *l[i]);
+}
+
 /* test Vector */
 void test_vector(){
 	test_vector_push_pop();
@@ -222,6 +235,7 @@ void test_list(){
 	test_list_insert();
 	test_list_remove();
 	test_list_transfer();
+	test_list_sort();
 }
 
 int main(){

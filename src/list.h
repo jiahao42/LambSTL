@@ -226,8 +226,65 @@ public:
 			transfer(position, first, last);
 		}
 	}
+	
+	//进行merge的内容必须经过递增排序
+	void merge(List& x){
+		iterator first1 = begin();
+		iterator last1 = end();
+		iterator first2 = begin();
+		iterator last2 = end();
+		
+		while (first1 != last1 && first2 != last2){
+			if (*first2 < *first1){
+				iterator next = first2;
+				transfer(first1, first2, ++next);
+				first2 = next;
+			}else{
+				++first1;
+			}
+			if (first2 != last2) transfer(last1, first2, last2);
+		}
+	}
+	void reverse(){
+		if (node -> next == node || link_type(node -> next) -> next == node)
+			return;
+		iterator first = begin();
+		++first;
+		while (first != end()){
+			iterator old = first;
+			++first;
+			transfer(begin(), old, first);//不停将first插到头部
+		}
+	}
+	/*
+	void swap(List &x){
+		swap(*this, x);
+	}
+	
+	void sort(){
+		if (node -> next == node || link_type(node -> next) -> next == node)
+			return;
+		List<T> carry;
+		List<T> counter[64];
+		int fill = 0;
+		while (!empty()){
+			carry.splice(carry.begin(), *this, begin());
+			int i = 0;
+			while (i < fill && !counter[i].empty()){
+				counter[i].merge(carry);
+				carry.swap(counter[i++]);
+			}
+			carry.swap(counter[i]);
+			if (i == fill)	++fill;
+		}
+		for (int i = 1; i < fill; ++i){
+			counter.merge(counter[i - 1]);
+		}
+		swap(counter[fill - 1]);
+	}
+	*/
 	/* This function is not standard stl, just for convenience */
-	iterator operator[] (size_type n){//根据下标返回迭代器
+	iterator operator[] (size_type n){//根据下标返回迭代器，STL标准应该使用advance()来移动迭代器
 		int count = 0;
 		iterator cur = begin();
 		while (count != n){

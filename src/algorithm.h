@@ -52,4 +52,12 @@ void distance(InputIterator first, InputIterator last, Size& size){
 	}
 }
 
+template <class A>
+void swap(A& a, A& b){
+	A tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
 #endif
