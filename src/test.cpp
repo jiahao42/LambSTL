@@ -269,9 +269,9 @@ void test_list_vector_mixed(){
 	Vector<List<int>> v;
 	List<int> l[3];
 	for(int i = 0; i < 5; i++){
-		l[0].push_back(i);
-		l[1].push_back(i + 5);
-		l[2].push_back(i + 10);
+		l[0].push_back(i);//[0,1,2,3,4]
+		l[1].push_back(i + 5);//[5,6,7,8,9]
+		l[2].push_back(i + 10);//[10,11,12,13,14]
 	}
 	for (int i = 0; i < 3; i++)
 		v.push_back(l[i]);
@@ -285,9 +285,9 @@ void test_list_vector_mixed(){
 	List<Vector<int>> list;
 	Vector<int> vectors[3];
 	for(int i = 0; i < 5; i++){
-		vectors[0].push_back(i);
-		vectors[1].push_back(i + 5);
-		vectors[2].push_back(i + 10);
+		vectors[0].push_back(i);//[0,1,2,3,4]
+		vectors[1].push_back(i + 5);//[5,6,7,8,9]
+		vectors[2].push_back(i + 10);//[10,11,12,13,14]
 	}
 	for (int i = 0; i < 3; i++)
 		list.push_back(vectors[i]);
@@ -296,6 +296,61 @@ void test_list_vector_mixed(){
 	TEST_INT(1, (*list[0])[1]);
 	TEST_INT(5, (*list[1])[0]);
 	TEST_INT(14, (*list[2])[4]);
+	
+	/* push several same one */
+	list.push_back(vectors[0]);//list[3] = [0,1,2,3,4]
+	list.push_back(vectors[0]);//list[4] = [0,1,2,3,4]
+	list.push_back(vectors[0]);//list[5] = [0,1,2,3,4]
+	for (int i = 0; i < 3; i++){
+		for(int j = 0; j < 5; j++){
+			TEST_INT(j, (*list[i + 3])[j]);
+		}
+	}
+
+	/* Multiple Containers */
+	List<int> inner_list_1;						// *((*((*(m_list[0]))[0][0]))[0][0])	//get inner_list_1
+	List<List<int>> inner_list_2;				// (*((*(m_list[0]))[0][0]))[0]	//get inner_list_2
+	Vector<List<List<int>>> inner_vector_1;		// *((*(m_list[0]))[0][0])	//get inner_vector_1
+	List<Vector<List<List<int>>>> inner_list_3;	// (*(m_list[0]))[0]	//get inner_list_3
+	Vector<List<Vector<List<List<int>>>>> inner_vector_2;// *(m_list[0])	//get inner_vector_2
+	List<Vector<List<Vector<List<List<int>>>>>> m_list;
+	for (int i = 0; i < 10; i++){
+		inner_list_1.push_back(i);
+	}
+	inner_list_2.push_back(inner_list_1);
+	inner_list_2.push_back(inner_list_1);
+	inner_list_2.push_back(inner_list_1);
+	inner_vector_1.push_back(inner_list_2);
+	inner_list_3.push_back(inner_vector_1);
+	inner_vector_2.push_back(inner_list_3);
+	m_list.push_back(inner_vector_2);
+	
+	TEST_INT(0, *(*((*((*(m_list[0]))[0][0]))[0][0]))[0]);
+	
+	/*
+	get m_list				m_list
+	get inner_vector_2		*m_list.begin()
+	get inner_list_3		*(*m_list.begin().begin())
+	get inner_vector_1		*(*(*m_list.begin().begin()).begin())
+	get inner_list_2		*(*(*(*m_list.begin().begin()).begin()).begin())
+	get inner_list_1		*(*(*(*(*m_list.begin().begin()).begin()).begin()).begin())
+	get element				*(*(*(*(*(*m_list.begin().begin()).begin()).begin()).begin()))[0]
+	*/
+	for (int i = 0; i < 10; i++){
+		TEST_INT(i, *(*((*((*(m_list[0]))[0][0]))[0][0]))[i]);
+		TEST_INT(i, *(*(*(*(*(*m_list.begin()).begin()).begin()).begin()).begin())[i]);
+		TEST_INT(i, *(*(m_list.begin()->begin()->begin()->begin()->begin()))[i]);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
