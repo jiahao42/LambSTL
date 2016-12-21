@@ -341,16 +341,6 @@ void test_list_vector_mixed(){
 		TEST_INT(i, *(*(*(*(*(*m_list.begin()).begin()).begin()).begin()).begin())[i]);
 		TEST_INT(i, *(*(m_list.begin()->begin()->begin()->begin()->begin()))[i]);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

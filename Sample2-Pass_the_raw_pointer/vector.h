@@ -168,7 +168,7 @@ public:
 template <class T>
 class Vector<T*> {//partial specialization where T is a pointer
 public:
-	typedef T 			value_type;
+	typedef T* 			value_type;
 	typedef value_type* pointer;
 	typedef value_type* iterator;
 	typedef const value_type* const_iterator;
@@ -176,20 +176,17 @@ public:
 	typedef size_t		size_type;
 	typedef ptrdiff_t	difference_type;
 
-	inline value_type add(value_type a, value_type b){
-		return a + b;
-	}
 protected:
 	typedef simple_alloc<value_type,alloc> data_allocator;
 	iterator start;
 	iterator finish;
 	iterator end_of_storage;
 	//do not know why can not define outside class
-	void insert_aux(iterator position, const T& x){
+	void insert_aux(iterator position, const value_type& x){
 		if (finish != end_of_storage){//如果还有空余的空间
 			construct(finish, *(finish - 1));
 			++finish;
-			T x_copy = x;
+			value_type x_copy = x;
 			copy_backward(position, finish - 2, finish - 1);
 			*position = x_copy;		
 		}else{//需要开辟新的空间
@@ -222,7 +219,7 @@ protected:
 		if (start)
 			data_allocator::deallocate(start,end_of_storage - start);
 	}
-	void fill_initialize(size_type n, const T& value){}
+	void fill_initialize(size_type n, const value_type& value){}
 
 public:
 	iterator begin(){ return start; }
@@ -264,7 +261,7 @@ public:
 	void clear(){
 		erase(begin(),end());
 	}
-	void push_back(const T& x){
+	void push_back(const value_type& x){
 		if (finish != end_of_storage){
 			construct(finish, x);
 			++finish;
