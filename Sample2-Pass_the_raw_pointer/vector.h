@@ -268,10 +268,10 @@ public:
 		}else
 			insert_aux(end(), x);
 	}
-	void insert(iterator position, size_type n, const T& x){
+	void insert(iterator position, size_type n, const value_type& x){
 		if (n != 0){
 			if (size_type(end_of_storage - finish) >= n){
-				T x_copy = x;
+				value_type x_copy = x;
 				const size_type elems_after = finish - position;
 				iterator old_finish = finish;
 				if (elems_after > n){

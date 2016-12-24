@@ -25,7 +25,7 @@ int main_ret = 0;
 
 
 void test_vector_push_pop(){
-	Vector<int*> v;
+	Vector<int> v;
 	
 	TEST_INT(1,v.empty());
 	
@@ -45,7 +45,7 @@ void test_vector_push_pop(){
 }
 
 void test_vector_size(){
-	Vector<int*> v;
+	Vector<int> v;
 	
 	TEST_INT(1,v.empty());
 	TEST_SIZE_TYPE(0,v.capacity());
@@ -68,7 +68,7 @@ void test_vector_size(){
 }
 
 void test_vector_iterator(){
-	Vector<int*> v;
+	Vector<int> v;
 	
 	TEST_INT(1,v.empty());
 	for (int i = 0; i < 30; i++){
@@ -86,7 +86,7 @@ void test_vector_iterator(){
 
 void test_vector_erase(){
 	/* TEST iterator erase(iterator position) */
-	Vector<int*> v;
+	Vector<int> v;
 	for (int i = 0; i < 30; i++){
 		v.push_back(i);
 	}
