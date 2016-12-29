@@ -1,4 +1,4 @@
- #ifndef __LIST_H_
+#ifndef __LIST_H_
 #define __LIST_H_
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h"
