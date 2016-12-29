@@ -1,12 +1,10 @@
 #ifndef __LIST_H_
 #define __LIST_H_
 #include <cstddef>	/* size_t */
-#include "simple_alloc.h"
-#include "iterator.h"
-#include "construct.h"
-#include "uninitialized.h"
-#include "algorithm.h"
-#include <iostream>
+#include "simple_alloc.h" /* alloc */
+#include "iterator.h"	/* __true_type __false_type */
+#include "construct.h"	/* construct() destroy() */
+#include <iostream> /* std::cout */
 
 template <class T>
 struct __list_node {//list结点，双向链表
@@ -278,7 +276,7 @@ public:
 		List<T> counter[64];
 		int fill = 0;
 		while (!empty()){
-			std::cout<<"hello: "<<fill<<std::endl;
+			//std::cout<<"hello: "<<fill<<std::endl;
 			carry.splice(carry.begin(), *this, begin());
 			int i = 0;
 			while (i < fill && !counter[i].empty()){
