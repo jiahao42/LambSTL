@@ -39,15 +39,32 @@ class deque {
 public:
 	typedef T value_type;
 	typedef value_type* pointer;
-	
-protected:
+	typedef size_t size_type;
 	typedef pointer* map_pointer;
+	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
 	
 protected:
 	map_pointer map;
 	size_type map_size;
 	
+	iterator start;
+	iterator finish;
+	
 public:
+	iterator begin() { return start; }
+	iterator end() { return finish; }
+	reference operator[] (size_type n) {
+		return start[difference_type(n)];
+	}
+	reference front() { return *start; }
+	reference back() {
+		iterator tmp = finish;
+		--tmp;
+		return *tmp;
+	}
+	size_type size() const { return finish - start; }
+	size_type max_size() const { return size_type(-1); }
+	bool empty() const { return finish == start; }
 	void set_node(map_pointer new_node){
 		node = new_node;
 		first = *new_node;
@@ -73,7 +90,7 @@ public:
 	self operator++(int) {
 		self tmp = *this;
 		++*this;
-		returm tmp;
+		return tmp;
 	}
 	
 	self& operator-- () {
