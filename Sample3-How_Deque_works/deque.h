@@ -308,7 +308,7 @@ public:
 	
 	
 	void push_back(const value_type& t){
-		std::cout<<"pushing back..."<<std::endl;
+		std::cout<<"pushing back ["<<t<<"]..."<<std::endl;
 		if (finish.cur != finish.last - 1){
 			construct(finish.cur, t);
 			++finish.cur;
