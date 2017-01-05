@@ -7,6 +7,12 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
+
+inline size_t __deque_buf_size(size_t n, size_t sz){
+	return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));
+}
+
+
 template <class T, class Ref, class Ptr, size_t BufSiz>
 struct __deque_iterator {
 	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
@@ -27,10 +33,6 @@ struct __deque_iterator {
 	T* first;
 	T* last;
 	map_pointer node;
-	
-	inline size_t __deque_buf_size(size_t n, size_t sz){
-		return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));
-	}
 	
 	void set_node(map_pointer new_node){
 		node = new_node;
@@ -114,7 +116,7 @@ struct __deque_iterator {
 
 
 template <class T, class Alloc = alloc, size_t BufSiz = 0>
-class deque {
+class Deque {
 
 public:
 	typedef T value_type;
@@ -136,15 +138,19 @@ protected:
 	iterator finish;
 	
 protected:
+	static size_type buffer_size() {
+		return __deque_buf_size(BufSiz, sizeof(value_type));
+	}
 	static size_type initial_map_size() { return 8; }
-	pointer allocate_node() { return data_allocator::allocate(iterator::buffer_size()); }
+	pointer allocate_node() { return data_allocator::allocate(buffer_size()); }
+	void deallocate_node(pointer p) { return data_allocator::deallocate(p, buffer_size()); }
 	
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
 		map_pointer cur;
 		__STL_TRY{
 			for (cur = start.node; cur < finish.node; ++cur)
-				uninitialized_fill(*cur, *cur + iterator::buffer_size(), value);
+				uninitialized_fill(*cur, *cur + buffer_size(), value);
 			uninitialized_fill(finish.first, finish.cur, value);
 		}catch (...){
 			//TODO
@@ -152,7 +158,7 @@ protected:
 	}
 	
 	void create_map_and_node(size_type num_elements){
-		size_type num_nodes = num_elements / iterator::buffer_size() + 1;
+		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);
 		map = map_allocator::allocate(map_size);
 		
@@ -169,7 +175,7 @@ protected:
 		start.set_node(nstart);
 		finish.set_node(nfinish);
 		start.cur = start.first;
-		finish.cur = finish.first + num_elements % iterator::buffer_size();
+		finish.cur = finish.first + num_elements % buffer_size();
 	}
 	
 	void push_back_aux(const value_type& t) {
@@ -277,8 +283,12 @@ protected:
 	}
 
 public:
-	deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
+	Deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
 		fill_initialize(n, value);
+	}
+	
+	Deque() : start(), finish(), map(0), map_size(0){
+		
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }
@@ -334,13 +344,13 @@ public:
 	
 	void clear(){
 		for (map_pointer node = start.node + 1; node < finish.node; ++node){
-			destroy(*node, *node + iterator::buffer_size());
-			data_allocator::deallocate(*node, iterator::buffer_size());
+			destroy(*node, *node + buffer_size());
+			data_allocator::deallocate(*node, buffer_size());
 		}
 		if (start.node != finish.node){
 			destroy(start.cur, start.last);
 			destroy(finish.first, finish.cur);
-			data_allocator::deallocate(finish.first, iterator::buffer_size());
+			data_allocator::deallocate(finish.first, buffer_size());
 		}else{
 			destroy(start.cur, finish.cur);
 		}
@@ -374,14 +384,14 @@ public:
 				destroy(start, new_start);
 				
 				for (map_pointer cur = start.node; cur < new_start.node; ++cur)
-					data_allocator::deallocate(*cur, iterator::buffer_size());
+					data_allocator::deallocate(*cur, buffer_size());
 				start = new_start;
 			}else{
 				copy(last, finish, first);
 				iterator new_finish = finish - n;
 				destroy(new_finish, finish);
 				for (map_pointer cur = new_finish.node + 1; cur <= finish.node; ++cur)
-					data_allocator::deallocate(*cur, iterator::buffer_size());
+					data_allocator::deallocate(*cur, buffer_size());
 				finish = new_finish;
 			}
 			return start + elems_before;

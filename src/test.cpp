@@ -1,5 +1,6 @@
 #include "vector.h"
 #include "list.h"
+#include "deque.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -231,6 +232,7 @@ void test_list_swap(){
 		TEST_INT(9 - i, *l1[i]);
 	}
 }
+
 void test_list_sort(){
 	List<int> l;
 	for (int i = 0; i < 30; i++)
@@ -243,25 +245,6 @@ void test_list_sort(){
 	for (int i = 0; i < 30; i++)
 		TEST_INT(i, *l[i]);
 	
-}
-
-/* test Vector */
-void test_vector(){
-	test_vector_push_pop();
-	test_vector_size();
-	test_vector_iterator();
-	test_vector_erase();
-	test_vector_insert();
-}
-
-/* test List */
-void test_list(){
-	test_list_push_pop();
-	test_list_insert();
-	test_list_remove();
-	test_list_transfer();
-	test_list_swap();
-	//test_list_sort();
 }
 
 void test_list_vector_mixed(){
@@ -344,10 +327,44 @@ void test_list_vector_mixed(){
 	
 }
 
+void test_deque_push_pop(){
+	Deque<int> d;
+	d.push_back(1);
+	TEST_INT(d[0],1);
+}
+
+/* test Vector */
+void test_vector(){
+	test_vector_push_pop();
+	test_vector_size();
+	test_vector_iterator();
+	test_vector_erase();
+	test_vector_insert();
+}
+
+/* test List */
+void test_list(){
+	test_list_push_pop();
+	test_list_insert();
+	test_list_remove();
+	test_list_transfer();
+	test_list_swap();
+	//test_list_sort();
+}
+
+/* test Deque */
+void test_deque(){
+	test_deque_push_pop();
+	//test_deque_size();
+	//test_deque_iterator();
+	//test_deque_erase();
+	//test_deque_insert();
+}
 int main(){
 	test_vector();
 	test_list();
 	test_list_vector_mixed();
+	test_deque();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
