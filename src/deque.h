@@ -171,6 +171,33 @@ protected:
 		start.set_node(start.node + 1);
 		start.cur = start.first;
 	}
+	
+	template <class T, class Alloc, size_t BufSiz>
+	iterator insert_aux(iterator pos, const value_type& x){
+		difference_type index = pos - start;
+		value_type x_copy = x;
+		if (index < size() / 2){
+			push_front(front());
+			iterator front1 = start;
+			++front1;
+			iterator front2 = front1;
+			++front2;
+			pos = start + index;
+			iterator pos1 = pos;
+			++pos1;
+			copy(front2, pos1, front1);
+		}else{
+			push_back(back());
+			iterator back1 = finish;
+			--back1;
+			iterator back2 = back1;
+			--back2;
+			pos = start + index;
+			copy_backward(pos, back2, back1);
+		}
+		*pos = x_copy;
+		return pos;
+	}
 
 public:
 	deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
@@ -333,6 +360,48 @@ public:
 			pop_back();
 		}
 		return start + index;
+	}
+	
+	template <class T, class Alloc, size_t BufSiz>
+	iterator erase(iterator first, iterator last){
+		if (first == start && last == finish){
+			clear();
+			return finish;
+		}else{
+			difference_type n = last - first;
+			difference_type elems_before = first - start;
+			if (elems_before < (size() - n) / 2){
+				copy_backward(start, first, last);
+				iterator new_start = start + n;
+				destroy(start, new_start);
+				
+				for (map_pointer cur = start.node; cur < new_start.node; ++cur)
+					data_allocator::deallocate(*cur, buffer_size());
+				start = new_start;
+			}else{
+				copy(last, finish, first);
+				iterator new_finish = finish - n;
+				destroy(new_finish, finish);
+				for (map_pointer cur = new_finish.node + 1; cur <= finish.node; ++cur)
+					data_allocator::deallocate(*cur, buffer_size());
+				finish = new_finish;
+			}
+			return start + elems_before;
+		}
+	}
+	
+	iterator insert(iterator position, const value_type& x){
+		if (position.cur == start.cur){
+			push_front(x);
+			return start;
+		}else if (position.cur == finish.cur){
+			push_back(x);
+			iterator tmp = finish;
+			--tmp;
+			return tmp;
+		}else{
+			return insert_aux(position, x);
+		}
 	}
 
 };
