@@ -54,7 +54,6 @@ protected:
 	iterator finish;
 	
 protected:
-	template <class T, class Alloc, size_t BufSiz>
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
 		map_pointer cur;
@@ -67,7 +66,6 @@ protected:
 		}
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void create_map_and_node(size_type num_elements){
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);
@@ -89,7 +87,6 @@ protected:
 		finish.cur = finish.first + num_elements % buffer_size();
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void push_back_aux(const value_type& t) {
 		value_type t_copy = t;
 		reserve_map_at_back();
@@ -102,7 +99,6 @@ protected:
 		__STL_UNWIND(deallocate_node(*(finish.node + 1)));
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void push_front_aux(const value_type& t){
 		value_type t_copy = t;
 		reserve_map_at_front();
@@ -130,7 +126,6 @@ protected:
 			reallocate_map(nodes_to_add, true);
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void reallocate_map(size_type nodes_to_add, bool add_at_front){
 		size_type old_num_nodes = finish.node - start.node + 1;
 		size_type new_num_nodes = old_num_nodes + nodes_to_add;
@@ -156,7 +151,6 @@ protected:
 		finish.set_node(new_nstart + old_num_nodes - 1);
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void pop_back_aux(){
 		deallocate_node(finish.first);
 		finish.set_node(finish.node - 1);
@@ -164,7 +158,6 @@ protected:
 		destroy(finish.cur);
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void pop_front_aux(){
 		destroy(start.cur);
 		deallocate_node(start.first);
@@ -172,7 +165,6 @@ protected:
 		start.cur = start.first;
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	iterator insert_aux(iterator pos, const value_type& x){
 		difference_type index = pos - start;
 		value_type x_copy = x;
@@ -332,7 +324,6 @@ public:
 		}
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	void clear(){
 		for (map_pointer node = start.node + 1; node < finish.node; ++node){
 			destroy(*node, *node + buffer_size());
@@ -362,7 +353,6 @@ public:
 		return start + index;
 	}
 	
-	template <class T, class Alloc, size_t BufSiz>
 	iterator erase(iterator first, iterator last){
 		if (first == start && last == finish){
 			clear();
