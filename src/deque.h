@@ -304,6 +304,36 @@ public:
 			pop_front_aux();
 		}
 	}
+	
+	template <class T, class Alloc, size_t BufSiz>
+	void clear(){
+		for (map_pointer node = start.node + 1; node < finish.node; ++node){
+			destroy(*node, *node + buffer_size());
+			data_allocator::deallocate(*node, buffer_size());
+		}
+		if (start.node != finish.node){
+			destroy(start.cur, start.last);
+			destroy(finish.first, finish.cur);
+			data_allocator::deallocate(finish.first, buffer_size());
+		}else{
+			destroy(start.cur, finish.cur);
+		}
+		finish = start;
+	}
+	
+	iterator erase(iterator pos){
+		iterator next = pos;
+		++next;
+		difference_type index = pos - start;
+		if (index < (size() >> 1)){
+			copy_backward(start, pos, next);
+			pop_front();
+		}else{
+			copy(next, finish, pos);
+			pop_back();
+		}
+		return start + index;
+	}
 
 };
 
