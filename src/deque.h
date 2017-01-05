@@ -5,6 +5,7 @@
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
 #include "construct.h"  /* construct() destroy() */
+#include "algorithm.h"
 
 template <class T, class Ref, class Ptr, size_t BufSiz>
 struct __deque_iterator {
@@ -30,185 +31,7 @@ struct __deque_iterator {
 	inline size_t __deque_buf_size(size_t n, size_t sz){
 		return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));
 	}
-};
-
-
-template <class T, class Alloc = alloc, size_t BufSiz = 0>
-class deque {
-
-public:
-	typedef T value_type;
-	typedef value_type* pointer;
-	typedef size_t size_type;
-	typedef pointer* map_pointer;
-	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
 	
-protected:
-	typedef simple_alloc<value_type, Alloc> data_allocator;
-	typedef simple_alloc<pointer, Alloc> map_allocator;
-	
-	map_pointer map;
-	size_type map_size;
-	
-	iterator start;
-	iterator finish;
-	
-protected:
-	void fill_initialize(size_type n, const value_type& value){
-		create_map_and_node(n);
-		map_pointer cur;
-		__STL_TRY{
-			for (cur = start.node; cur < finish.node; ++cur)
-				uninitialized_fill(*cur, *cur + buffer_size(), value);
-			uninitialized_fill(finish.first, finish.cur, value);
-		}catch (...){
-			//TODO
-		}
-	}
-	
-	void create_map_and_node(size_type num_elements){
-		size_type num_nodes = num_elements / buffer_size() + 1;
-		map_size = max(initial_map_size(), num_nodes + 2);
-		map = map_allocator::allocate(map_size);
-		
-		map_pointer nstart = map + (map_size - num_nodes) / 2;
-		map_pointer nfinish = nstart + num_nodes - 1;
-		
-		map_pointer cur;
-		__STL_TRY{
-			for (cur = nstart; cur <= nfinish; ++cur)
-				*cur = allocate_node();
-		}catch (...){
-			//commit or rollback
-		}
-		start.set_node(nstart);
-		finish.set_node(nfinish);
-		start.cur = start.first;
-		finish.cur = finish.first + num_elements % buffer_size();
-	}
-	
-	void push_back_aux(const value_type& t) {
-		value_type t_copy = t;
-		reserve_map_at_back();
-		*(finish.node + 1) = allocate_node();
-		__STL_TRY{
-			construct(finish.cur, t_copy);
-			finish.set_node(finish.node + 1);
-			finish.cur = finish.first;
-		}
-		__STL_UNWIND(deallocate_node(*(finish.node + 1)));
-	}
-	
-	void push_front_aux(const value_type& t){
-		value_type t_copy = t;
-		reserve_map_at_front();
-		*(start.node - 1) = allocate_node();
-		__STL_TRY{
-			start.set_node(start.node - 1);
-			start.cur = start.last - 1;
-			construct(start.cur, t_copy);
-		}catch (...){
-			// commit or rollback
-			start.set_node(start.node + 1);
-			start.cur = start.first;
-			deallocate_node(*(start.node - 1));
-			throw;
-		}
-	}
-	
-	void reverse_map_at_back(size_type nodes_to_add = 1){
-		if (nodes_to_add + 1 > map_size - (finish.node - map))
-			reallocate_map(nodes_to_add, false);
-	}
-	
-	void reserve_map_at_front (size_type nodes_to_add = 1){
-		if (nodes_to_add > start.node - map)
-			reallocate_map(nodes_to_add, true);
-	}
-	
-	void reallocate_map(size_type nodes_to_add, bool add_at_front){
-		size_type old_num_nodes = finish.node - start.node + 1;
-		size_type new_num_nodes = old_num_nodes + nodes_to_add;
-		
-		map_pointer new_nstart;
-		if (map_size > 2 * new_num_nodes){
-			new_nstart = map + (map_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
-			if (new_nstart < start.node)
-				copy(start.node, finish.node + 1, new_nstart);
-			else
-				copy_backward(start.node, finish.node + 1, new_nstart + old_num_nodes);
-		}else{
-			size_type new_map_size = map_size + max(map_size) + max(map_size, nodes_to_add) + 2;
-			map_pointer new_map = map_allocator::allocate(new_map_size);
-			new_nstart = new_map + (new_map_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
-			copy(start.node, finish.node + 1, new_nstart);
-			map_allocator::deallocate(map, map_size);
-			map = new_map;
-			map_size = new_map_size;
-		}
-		
-		start.set_node(new_nstart);
-		finish.set_node(new_nstart + old_num_nodes - 1);
-	}
-	
-	void pop_back_aux(){
-		deallocate_node(finish.first);
-		finish.set_node(finish.node - 1);
-		finish.cur = finish.last - 1;
-		destroy(finish.cur);
-	}
-	
-	void pop_front_aux(){
-		destroy(start.cur);
-		deallocate_node(start.first);
-		start.set_node(start.node + 1);
-		start.cur = start.first;
-	}
-	
-	iterator insert_aux(iterator pos, const value_type& x){
-		difference_type index = pos - start;
-		value_type x_copy = x;
-		if (index < size() / 2){
-			push_front(front());
-			iterator front1 = start;
-			++front1;
-			iterator front2 = front1;
-			++front2;
-			pos = start + index;
-			iterator pos1 = pos;
-			++pos1;
-			copy(front2, pos1, front1);
-		}else{
-			push_back(back());
-			iterator back1 = finish;
-			--back1;
-			iterator back2 = back1;
-			--back2;
-			pos = start + index;
-			copy_backward(pos, back2, back1);
-		}
-		*pos = x_copy;
-		return pos;
-	}
-
-public:
-	deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
-		fill_initialize(n, value);
-	}
-	iterator begin() { return start; }
-	iterator end() { return finish; }
-	reference operator[] (size_type n) {
-		return start[difference_type(n)];
-	}
-	reference front() { return *start; }
-	reference back() {
-		iterator tmp = finish;
-		--tmp;
-		return *tmp;
-	}
-	size_type size() const { return finish - start; }
-	size_type max_size() const { return size_type(-1); }
-	bool empty() const { return finish == start; }
 	void set_node(map_pointer new_node){
 		node = new_node;
 		first = *new_node;
@@ -216,7 +39,7 @@ public:
 	}
 	
 	reference operator*() const { return *cur; }
-	pointer operator-> const { return &(operator*()); }
+	pointer operator->() const { return &(operator*()); }
 	difference_type operator- (const self& x) const {
 		return difference_type(buffer_size()) * (node - x.node - 1) + (cur - first) + (x.last - x.cur);
 	}
@@ -287,6 +110,191 @@ public:
 	bool operator< (const self& x) const {
 		return (node == x.node) ? (cur < x.cur) : (node < x.node);
 	}
+};
+
+
+template <class T, class Alloc = alloc, size_t BufSiz = 0>
+class deque {
+
+public:
+	typedef T value_type;
+	typedef value_type& reference;
+	typedef value_type* pointer;
+	typedef size_t size_type;
+	typedef ptrdiff_t difference_type;
+	typedef pointer* map_pointer;
+	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
+	
+protected:
+	typedef simple_alloc<value_type, Alloc> data_allocator;
+	typedef simple_alloc<pointer, Alloc> map_allocator;
+	
+	map_pointer map;
+	size_type map_size;
+	
+	iterator start;
+	iterator finish;
+	
+protected:
+	static size_type initial_map_size() { return 8; }
+	pointer allocate_node() { return data_allocator::allocate(iterator::buffer_size()); }
+	
+	void fill_initialize(size_type n, const value_type& value){
+		create_map_and_node(n);
+		map_pointer cur;
+		__STL_TRY{
+			for (cur = start.node; cur < finish.node; ++cur)
+				uninitialized_fill(*cur, *cur + iterator::buffer_size(), value);
+			uninitialized_fill(finish.first, finish.cur, value);
+		}catch (...){
+			//TODO
+		}
+	}
+	
+	void create_map_and_node(size_type num_elements){
+		size_type num_nodes = num_elements / iterator::buffer_size() + 1;
+		map_size = max(initial_map_size(), num_nodes + 2);
+		map = map_allocator::allocate(map_size);
+		
+		map_pointer nstart = map + (map_size - num_nodes) / 2;
+		map_pointer nfinish = nstart + num_nodes - 1;
+		
+		map_pointer cur;
+		__STL_TRY{
+			for (cur = nstart; cur <= nfinish; ++cur)
+				*cur = allocate_node();
+		}catch (...){
+			//commit or rollback
+		}
+		start.set_node(nstart);
+		finish.set_node(nfinish);
+		start.cur = start.first;
+		finish.cur = finish.first + num_elements % iterator::buffer_size();
+	}
+	
+	void push_back_aux(const value_type& t) {
+		value_type t_copy = t;
+		reserve_map_at_back();
+		*(finish.node + 1) = allocate_node();
+		__STL_TRY{
+			construct(finish.cur, t_copy);
+			finish.set_node(finish.node + 1);
+			finish.cur = finish.first;
+		}
+		__STL_UNWIND(deallocate_node(*(finish.node + 1)));
+	}
+	
+	void push_front_aux(const value_type& t){
+		value_type t_copy = t;
+		reserve_map_at_front();
+		*(start.node - 1) = allocate_node();
+		__STL_TRY{
+			start.set_node(start.node - 1);
+			start.cur = start.last - 1;
+			construct(start.cur, t_copy);
+		}catch (...){
+			// commit or rollback
+			start.set_node(start.node + 1);
+			start.cur = start.first;
+			deallocate_node(*(start.node - 1));
+			throw;
+		}
+	}
+	
+	void reserve_map_at_back(size_type nodes_to_add = 1){
+		if (nodes_to_add + 1 > map_size - (finish.node - map))
+			reallocate_map(nodes_to_add, false);
+	}
+	
+	void reserve_map_at_front (size_type nodes_to_add = 1){
+		if (nodes_to_add > start.node - map)
+			reallocate_map(nodes_to_add, true);
+	}
+	
+	void reallocate_map(size_type nodes_to_add, bool add_at_front){
+		size_type old_num_nodes = finish.node - start.node + 1;
+		size_type new_num_nodes = old_num_nodes + nodes_to_add;
+		
+		map_pointer new_nstart;
+		if (map_size > 2 * new_num_nodes){
+			new_nstart = map + (map_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
+			if (new_nstart < start.node)
+				copy(start.node, finish.node + 1, new_nstart);
+			else
+				copy_backward(start.node, finish.node + 1, new_nstart + old_num_nodes);
+		}else{
+			size_type new_map_size = map_size + max(map_size, nodes_to_add) + 2;
+			map_pointer new_map = map_allocator::allocate(new_map_size);
+			new_nstart = new_map + (new_map_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
+			copy(start.node, finish.node + 1, new_nstart);
+			map_allocator::deallocate(map, map_size);
+			map = new_map;
+			map_size = new_map_size;
+		}
+		
+		start.set_node(new_nstart);
+		finish.set_node(new_nstart + old_num_nodes - 1);
+	}
+	
+	void pop_back_aux(){
+		deallocate_node(finish.first);
+		finish.set_node(finish.node - 1);
+		finish.cur = finish.last - 1;
+		destroy(finish.cur);
+	}
+	
+	void pop_front_aux(){
+		destroy(start.cur);
+		deallocate_node(start.first);
+		start.set_node(start.node + 1);
+		start.cur = start.first;
+	}
+	
+	iterator insert_aux(iterator pos, const value_type& x){
+		difference_type index = pos - start;
+		value_type x_copy = x;
+		if (index < size() / 2){
+			push_front(front());
+			iterator front1 = start;
+			++front1;
+			iterator front2 = front1;
+			++front2;
+			pos = start + index;
+			iterator pos1 = pos;
+			++pos1;
+			copy(front2, pos1, front1);
+		}else{
+			push_back(back());
+			iterator back1 = finish;
+			--back1;
+			iterator back2 = back1;
+			--back2;
+			pos = start + index;
+			copy_backward(pos, back2, back1);
+		}
+		*pos = x_copy;
+		return pos;
+	}
+
+public:
+	deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
+		fill_initialize(n, value);
+	}
+	iterator begin() { return start; }
+	iterator end() { return finish; }
+	reference operator[] (size_type n) {
+		return start[difference_type(n)];
+	}
+	reference front() { return *start; }
+	reference back() {
+		iterator tmp = finish;
+		--tmp;
+		return *tmp;
+	}
+	size_type size() const { return finish - start; }
+	size_type max_size() const { return size_type(-1); }
+	bool empty() const { return finish == start; }
+	
 	
 	void push_back(const value_type& t){
 		if (finish.cur != finish.last - 1){
@@ -326,13 +334,13 @@ public:
 	
 	void clear(){
 		for (map_pointer node = start.node + 1; node < finish.node; ++node){
-			destroy(*node, *node + buffer_size());
-			data_allocator::deallocate(*node, buffer_size());
+			destroy(*node, *node + iterator::buffer_size());
+			data_allocator::deallocate(*node, iterator::buffer_size());
 		}
 		if (start.node != finish.node){
 			destroy(start.cur, start.last);
 			destroy(finish.first, finish.cur);
-			data_allocator::deallocate(finish.first, buffer_size());
+			data_allocator::deallocate(finish.first, iterator::buffer_size());
 		}else{
 			destroy(start.cur, finish.cur);
 		}
@@ -366,14 +374,14 @@ public:
 				destroy(start, new_start);
 				
 				for (map_pointer cur = start.node; cur < new_start.node; ++cur)
-					data_allocator::deallocate(*cur, buffer_size());
+					data_allocator::deallocate(*cur, iterator::buffer_size());
 				start = new_start;
 			}else{
 				copy(last, finish, first);
 				iterator new_finish = finish - n;
 				destroy(new_finish, finish);
 				for (map_pointer cur = new_finish.node + 1; cur <= finish.node; ++cur)
-					data_allocator::deallocate(*cur, buffer_size());
+					data_allocator::deallocate(*cur, iterator::buffer_size());
 				finish = new_finish;
 			}
 			return start + elems_before;
