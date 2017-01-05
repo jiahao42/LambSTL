@@ -155,6 +155,22 @@ protected:
 		start.set_node(new_nstart);
 		finish.set_node(new_nstart + old_num_nodes - 1);
 	}
+	
+	template <class T, class Alloc, size_t BufSiz>
+	void pop_back_aux(){
+		deallocate_node(finish.first);
+		finish.set_node(finish.node - 1);
+		finish.cur = finish.last - 1;
+		destroy(finish.cur);
+	}
+	
+	template <class T, class Alloc, size_t BufSiz>
+	void pop_front_aux(){
+		destroy(start.cur);
+		deallocate_node(start.first);
+		start.set_node(start.node + 1);
+		start.cur = start.first;
+	}
 
 public:
 	deque(int n, const value_type& value) : start(), finish(), map(0), map_size(0) {
@@ -268,6 +284,24 @@ public:
 			--start.cur;
 		}else{
 			push_front_aux(t);
+		}
+	}
+	
+	void pop_back(){
+		if (finish.cur != finish.first){
+			--finish.cur;
+			destroy(finish.cur);
+		}else{
+			pop_back_aux();
+		}
+	}
+	
+	void pop_front(){
+		if (start.cur != start.last - 1){
+			destroy(start.cur);
+			++start.cur;
+		}else{
+			pop_front_aux();
 		}
 	}
 
