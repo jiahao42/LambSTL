@@ -11,6 +11,15 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
+#define PRINT_OPERATION(operation, parameter, value) \
+	do { \
+		if (parameter == NULL){ \
+			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
+		}else { \
+			fprintf(stderr,"%s:%d: %s, [%s] : %d\n",__FILE__,__LINE__,operation,parameter,value);\
+		} \
+	} while(0)
+
 
 
 inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
@@ -170,13 +179,14 @@ protected:
 	void create_map_and_node(size_type num_elements){
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
-		map = map_allocator::allocate(map_size);//allocate buffers
+		map = map_allocator::allocate(map_size);//allocate map
+		PRINT_OPERATION("creating map","map_size",map_size);
 		
-		map_pointer nstart = map + (map_size - num_nodes) / 2;
+		map_pointer nstart = map + (map_size - num_nodes) / 2;//使得前后预留的buffer一样大，扩充方便
 		map_pointer nfinish = nstart + num_nodes - 1;
 		
 		map_pointer cur;
-		__STL_TRY{
+		__STL_TRY{//allocate buffers
 			for (cur = nstart; cur <= nfinish; ++cur)
 				*cur = allocate_node();
 		}catch (...){
@@ -317,7 +327,7 @@ public:
 	
 	
 	void push_back(const value_type& t){
-		std::cout<<"pushing back ["<<t<<"]..."<<std::endl;
+		PRINT_OPERATION("pushing back", "value", t);
 		if (finish.cur != finish.last - 1){
 			construct(finish.cur, t);
 			++finish.cur;
