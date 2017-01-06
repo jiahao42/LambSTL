@@ -17,6 +17,7 @@
 #	define __THROW_BAD_ALLOC std::cerr<<"out of memory"<<std::endl;	exit(1);
 #endif
 
+
 /*
 第一级配置器，使用malloc(),free(),realloc()来配置内存
 如果配置失败，则调用private的oom_malloc(),oom_realloc()来反复配置内存
@@ -34,21 +35,19 @@ public:
 	static void* allocate(size_t n){
 		void* result = malloc(n);
 		if (0 == result)	result = oom_malloc(n);
-		PRINT_LINE();
-		std::cout<<"allocate "<<n<<" bytes memory using malloc"<<std::endl; 
+		LOG("allocate memory using malloc","bytes",n);
 		return result;
 	}
 	
 	static void deallocate(void* p, size_t){
-		PRINT_LINE();
-		std::cout<<"deallocate memory"<<std::endl;
+		LOG("deallocate memory using malloc",NULL,NULL);
 		free(p);
 	}
 	
 	static void* reallocate(void* p, size_t old_sz, size_t new_sz){
 		void* result = realloc(p, new_sz);
-		PRINT_LINE();
-		std::cout<<"realloc memory from "<<old_sz<<" size to "<<new_sz<<std::endl;
+		LOG("realloc memory using malloc from","size",old_sz);
+		LOG("realloc memory using malloc to","size",new_sz);
 		if (0 == result)	result = oom_realloc(p, new_sz);
 		return result;
 	}

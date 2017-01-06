@@ -8,6 +8,7 @@
 #include <climits>	/* UINT_MAX */
 #include <iostream> /* cerr */
 
+
 enum {__ALIGN = 8};	//小型区块的上调边界
 enum {__MAX_BYTES = 128};	//小型区块的上限
 enum {__NFREELISTS = __MAX_BYTES / __ALIGN};	//free_list 个数
@@ -17,8 +18,7 @@ class __default_alloc_template{
 
 private:
 	static size_t ROUND_UP(size_t bytes){
-		PRINT_LINE();
-		std::cout<<"ROUNDING UP..."<<std::endl;
+		LOG("ROUNDING UP...",NULL,NULL);
 		//~(__ALIGN - 1) == 0xfffffffffffffff8
 		//将bytes上升到8的倍数
 		return (((bytes) + __ALIGN - 1) & ~(__ALIGN - 1));
@@ -42,8 +42,7 @@ private:
 	
 public:
 	static void* allocate(size_t n){
-		PRINT_LINE();
-		std::cout<<"allocate "<<n<<" bytes from memory pool"<<std::endl;
+		LOG("allocate from memory pool...","bytes",n);
 		obj* volatile * my_free_list;
 		obj* result;
 		if (n > (size_t) __MAX_BYTES){//如果大于128bytes,则直接调用malloc,内存池中没那么大的chunk
@@ -60,8 +59,7 @@ public:
 		return result;
 	}
 	static void deallocate(void* p,size_t n){
-		PRINT_LINE();
-		std::cout<<"deallocate "<<n<<" bytes, adding to memory pool"<<std::endl;
+		LOG("deallocate to memory pool...","bytes",n);
 		obj* q = (obj*)p;
 		obj* volatile *my_free_list;
 		
@@ -85,8 +83,8 @@ void* __default_alloc_template<threads, inst>::refill(size_t n){
 	obj* result;
 	obj* current_obj, *next_obj;
 	int i;
-	PRINT_LINE();
-	std::cout<<"refill chunk of "<<n<<" bytes from memory pool, "<<nobjs<<" chunks refilled"<<std::endl;
+	LOG("refill from memory pool...","bytes",n);
+	LOG("refill from memory pool...","chunks",nobjs);
 	if (1 == nobjs){//如果只返回了一个区块，则直接给客户使用即可
 		return chunk;
 	}

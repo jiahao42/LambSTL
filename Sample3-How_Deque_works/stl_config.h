@@ -23,6 +23,19 @@ struct __false_type{};
 #   define __STL_UNWIND(action)
 # endif
 
+#ifdef __SHOW_LOGS
+#define LOG(operation, parameter, value) \
+	do { \
+		if (parameter == NULL){ \
+			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
+		}else { \
+			fprintf(stderr,"%s:%d: %s, [%s] : %d\n",__FILE__,__LINE__,operation,parameter,value);\
+		} \
+	} while(0)
+#else
+#define LOG	
+#endif
+
 #endif
 
 

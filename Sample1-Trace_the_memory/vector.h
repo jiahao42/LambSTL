@@ -7,10 +7,9 @@
 #include "uninitialized.h"
 #include <iostream>
 
+
 template<class BidirectionalIterator1, class BidirectionalIterator2>
-  BidirectionalIterator2 copy_backward ( BidirectionalIterator1 first,
-                                         BidirectionalIterator1 last,
-                                         BidirectionalIterator2 result )
+BidirectionalIterator2 copy_backward ( BidirectionalIterator1 first, BidirectionalIterator1 last, BidirectionalIterator2 result )
 {
   while (last!=first) *(--result) = *(--last);
   return result;
@@ -87,28 +86,22 @@ public:
 	reference operator[](size_type n){ return *(begin() + n); }
 	Vector():start(0),finish(0), end_of_storage(0){
 		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"Vector is contructed"<<std::endl;
+		LOG("Vector is contructed",NULL,NULL);
 	}
 	~Vector(){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"Vector is destructing..."<<std::endl;
+		LOG("Vector is destructing...",NULL,NULL);
 		destroy(start,finish);
 		deallocate();
 	}
 	void pop_back(){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"pop_back..."<<std::endl;
+		LOG("pop_back...",NULL,NULL);
 		--finish;
 		destroy(finish);
 	}
 	
 	iterator erase(iterator first, iterator last){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"erase from "<<*first<<" to "<<*last<<std::endl;
+		LOG("erase from...","first",*first);
+		LOG("until...","last",*last);
 		iterator i = copy(last, finish, first);//将后半片旧数据往前移
 		destroy(i,finish);//销毁end()
 		finish = finish - (last - first);//确定finish的新位置
@@ -116,9 +109,7 @@ public:
 	}
 	
 	iterator erase(iterator position){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"erase "<<*position<<std::endl;
+		LOG("erase","position",*position);
 		if (position + 1 != end()){
 			copy(position + 1, finish, position);//后续元素往前移动
 		}
@@ -128,15 +119,11 @@ public:
 	}
 	
 	void clear(){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"clear..."<<std::endl;
+		LOG("clear",NULL,NULL);
 		erase(begin(),end());
 	}
 	void push_back(const T& x){
-		std::cout<<std::endl;
-		PRINT_LINE();
-		std::cout<<"push_back: "<<x<<std::endl;
+		LOG("push_back: ","value",x);
 		if (finish != end_of_storage){
 			construct(finish, x);
 			++finish;

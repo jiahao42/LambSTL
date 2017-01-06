@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 int main(){
 	Vector<int> v;
 	v.push_back(0);

@@ -5,24 +5,15 @@
 #define __STL_USE_EXCEPTIONS
 #endif
 
+#ifndef __SHOW_LOGS
+#define __SHOW_LOGS
+#endif
+
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
-
-#ifdef __SHOW_LOGS
-#define PRINT_OPERATION(operation, parameter, value) \
-	do { \
-		if (parameter == NULL){ \
-			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
-		}else { \
-			fprintf(stderr,"%s:%d: %s, [%s] : %d\n",__FILE__,__LINE__,operation,parameter,value);\
-		} \
-	} while(0)
-#else
-#define PRINT_OPERATION	
-#endif
 
 
 inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
@@ -183,7 +174,7 @@ protected:
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
 		map = map_allocator::allocate(map_size);//allocate map
-		PRINT_OPERATION("creating map","map_size",map_size);
+		LOG("creating map","map_size",map_size);
 		
 		map_pointer nstart = map + (map_size - num_nodes) / 2;//使得前后预留的buffer一样大，扩充方便
 		map_pointer nfinish = nstart + num_nodes - 1;
@@ -330,7 +321,7 @@ public:
 	
 	
 	void push_back(const value_type& t){
-		PRINT_OPERATION("pushing back", "value", t);
+		LOG("pushing back", "value", t);
 		if (finish.cur != finish.last - 1){
 			construct(finish.cur, t);
 			++finish.cur;

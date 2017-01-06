@@ -5,8 +5,7 @@
 
 template <class T1, class T2>
 inline void construct(T1* p, const T2& value){//placement new
-	PRINT_LINE();
-	std::cout<<"construct value ["<<value<<"] on allocated memory"<<std::endl;
+	LOG("constructing...","value",value);
 	new (p) T1 (value);
 }
 
@@ -19,8 +18,7 @@ inline void __destory_aux(ForwardIterator first, ForwardIterator last, __false_t
 
 template <class ForwardIterator>
 inline void __destory_aux(ForwardIterator, ForwardIterator, __true_type){
-	PRINT_LINE();
-	std::cout<<"destroy objects with trivial_destructor"<<std::endl;
+	LOG("destroy objects with trivial_destructor",NULL,NULL);
 }
 
 
@@ -32,15 +30,13 @@ inline void __destory(ForwardIterator first, ForwardIterator last, T*){
 
 template <class T>
 inline void destroy(T* pointer){
-	PRINT_LINE();
-	std::cout<<"destroy object with non-trivial_destructor"<<std::endl;
+	LOG("destroy object with non-trivial_destructor",NULL,NULL);
 	pointer->~T();
 }
 
 template <class ForwardIterator>
 inline void destroy(ForwardIterator first, ForwardIterator last){
-	PRINT_LINE();
-	std::cout<<"destroying...judging if it has the trivial_destructor"<<std::endl;
+	LOG("destroying...judging if it has the trivial_destructor",NULL,NULL);
 	__destory(first, last, value_type(first));
 }
 
