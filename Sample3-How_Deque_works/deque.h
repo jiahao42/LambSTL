@@ -1,6 +1,10 @@
 #ifndef __DEQUE_H_
 #define __DEQUE_H_
 
+#ifndef __STL_USE_EXCEPTIONS
+#define __STL_USE_EXCEPTIONS
+#endif
+
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
@@ -134,8 +138,8 @@ public:
 	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
 	
 protected:
-	typedef simple_alloc<value_type, Alloc> data_allocator;
-	typedef simple_alloc<pointer, Alloc> map_allocator;
+	typedef simple_alloc<value_type, Alloc> data_allocator;//for element
+	typedef simple_alloc<pointer, Alloc> map_allocator;//for buffer
 	
 	map_pointer map;
 	size_type map_size;
@@ -154,7 +158,7 @@ protected:
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
 		map_pointer cur;
-		__STL_TRY{
+		__STL_TRY{//fill the Deque with value
 			for (cur = start.node; cur < finish.node; ++cur)
 				uninitialized_fill(*cur, *cur + buffer_size(), value);
 			uninitialized_fill(finish.first, finish.cur, value);
@@ -165,7 +169,7 @@ protected:
 	
 	void create_map_and_node(size_type num_elements){
 		size_type num_nodes = num_elements / buffer_size() + 1;
-		map_size = max(initial_map_size(), num_nodes + 2);
+		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
 		map = map_allocator::allocate(map_size);
 		
 		map_pointer nstart = map + (map_size - num_nodes) / 2;

@@ -7,10 +7,6 @@ struct __false_type{};
 
 #define __STL_TEMPLATE_NULL template<>
 
-#ifndef __STL_USE_EXCEPTIONS
-#define __STL_USE_EXCEPTIONS
-#endif
-
 # ifdef __STL_USE_EXCEPTIONS
 #   define __STL_TRY try
 #   define __STL_CATCH_ALL catch(...)
