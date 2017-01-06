@@ -5,10 +5,6 @@
 #define __STL_USE_EXCEPTIONS
 #endif
 
-#ifndef __SHOW_LOGS
-#define __SHOW_LOGS
-#endif
-
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
@@ -302,7 +298,7 @@ public:
 	}
 	
 	Deque() : start(), finish(), map(0), map_size(0){
-		
+		create_map_and_node(0);
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }

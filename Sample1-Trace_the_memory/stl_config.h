@@ -35,7 +35,7 @@ struct __false_type{};
 		} \
 	} while(0)
 #else
-#define LOG	
+#define LOG	(operation, parameter, value) {}
 #endif
 
 
