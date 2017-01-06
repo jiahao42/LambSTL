@@ -9,7 +9,7 @@
 
 
 
-inline size_t __deque_buf_size(size_t n, size_t sz){
+inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
 	return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));
 }
 
@@ -30,19 +30,21 @@ struct __deque_iterator {
 	
 	typedef __deque_iterator self;
 	
-	T* cur;
+	T* cur;//current position
 	T* first;
 	T* last;
-	map_pointer node;
+	map_pointer node;//equivalent to map in Deque
 	
 	void set_node(map_pointer new_node){
-		node = new_node;
-		first = *new_node;
-		last = first + difference_type(buffer_size());
+		node = new_node;//set map
+		first = *new_node;//first point to the first buffer of map
+		last = first + difference_type(buffer_size());//last buffer of map
 	}
 	
-	reference operator*() const { return *cur; }
+	reference operator*() const { return *cur; }//get value of current element
 	pointer operator->() const { return &(operator*()); }
+	
+	//TODO operator- not figure out yet
 	difference_type operator- (const self& x) const {
 		return difference_type(buffer_size()) * (node - x.node - 1) + (cur - first) + (x.last - x.cur);
 	}
@@ -57,9 +59,10 @@ struct __deque_iterator {
 		return *this;
 	}
 	
+	//post
 	self operator++(int) {
 		self tmp = *this;
-		++*this;
+		++*this;//invoke pre
 		return tmp;
 	}
 	
@@ -74,17 +77,19 @@ struct __deque_iterator {
 	
 	self operator-- (int) {
 		self tmp = *this;
-		--*this;
+		--*this;//invoke pre
 		return tmp;
 	}
 	
 	self& operator+=(difference_type n){
 		difference_type offset = n + (cur - first);
-		if (offset >= 0 && offset < difference_type(buffer_size()))
+		if (offset >= 0 && offset < difference_type(buffer_size()))//current buffer still have vacancy
 			cur+=n;
 		else{
 			difference_type node_offset = offset > 0 ? offset / difference_type(buffer_size()) : -difference_type((-offset - 1) / buffer_size()) - 1;
+			//find the buffer
 			set_node(node + node_offset);
+			//set the cursor
 			cur = first + (offset - node_offset * difference_type(buffer_size()));
 		}
 		return *this;
@@ -92,20 +97,20 @@ struct __deque_iterator {
 	
 	self operator+ (difference_type n)	const {
 		self tmp = *this;
-		return tmp += n;
+		return tmp += n;//overload +=
 	}
 	
 	self& operator-=(difference_type n ){
-		return *this += -n;
+		return *this += -n;//overload +=
 	}
 	
 	self operator- (difference_type n ) const {
 		self tmp = *this;
-		return tmp -= n;
+		return tmp -= n;//overload -=
 	}
 	
 	reference operator[] (difference_type n) const {
-		return *(*this + n);
+		return *(*this + n);//find right buffer
 	}
 	
 	bool operator== (const self& x)	const { return cur == x.cur; }
