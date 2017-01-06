@@ -170,7 +170,7 @@ protected:
 	void create_map_and_node(size_type num_elements){
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
-		map = map_allocator::allocate(map_size);
+		map = map_allocator::allocate(map_size);//allocate buffers
 		
 		map_pointer nstart = map + (map_size - num_nodes) / 2;
 		map_pointer nfinish = nstart + num_nodes - 1;
