@@ -17,8 +17,6 @@
 #	define __THROW_BAD_ALLOC std::cerr<<"out of memory"<<std::endl;	exit(1);
 #endif
 
-#define PRINT_LINE() fprintf(stderr,"%s:%d : ",__FILE__,__LINE__);
-
 /*
 第一级配置器，使用malloc(),free(),realloc()来配置内存
 如果配置失败，则调用private的oom_malloc(),oom_realloc()来反复配置内存

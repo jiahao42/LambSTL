@@ -11,6 +11,7 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
+#ifdef __SHOW_LOGS
 #define PRINT_OPERATION(operation, parameter, value) \
 	do { \
 		if (parameter == NULL){ \
@@ -19,7 +20,9 @@
 			fprintf(stderr,"%s:%d: %s, [%s] : %d\n",__FILE__,__LINE__,operation,parameter,value);\
 		} \
 	} while(0)
-
+#else
+#define PRINT_OPERATION	
+#endif
 
 
 inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
