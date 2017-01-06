@@ -18,7 +18,7 @@ inline void __destory_aux(ForwardIterator first, ForwardIterator last, __false_t
 
 template <class ForwardIterator>
 inline void __destory_aux(ForwardIterator, ForwardIterator, __true_type){
-	LOG("destroy objects with trivial_destructor",NULL,NULL);
+	LOG("destroy objects with trivial_destructor","",0);
 }
 
 
@@ -30,13 +30,13 @@ inline void __destory(ForwardIterator first, ForwardIterator last, T*){
 
 template <class T>
 inline void destroy(T* pointer){
-	LOG("destroy object with non-trivial_destructor",NULL,NULL);
+	LOG("destroy object with non-trivial_destructor","",0);
 	pointer->~T();
 }
 
 template <class ForwardIterator>
 inline void destroy(ForwardIterator first, ForwardIterator last){
-	LOG("destroying...judging if it has the trivial_destructor",NULL,NULL);
+	LOG("destroying...judging if it has the trivial_destructor","",0);
 	__destory(first, last, value_type(first));
 }
 

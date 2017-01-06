@@ -43,7 +43,7 @@ struct iterator_traits<const T*>{//原生指针，必定是random access
 //取得value_type
 template <class Iterator>
 inline typename iterator_traits<Iterator>::value_type* value_type(const Iterator&){
-	LOG("judging if the iterator has non-trivial_destructor",NULL,NULL);
+	LOG("judging if the iterator has non-trivial_destructor","",0);
 	return static_cast<typename iterator_traits<Iterator>::value_type*>(0);
 }
 

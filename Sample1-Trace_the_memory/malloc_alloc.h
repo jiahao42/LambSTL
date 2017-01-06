@@ -40,7 +40,7 @@ public:
 	}
 	
 	static void deallocate(void* p, size_t){
-		LOG("deallocate memory using malloc",NULL,NULL);
+		LOG("deallocate memory using malloc","",0);
 		free(p);
 	}
 	

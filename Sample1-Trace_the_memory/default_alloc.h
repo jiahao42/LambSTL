@@ -18,7 +18,7 @@ class __default_alloc_template{
 
 private:
 	static size_t ROUND_UP(size_t bytes){
-		LOG("ROUNDING UP...",NULL,NULL);
+		LOG("ROUNDING UP...","",0);
 		//~(__ALIGN - 1) == 0xfffffffffffffff8
 		//将bytes上升到8的倍数
 		return (((bytes) + __ALIGN - 1) & ~(__ALIGN - 1));

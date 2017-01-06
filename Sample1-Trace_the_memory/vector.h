@@ -86,15 +86,15 @@ public:
 	reference operator[](size_type n){ return *(begin() + n); }
 	Vector():start(0),finish(0), end_of_storage(0){
 		std::cout<<std::endl;
-		LOG("Vector is contructed",NULL,NULL);
+		LOG("Vector is contructed","",0);
 	}
 	~Vector(){
-		LOG("Vector is destructing...",NULL,NULL);
+		LOG("Vector is destructing...","",0);
 		destroy(start,finish);
 		deallocate();
 	}
 	void pop_back(){
-		LOG("pop_back...",NULL,NULL);
+		LOG("pop_back...","",0);
 		--finish;
 		destroy(finish);
 	}
@@ -119,7 +119,7 @@ public:
 	}
 	
 	void clear(){
-		LOG("clear",NULL,NULL);
+		LOG("clear","",0);
 		erase(begin(),end());
 	}
 	void push_back(const T& x){
