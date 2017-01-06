@@ -4,6 +4,9 @@
 
 ```
 Vector<int*> v;
+int* array = new int[10];
+v.push_back(array);
+
 ```
 
 

@@ -26,7 +26,7 @@ struct __false_type{};
 #ifdef __SHOW_LOGS
 #define LOG(operation, parameter, value) \
 	do { \
-		if (parameter == NULL){ \
+		if (parameter == ""){ \
 			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
 		}else { \
 			fprintf(stderr,"%s:%d: %s, [%s] : %d\n",__FILE__,__LINE__,operation,parameter,value);\
