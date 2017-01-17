@@ -219,19 +219,19 @@ protected:
 		}
 	}
 	
-	void reserve_map_at_back(size_type nodes_to_add = 1){
+	void reserve_map_at_back(size_type nodes_to_add = 1){//若尾端结点不足
 		LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
 		if (nodes_to_add + 1 > map_size - (finish.node - map))
 			reallocate_map(nodes_to_add, false);
 	}
 	
-	void reserve_map_at_front (size_type nodes_to_add = 1){
+	void reserve_map_at_front (size_type nodes_to_add = 1){//若前端结点不足
 		LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
 		if (nodes_to_add > start.node - map)
 			reallocate_map(nodes_to_add, true);
 	}
 	
-	void reallocate_map(size_type nodes_to_add, bool add_at_front){
+	void reallocate_map(size_type nodes_to_add, bool add_at_front){//重新调整map大小
 		LOG("reallocate_map", "nodes to add", (int)nodes_to_add);
 		size_type old_num_nodes = finish.node - start.node + 1;
 		size_type new_num_nodes = old_num_nodes + nodes_to_add;
@@ -326,7 +326,7 @@ public:
 		if (finish.cur != finish.last - 1){
 			construct(finish.cur, t);
 			++finish.cur;
-		}else{
+		}else{//如果cur == last,再push_back就要改变结点了
 			push_back_aux(t);
 		}
 	}
@@ -336,7 +336,7 @@ public:
 		if (start.cur != start.first){
 			construct(start.cur - 1, t);
 			--start.cur;
-		}else{
+		}else{//如果cur == first,再push_front就要改变结点了
 			push_front_aux(t);
 		}
 	}
@@ -346,7 +346,7 @@ public:
 		if (finish.cur != finish.first){
 			--finish.cur;
 			destroy(finish.cur);
-		}else{
+		}else{//如果cur == last,再pop_back就要改变结点了
 			pop_back_aux();
 		}
 	}
@@ -356,7 +356,7 @@ public:
 		if (start.cur != start.last - 1){
 			destroy(start.cur);
 			++start.cur;
-		}else{
+		}else{//需要改变结点
 			pop_front_aux();
 		}
 	}

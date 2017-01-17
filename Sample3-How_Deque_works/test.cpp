@@ -23,19 +23,37 @@ int main_ret = 0;
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
 void test_deque_push_pop(){
-	LOG("start to test deque push and pop...", "", 0);
+	LOG("**start to test deque push and pop...**", "", 0);
 	Deque<int> d;
 	d.push_back(1);
 	TEST_INT(d[0],1);
 	TEST_SIZE_TYPE(1, d.size());
 	d.pop_back();
 	TEST_SIZE_TYPE(0, d.size());
+	for (int i = 0; i < 5; i++){//[0,1,2,3,4]
+		d.push_back(i);
+		TEST_INT(i, d[i]);
+	}
+	for (int i = 0; i < 5; i++){//[14,13,12,11,10,0,1,2,3,4]
+		d.push_front(i + 10);
+		TEST_INT(i + 10, d[0]);
+	}
+	for (int i = 0; i < 5; i++){//[14,13,12,11,10]
+		d.pop_back();
+		TEST_INT(i, d[i + 5]);
+	}
+	for (int i = 0; i < 5; i++){
+		TEST_INT(14 - i, d[0]);
+		d.pop_front();
+	}
+	cout<<endl;
 }
 
 void test_deque_size(){
-	LOG("start to test deque size...", "", 0);
+	LOG("**start to test deque size...**", "", 0);
 	Deque<int> d;
 	TEST_SIZE_TYPE(512 / sizeof(int),d.begin().buffer_size());
+	cout<<endl;
 }
 
 /* test Deque */
