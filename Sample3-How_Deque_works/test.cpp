@@ -26,13 +26,20 @@ void test_deque_push_pop(){
 	Deque<int> d;
 	d.push_back(1);
 	TEST_INT(d[0],1);
+	TEST_SIZE_TYPE(1, d.size());
+	d.pop_back();
+	TEST_SIZE_TYPE(0, d.size());
 }
 
+void test_deque_size(){
+	Deque<int> d;
+	TEST_SIZE_TYPE(512 / sizeof(int),d.begin().buffer_size());
+}
 
 /* test Deque */
 void test_deque(){
 	test_deque_push_pop();
-	//test_deque_size();
+	test_deque_size();
 	//test_deque_iterator();
 	//test_deque_erase();
 	//test_deque_insert();

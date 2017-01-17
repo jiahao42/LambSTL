@@ -182,6 +182,7 @@ protected:
 		}catch (...){
 			//commit or rollback
 		}
+		//if num_elements = 0, cur and first point to the same position
 		start.set_node(nstart);
 		finish.set_node(nfinish);
 		start.cur = start.first;
@@ -310,7 +311,7 @@ public:
 		iterator tmp = finish;
 		--tmp;
 		return *tmp;
-	}
+	} 
 	size_type size() const { return finish - start; }
 	size_type max_size() const { return size_type(-1); }
 	bool empty() const { return finish == start; }
