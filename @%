@@ -4,5 +4,4 @@
 #object file && executable files
 *.out
 *.obj
-*.o
 

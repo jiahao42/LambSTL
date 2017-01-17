@@ -150,7 +150,7 @@ protected:
 	static size_type buffer_size() {
 		return __deque_buf_size(BufSiz, sizeof(value_type));
 	}
-	static size_type initial_map_size() { return 8; }
+	static size_type initial_map_size() { return 8; } //默认有八个缓冲区
 	pointer allocate_node() { return data_allocator::allocate(buffer_size()); }
 	void deallocate_node(pointer p) { return data_allocator::deallocate(p, buffer_size()); }
 	
@@ -167,6 +167,7 @@ protected:
 	}
 	
 	void create_map_and_node(size_type num_elements){
+		LOG("create_map_and_node", "num elements", (int)num_elements);
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
 		map = map_allocator::allocate(map_size);//allocate map
@@ -219,16 +220,19 @@ protected:
 	}
 	
 	void reserve_map_at_back(size_type nodes_to_add = 1){
+		LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
 		if (nodes_to_add + 1 > map_size - (finish.node - map))
 			reallocate_map(nodes_to_add, false);
 	}
 	
 	void reserve_map_at_front (size_type nodes_to_add = 1){
+		LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
 		if (nodes_to_add > start.node - map)
 			reallocate_map(nodes_to_add, true);
 	}
 	
 	void reallocate_map(size_type nodes_to_add, bool add_at_front){
+		LOG("reallocate_map", "nodes to add", (int)nodes_to_add);
 		size_type old_num_nodes = finish.node - start.node + 1;
 		size_type new_num_nodes = old_num_nodes + nodes_to_add;
 		
@@ -328,6 +332,7 @@ public:
 	}
 	
 	void push_front(const value_type& t){
+		LOG("pushing front", "value", t);
 		if (start.cur != start.first){
 			construct(start.cur - 1, t);
 			--start.cur;
@@ -337,6 +342,7 @@ public:
 	}
 	
 	void pop_back(){
+		LOG("poping back", "", 0);
 		if (finish.cur != finish.first){
 			--finish.cur;
 			destroy(finish.cur);
@@ -346,6 +352,7 @@ public:
 	}
 	
 	void pop_front(){
+		LOG("poping front", "", 0);
 		if (start.cur != start.last - 1){
 			destroy(start.cur);
 			++start.cur;
@@ -355,6 +362,7 @@ public:
 	}
 	
 	void clear(){
+		LOG("clearing", "", 0);
 		for (map_pointer node = start.node + 1; node < finish.node; ++node){
 			destroy(*node, *node + buffer_size());
 			data_allocator::deallocate(*node, buffer_size());
@@ -370,6 +378,7 @@ public:
 	}
 	
 	iterator erase(iterator pos){
+		LOG("eraseing", "position", *pos);
 		iterator next = pos;
 		++next;
 		difference_type index = pos - start;
@@ -384,6 +393,8 @@ public:
 	}
 	
 	iterator erase(iterator first, iterator last){
+		LOG("eraseing", "from", *first);
+		LOG("eraseing", "to", *last);
 		if (first == start && last == finish){
 			clear();
 			return finish;
@@ -411,6 +422,8 @@ public:
 	}
 	
 	iterator insert(iterator position, const value_type& x){
+		LOG("inserting", "position", *position);
+		LOG("inserting", "value", x);
 		if (position.cur == start.cur){
 			push_front(x);
 			return start;

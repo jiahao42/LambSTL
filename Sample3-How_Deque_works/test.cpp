@@ -23,6 +23,7 @@ int main_ret = 0;
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
 void test_deque_push_pop(){
+	LOG("start to test deque push and pop...", "", 0);
 	Deque<int> d;
 	d.push_back(1);
 	TEST_INT(d[0],1);
@@ -32,6 +33,7 @@ void test_deque_push_pop(){
 }
 
 void test_deque_size(){
+	LOG("start to test deque size...", "", 0);
 	Deque<int> d;
 	TEST_SIZE_TYPE(512 / sizeof(int),d.begin().buffer_size());
 }
