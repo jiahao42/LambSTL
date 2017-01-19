@@ -24,7 +24,7 @@ int main_ret = 0;
 
 void test_deque_push_pop(){
 	LOG("**start to test deque push and pop...**", "", 0);
-	Deque<int, alloc, 5> d;
+	Deque<int, alloc, 5> d;//make the buffer_size = 5
 	int i;
 	d.push_back(1);
 	TEST_INT(d[0],1);
@@ -62,13 +62,65 @@ void test_deque_size(){
 	cout<<endl;
 }
 
+void test_deque_iterator(){
+	LOG("**start to test iterator...**", "", 0);
+	Deque<int> d;
+	for (int i = 0; i < 10; i++){
+		d.push_front(i);
+	}
+	auto start = d.begin();
+	for (int i = 0; i < 10; i++){
+		TEST_INT(9 - i, *start++);
+	}
+	auto finish = d.end();
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+		TEST_INT(i, *finish++);
+	}
+	cout<<endl;
+}
+
+void test_deque_erase(){
+	LOG("**start to test erase...**", "", 0);
+	Deque<int> d;
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+	}
+	auto start = d.begin();
+	d.erase(start);
+	for (int i = 1; i < 10; i++){
+		TEST_INT(i, d[i - 1]);
+	}
+	start = d.begin();
+	auto finish = d.end();
+	d.erase(start, finish);
+	TEST_SIZE_TYPE(0, d.size());
+	cout<<endl;
+}
+
+void test_deque_insert(){
+	LOG("**start to test insert...**", "", 0);
+	Deque<int> d;
+	auto start = d.begin();
+	d.insert(start,1);
+	TEST_INT(1, d[0]);
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+	}
+	auto pos = d.begin() + 5;
+	d.insert(pos, 999);
+	TEST_INT(999, d[5]);
+	cout<<endl;
+}
+
+
 /* test Deque */
 void test_deque(){
 	test_deque_push_pop();
 	test_deque_size();
-	//test_deque_iterator();
-	//test_deque_erase();
-	//test_deque_insert();
+	test_deque_iterator();
+	test_deque_erase();
+	test_deque_insert();
 }
 
 

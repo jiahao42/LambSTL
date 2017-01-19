@@ -313,7 +313,6 @@ public:
 	}
 	
 	~Deque(){
-		LOG("Deque is destructing...","",0);
 		map_allocator::deallocate(map,map_size);
 	}
 	iterator begin() { return start; }
