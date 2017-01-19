@@ -1,4 +1,4 @@
-#include "deque.h"
+#include "stack.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -22,9 +22,12 @@ int main_ret = 0;
 #define TEST_SIZE_TYPE(expect,actual)	TEST_EQ_BASE \
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
+void test_stack(){
+	
+}
 
 int main(){
-	test_deque();
+	test_stack();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }

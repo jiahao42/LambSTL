@@ -1,5 +1,5 @@
-objects = test.o deque.o
-res = test.cpp deque.h
+objects = test.o stack.o
+res = test.cpp stack.h
 CXX=g++
 CXXFLAGS= -g -O3 -std=c++11
 program=test
@@ -9,7 +9,7 @@ test: $(objects)
 
 test.o : test.cpp
 
-deque.o : deque.cpp deque.h
+stack.o : stack.cpp stack.h
 
 clean:
 	rm $(objects)
