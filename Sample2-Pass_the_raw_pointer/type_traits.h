@@ -1,6 +1,9 @@
 #ifndef __TYPE_TRAITS_H_
 #define __TYPE_TRAITS_H_
 
+struct __true_type{};
+struct __false_type{};
+
 /*
 一个class什么时候应该有自己的
 non-trivial default constructor,

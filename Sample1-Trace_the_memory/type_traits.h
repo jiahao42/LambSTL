@@ -1,6 +1,8 @@
 #ifndef __TYPE_TRAITS_H_
 #define __TYPE_TRAITS_H_
 
+struct __true_type{};
+struct __false_type{};
 /*
 下列是最基础的traits，接受任何型别的参数，并将各属性都设置成__false_type
 __true_type将在相应的特化版本中给出
