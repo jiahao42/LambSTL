@@ -168,6 +168,7 @@ protected:
 	
 	void create_map_and_node(size_type num_elements){
 		LOG("create_map_and_node", "num elements", (int)num_elements);
+		LOG("buffer size", "size", (int)buffer_size());
 		size_type num_nodes = num_elements / buffer_size() + 1;
 		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
 		map = map_allocator::allocate(map_size);//allocate map
@@ -226,9 +227,12 @@ protected:
 	}
 	
 	void reserve_map_at_front (size_type nodes_to_add = 1){//若前端结点不足
-		LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
-		if (nodes_to_add > start.node - map)
+		if (nodes_to_add > start.node - map){
+			LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
+			LOG("reserve_map_at_front", "start.node - map", (int)(start.node - map));
 			reallocate_map(nodes_to_add, true);
+		}
+			
 	}
 	
 	void reallocate_map(size_type nodes_to_add, bool add_at_front){//重新调整map大小
