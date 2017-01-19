@@ -22,8 +22,21 @@ int main_ret = 0;
 #define TEST_SIZE_TYPE(expect,actual)	TEST_EQ_BASE \
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
+void test_stack_using_deque(){
+	Stack<int> s;
+	for (int i = 0; i < 10; i++){
+		TEST_SIZE_TYPE(i, s.size());
+		s.push(i);
+		TEST_INT(i, s.top());
+	}
+	for (int i = 0; i < 10; i++){
+		TEST_SIZE_TYPE(10 - i, s.size());
+		s.pop();
+		TEST_INT(9 - i, s.top());
+	}
+}
 void test_stack(){
-	
+	test_stack_using_deque();
 }
 
 int main(){
