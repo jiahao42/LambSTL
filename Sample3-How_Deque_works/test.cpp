@@ -24,27 +24,33 @@ int main_ret = 0;
 
 void test_deque_push_pop(){
 	LOG("**start to test deque push and pop...**", "", 0);
-	Deque<int> d;
+	Deque<int, alloc, 5> d;
+	int i;
 	d.push_back(1);
 	TEST_INT(d[0],1);
 	TEST_SIZE_TYPE(1, d.size());
 	d.pop_back();
 	TEST_SIZE_TYPE(0, d.size());
-	for (int i = 0; i < 5; i++){//[0,1,2,3,4]
+	for (i = 0; i < 5; i++){//[0,1,2,3,4]
 		d.push_back(i);
 		TEST_INT(i, d[i]);
 	}
-	for (int i = 0; i < 5; i++){//[14,13,12,11,10,0,1,2,3,4]
+	for (i = 0; i < 5; i++){//[14,13,12,11,10,0,1,2,3,4]
 		d.push_front(i + 10);
 		TEST_INT(i + 10, d[0]);
 	}
-	for (int i = 0; i < 5; i++){//[14,13,12,11,10]
+	for (i = 0; i < 5; i++){//[14,13,12,11,10]
 		d.pop_back();
 		TEST_INT(i, d[i + 5]);
 	}
-	for (int i = 0; i < 5; i++){
+	for (i = 0; i < 5; i++){//[]
 		TEST_INT(14 - i, d[0]);
 		d.pop_front();
+	}
+	TEST_SIZE_TYPE(0, d.size());
+	
+	for (i = 0; i < 25; i++){
+		d.push_back(i);//This will cause reallocation
 	}
 	cout<<endl;
 }

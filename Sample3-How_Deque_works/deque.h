@@ -221,9 +221,11 @@ protected:
 	}
 	
 	void reserve_map_at_back(size_type nodes_to_add = 1){//若尾端结点不足
-		LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
-		if (nodes_to_add + 1 > map_size - (finish.node - map))
+		if (nodes_to_add + 1 > map_size - (finish.node - map)){
+			LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
+			LOG("reserve_map_at_back", "map_size - (finish.node - map)", (int)(map_size - (finish.node - map)));
 			reallocate_map(nodes_to_add, false);
+		}
 	}
 	
 	void reserve_map_at_front (size_type nodes_to_add = 1){//若前端结点不足
@@ -308,6 +310,11 @@ public:
 	
 	Deque() : start(), finish(), map(0), map_size(0){
 		create_map_and_node(0);
+	}
+	
+	~Deque(){
+		LOG("Deque is destructing...","",0);
+		map_allocator::deallocate(map,map_size);
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }
