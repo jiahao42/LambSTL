@@ -1,10 +1,6 @@
 #ifndef __DEQUE_H_
 #define __DEQUE_H_
 
-#ifndef __STL_USE_EXCEPTIONS
-#define __STL_USE_EXCEPTIONS
-#endif
-
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
