@@ -328,9 +328,84 @@ void test_list_vector_mixed(){
 }
 
 void test_deque_push_pop(){
-	Deque<int> d;
+	Deque<int, alloc, 5> d;//make the buffer_size = 5
+	int i;
 	d.push_back(1);
 	TEST_INT(d[0],1);
+	TEST_SIZE_TYPE(1, d.size());
+	d.pop_back();
+	TEST_SIZE_TYPE(0, d.size());
+	for (i = 0; i < 5; i++){//[0,1,2,3,4]
+		d.push_back(i);
+		TEST_INT(i, d[i]);
+	}
+	for (i = 0; i < 5; i++){//[14,13,12,11,10,0,1,2,3,4]
+		d.push_front(i + 10);
+		TEST_INT(i + 10, d[0]);
+	}
+	for (i = 0; i < 5; i++){//[14,13,12,11,10]
+		d.pop_back();
+		TEST_INT(i, d[i + 5]);
+	}
+	for (i = 0; i < 5; i++){//[]
+		TEST_INT(14 - i, d[0]);
+		d.pop_front();
+	}
+	TEST_SIZE_TYPE(0, d.size());
+	
+	for (i = 0; i < 25; i++){
+		d.push_back(i);//This will cause reallocation
+	}
+}
+
+void test_deque_size(){
+	Deque<int> d;
+	TEST_SIZE_TYPE(512 / sizeof(int),d.begin().buffer_size());
+}
+
+void test_deque_iterator(){
+	Deque<int> d;
+	for (int i = 0; i < 10; i++){
+		d.push_front(i);
+	}
+	auto start = d.begin();
+	for (int i = 0; i < 10; i++){
+		TEST_INT(9 - i, *start++);
+	}
+	auto finish = d.end();
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+		TEST_INT(i, *finish++);
+	}
+}
+
+void test_deque_erase(){
+	Deque<int> d;
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+	}
+	auto start = d.begin();
+	d.erase(start);
+	for (int i = 1; i < 10; i++){
+		TEST_INT(i, d[i - 1]);
+	}
+	start = d.begin();
+	auto finish = d.end();
+	d.erase(start, finish);
+	TEST_SIZE_TYPE(0, d.size());
+}
+
+void test_deque_insert(){
+	Deque<int> d;
+	auto start = d.begin();
+	d.insert(start,1);
+	TEST_INT(1, d[0]);
+	for (int i = 0; i < 10; i++){
+		d.push_back(i);
+	}
+	auto pos = d.begin() + 5;
+	d.insert(pos, 999);
+	TEST_INT(999, d[5]);
 }
 
 /* test Vector */
@@ -352,14 +427,16 @@ void test_list(){
 	//test_list_sort();
 }
 
+
 /* test Deque */
 void test_deque(){
 	test_deque_push_pop();
-	//test_deque_size();
-	//test_deque_iterator();
-	//test_deque_erase();
-	//test_deque_insert();
+	test_deque_size();
+	test_deque_iterator();
+	test_deque_erase();
+	test_deque_insert();
 }
+
 int main(){
 	test_vector();
 	test_list();

@@ -8,8 +8,7 @@
 #include "algorithm.h"
 
 
-
-inline size_t __deque_buf_size(size_t n, size_t sz){
+inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
 	return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));
 }
 
@@ -30,19 +29,21 @@ struct __deque_iterator {
 	
 	typedef __deque_iterator self;
 	
-	T* cur;
+	T* cur;//current position
 	T* first;
 	T* last;
-	map_pointer node;
+	map_pointer node;//equivalent to map in Deque
 	
 	void set_node(map_pointer new_node){
-		node = new_node;
-		first = *new_node;
-		last = first + difference_type(buffer_size());
+		node = new_node;//set map
+		first = *new_node;//first point to the first buffer of map
+		last = first + difference_type(buffer_size());//last buffer of map
 	}
 	
-	reference operator*() const { return *cur; }
+	reference operator*() const { return *cur; }//get value of current element
 	pointer operator->() const { return &(operator*()); }
+	
+	//TODO operator- not figure out yet
 	difference_type operator- (const self& x) const {
 		return difference_type(buffer_size()) * (node - x.node - 1) + (cur - first) + (x.last - x.cur);
 	}
@@ -57,9 +58,10 @@ struct __deque_iterator {
 		return *this;
 	}
 	
+	//post
 	self operator++(int) {
 		self tmp = *this;
-		++*this;
+		++*this;//invoke pre
 		return tmp;
 	}
 	
@@ -74,17 +76,19 @@ struct __deque_iterator {
 	
 	self operator-- (int) {
 		self tmp = *this;
-		--*this;
+		--*this;//invoke pre
 		return tmp;
 	}
 	
 	self& operator+=(difference_type n){
 		difference_type offset = n + (cur - first);
-		if (offset >= 0 && offset < difference_type(buffer_size()))
+		if (offset >= 0 && offset < difference_type(buffer_size()))//current buffer still have vacancy
 			cur+=n;
 		else{
 			difference_type node_offset = offset > 0 ? offset / difference_type(buffer_size()) : -difference_type((-offset - 1) / buffer_size()) - 1;
+			//find the buffer
 			set_node(node + node_offset);
+			//set the cursor
 			cur = first + (offset - node_offset * difference_type(buffer_size()));
 		}
 		return *this;
@@ -92,20 +96,20 @@ struct __deque_iterator {
 	
 	self operator+ (difference_type n)	const {
 		self tmp = *this;
-		return tmp += n;
+		return tmp += n;//overload +=
 	}
 	
 	self& operator-=(difference_type n ){
-		return *this += -n;
+		return *this += -n;//overload +=
 	}
 	
 	self operator- (difference_type n ) const {
 		self tmp = *this;
-		return tmp -= n;
+		return tmp -= n;//overload -=
 	}
 	
 	reference operator[] (difference_type n) const {
-		return *(*this + n);
+		return *(*this + n);//find right buffer
 	}
 	
 	bool operator== (const self& x)	const { return cur == x.cur; }
@@ -129,8 +133,8 @@ public:
 	typedef __deque_iterator<T, T&, T*, BufSiz> iterator;
 	
 protected:
-	typedef simple_alloc<value_type, Alloc> data_allocator;
-	typedef simple_alloc<pointer, Alloc> map_allocator;
+	typedef simple_alloc<value_type, Alloc> data_allocator;//for element
+	typedef simple_alloc<pointer, Alloc> map_allocator;//for buffer
 	
 	map_pointer map;
 	size_type map_size;
@@ -142,14 +146,14 @@ protected:
 	static size_type buffer_size() {
 		return __deque_buf_size(BufSiz, sizeof(value_type));
 	}
-	static size_type initial_map_size() { return 8; }
+	static size_type initial_map_size() { return 8; } //默认有八个缓冲区
 	pointer allocate_node() { return data_allocator::allocate(buffer_size()); }
 	void deallocate_node(pointer p) { return data_allocator::deallocate(p, buffer_size()); }
 	
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
 		map_pointer cur;
-		__STL_TRY{
+		__STL_TRY{//fill the Deque with value
 			for (cur = start.node; cur < finish.node; ++cur)
 				uninitialized_fill(*cur, *cur + buffer_size(), value);
 			uninitialized_fill(finish.first, finish.cur, value);
@@ -160,19 +164,20 @@ protected:
 	
 	void create_map_and_node(size_type num_elements){
 		size_type num_nodes = num_elements / buffer_size() + 1;
-		map_size = max(initial_map_size(), num_nodes + 2);
-		map = map_allocator::allocate(map_size);
+		map_size = max(initial_map_size(), num_nodes + 2);//需要前后各预留两个buffer，以便扩充之用
+		map = map_allocator::allocate(map_size);//allocate map
 		
-		map_pointer nstart = map + (map_size - num_nodes) / 2;
+		map_pointer nstart = map + (map_size - num_nodes) / 2;//使得前后预留的buffer一样大，扩充方便
 		map_pointer nfinish = nstart + num_nodes - 1;
 		
 		map_pointer cur;
-		__STL_TRY{
+		__STL_TRY{//allocate buffers
 			for (cur = nstart; cur <= nfinish; ++cur)
 				*cur = allocate_node();
 		}catch (...){
 			//commit or rollback
 		}
+		//if num_elements = 0, cur and first point to the same position
 		start.set_node(nstart);
 		finish.set_node(nfinish);
 		start.cur = start.first;
@@ -208,17 +213,20 @@ protected:
 		}
 	}
 	
-	void reserve_map_at_back(size_type nodes_to_add = 1){
-		if (nodes_to_add + 1 > map_size - (finish.node - map))
+	void reserve_map_at_back(size_type nodes_to_add = 1){//若尾端结点不足
+		if (nodes_to_add + 1 > map_size - (finish.node - map)){
 			reallocate_map(nodes_to_add, false);
+		}
 	}
 	
-	void reserve_map_at_front (size_type nodes_to_add = 1){
-		if (nodes_to_add > start.node - map)
+	void reserve_map_at_front (size_type nodes_to_add = 1){//若前端结点不足
+		if (nodes_to_add > start.node - map){
 			reallocate_map(nodes_to_add, true);
+		}
+			
 	}
 	
-	void reallocate_map(size_type nodes_to_add, bool add_at_front){
+	void reallocate_map(size_type nodes_to_add, bool add_at_front){//重新调整map大小
 		size_type old_num_nodes = finish.node - start.node + 1;
 		size_type new_num_nodes = old_num_nodes + nodes_to_add;
 		
@@ -289,7 +297,11 @@ public:
 	}
 	
 	Deque() : start(), finish(), map(0), map_size(0){
-		
+		create_map_and_node(0);
+	}
+	
+	~Deque(){
+		map_allocator::deallocate(map,map_size);
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }
@@ -301,18 +313,17 @@ public:
 		iterator tmp = finish;
 		--tmp;
 		return *tmp;
-	}
+	} 
 	size_type size() const { return finish - start; }
 	size_type max_size() const { return size_type(-1); }
 	bool empty() const { return finish == start; }
 	
 	
 	void push_back(const value_type& t){
-		std::cout<<"pushing back..."<<std::endl;
 		if (finish.cur != finish.last - 1){
 			construct(finish.cur, t);
 			++finish.cur;
-		}else{
+		}else{//如果cur == last,再push_back就要改变结点了
 			push_back_aux(t);
 		}
 	}
@@ -321,7 +332,7 @@ public:
 		if (start.cur != start.first){
 			construct(start.cur - 1, t);
 			--start.cur;
-		}else{
+		}else{//如果cur == first,再push_front就要改变结点了
 			push_front_aux(t);
 		}
 	}
@@ -330,7 +341,7 @@ public:
 		if (finish.cur != finish.first){
 			--finish.cur;
 			destroy(finish.cur);
-		}else{
+		}else{//如果cur == last,再pop_back就要改变结点了
 			pop_back_aux();
 		}
 	}
@@ -339,7 +350,7 @@ public:
 		if (start.cur != start.last - 1){
 			destroy(start.cur);
 			++start.cur;
-		}else{
+		}else{//需要改变结点
 			pop_front_aux();
 		}
 	}
