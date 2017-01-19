@@ -8,6 +8,20 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
+// forward declare the Foo
+template <class T, class Sequence>
+class Stack;
+
+template <class T, class Sequence>
+bool operator== (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y){
+	return x.c == y.c;
+}
+
+template <class T, class Sequence>
+bool operator< (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y){
+	return x.c < y.c;
+}
+
 template <class T, class Sequence = Deque<T> >
 class Stack {
 	friend bool operator== __STL_NULL_TMPL_ARGS (const Stack&, const Stack&);
@@ -27,15 +41,5 @@ public:
 	void push(const value_type& x) { c.push_back(x); }
 	void pop() { c.pop_back(); }
 };
-
-template <class T, class Sequence>
-bool operator== (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y){
-	return x.c == y.c;
-}
-
-template <class T, class Sequence>
-bool operator< (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y){
-	return x.c < y.c;
-}
 
 #endif
