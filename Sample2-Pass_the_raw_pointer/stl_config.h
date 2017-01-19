@@ -19,6 +19,21 @@
 #   define __STL_UNWIND(action)
 # endif
 
+#define __SHOW_LOGS
+
+
+#ifdef __SHOW_LOGS
+#define LOG(operation, parameter, value) \
+	do { \
+		if (parameter == ""){ \
+			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
+		}else { \
+			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,static_cast<int>(value));\
+		} \
+	} while(0)
+#else
+#define LOG(operation, parameter, value) do {} while(0)
 #endif
 
 
+#endif

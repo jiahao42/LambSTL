@@ -126,6 +126,7 @@ class Deque {
 public:
 	typedef T value_type;
 	typedef value_type& reference;
+	typedef const value_type& const_reference;
 	typedef value_type* pointer;
 	typedef size_t size_type;
 	typedef ptrdiff_t difference_type;

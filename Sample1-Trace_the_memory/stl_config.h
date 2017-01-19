@@ -21,6 +21,7 @@
 
 #define __SHOW_LOGS
 
+
 #ifdef __SHOW_LOGS
 #define LOG(operation, parameter, value) \
 	do { \
@@ -31,7 +32,7 @@
 		} \
 	} while(0)
 #else
-#define LOG	(operation, parameter, value) {}
+#define LOG(operation, parameter, value) do {} while(0)
 #endif
 
 

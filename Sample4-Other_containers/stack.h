@@ -9,7 +9,6 @@
 #include "algorithm.h"
 
 template <class T, class Sequence = Deque<T> >
-
 class Stack {
 	friend bool operator== __STL_NULL_TMPL_ARGS (const Stack&, const Stack&);
 	friend bool operator< __STL_NULL_TMPL_ARGS (const Stack&, const Stack&);

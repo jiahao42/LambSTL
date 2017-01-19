@@ -1,15 +1,6 @@
 #ifndef __STL_CONFIG_H_
 #define __STL_CONFIG_H_
 
-struct __true_type{};
-struct __false_type{};
-
-
-#ifndef __STL_USE_EXCEPTIONS
-#define __STL_USE_EXCEPTIONS
-#endif
-
-
 #define __STL_TEMPLATE_NULL template<>
 
 # ifdef __STL_USE_EXCEPTIONS
@@ -28,8 +19,21 @@ struct __false_type{};
 #   define __STL_UNWIND(action)
 # endif
 
+#define __SHOW_LOGS
 
 
+#ifdef __SHOW_LOGS
+#define LOG(operation, parameter, value) \
+	do { \
+		if (parameter == ""){ \
+			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
+		}else { \
+			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,static_cast<int>(value));\
+		} \
+	} while(0)
+#else
+#define LOG(operation, parameter, value) do {} while(0)
 #endif
 
 
+#endif

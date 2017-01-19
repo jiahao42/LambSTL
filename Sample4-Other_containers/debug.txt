@@ -19721,6 +19721,7 @@ class Deque {
 public:
  typedef T value_type;
  typedef value_type& reference;
+ typedef const value_type& const_reference;
  typedef value_type* pointer;
  typedef size_t size_type;
  typedef ptrdiff_t difference_type;
@@ -20028,10 +20029,9 @@ public:
 
 
 template <class T, class Sequence = Deque<T> >
-
 class Stack {
- friend bool operator== <> (const Stack&, const Stack&);
- friend bool operator< <> (const Stack&, const Stack&);
+ friend bool operator== <> (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y);
+ friend bool operator< <> (const Stack<T, Sequence>& x, const Stack<T, Sequence>& y);
 public:
  typedef typename Sequence::value_type value_type;
  typedef typename Sequence::size_type size_type;

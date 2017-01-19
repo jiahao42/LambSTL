@@ -3,11 +3,6 @@
 
 #define __STL_TEMPLATE_NULL template<>
 
-#ifndef __STL_USE_EXCEPTIONS
-#define __STL_USE_EXCEPTIONS
-#endif
-
-
 # ifdef __STL_USE_EXCEPTIONS
 #   define __STL_TRY try
 #   define __STL_CATCH_ALL catch(...)
@@ -26,19 +21,19 @@
 
 #define __SHOW_LOGS
 
+
 #ifdef __SHOW_LOGS
 #define LOG(operation, parameter, value) \
 	do { \
 		if (parameter == ""){ \
 			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
 		}else { \
-			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,(int)value);\
+			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,static_cast<int>(value));\
 		} \
 	} while(0)
 #else
 #define LOG(operation, parameter, value) do {} while(0)
 #endif
 
+
 #endif
-
-

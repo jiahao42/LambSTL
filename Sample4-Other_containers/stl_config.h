@@ -170,7 +170,7 @@
 		if (parameter == ""){ \
 			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
 		}else { \
-			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,(int)value);\
+			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,static_cast<int>(value));\
 		} \
 	} while(0)
 #else
