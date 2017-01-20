@@ -1,7 +1,6 @@
 #ifndef __STL_CONFIG_H_
 #define __STL_CONFIG_H_
 
-
 #ifdef _PTHREADS
 #	define __STL_PTHREADS
 #endif
