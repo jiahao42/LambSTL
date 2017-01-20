@@ -223,13 +223,13 @@ void test_list_transfer(){
 void test_list_swap(){
 	List<int> l1,l2;
 	for (int i = 0; i < 10; i++){
-		l1.push_back(i);
-		l2.push_back(9 - i);
+		l1.push_back(i);//[0,1,2,...,9]
+		l2.push_back(9 - i);//[9,8,7,...,0]
 	}
 	l1.swap(l2);
 	for (int i = 0; i < 10; i++){
-		TEST_INT(i, *l2[i]);
-		TEST_INT(9 - i, *l1[i]);
+		TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+		TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
 	}
 }
 

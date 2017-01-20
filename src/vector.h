@@ -19,6 +19,7 @@ public:
 	typedef value_type* iterator;
 	typedef const value_type* const_iterator;
 	typedef value_type& reference;
+	typedef const value_type& const_reference;
 	typedef size_t		size_type;
 	typedef ptrdiff_t	difference_type;
 
@@ -89,6 +90,15 @@ public:
 		--finish;
 		destroy(finish);
 	}
+	
+	/*
+	not standard, just write it for stack.h
+	*/
+	reference back(){
+		iterator i = finish;
+		return *--i;
+	}
+	
 	
 	iterator erase(iterator first, iterator last){
 		iterator i = copy(last, finish, first);//将后半片旧数据往前移

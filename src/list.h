@@ -122,6 +122,10 @@ protected:
 	
 public:
 	List() { empty_initialize(); }
+	~List() {
+		clear();
+		put_node(node);
+	}
 	iterator begin(){
 		return (link_type)((*node).next);//node是尾端的空白结点
 	}

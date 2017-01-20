@@ -153,7 +153,7 @@ protected:
 	
 	void destroy_map_and_nodes() {
 		for (map_pointer cur = start.node; cur <= finish.node; ++cur)
-			deallocate_node(*cur);
+			deallocate_node(*cur);//TODO: this line cause invalid free in valgrind
 		map_allocator::deallocate(map, map_size);
 	}
 	
