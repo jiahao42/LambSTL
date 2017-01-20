@@ -95,7 +95,8 @@ public:
 	not standard, just write it for stack.h
 	*/
 	reference back(){
-		return *(--finish);
+		iterator i = finish;
+		return *--i;
 	}
 	
 	
