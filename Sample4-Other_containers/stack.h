@@ -3,6 +3,8 @@
 
 #include <cstddef>	/* size_t */
 #include "deque.h" /* Deque */
+#include "vector.h" /* Vector */
+#include "list.h" /* List */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
 #include "construct.h"  /* construct() destroy() */
