@@ -40,6 +40,9 @@ void test_push_pop(){
 	}
 	for(int i = 0; i < 3; i++)	v.pop_back();
 	TEST_INT(1, v.empty());
+	for (int i = 0; i < 3; i++){
+		delete[] p[i];
+	}
 }
 
 void test_size(){
@@ -77,6 +80,7 @@ void test_iterator(){
 	for (int i = 29; i != 0; i--){
 		TEST_INT(0, **--end);
 	}
+	delete[] p;
 }
 
 void test_erase(){
