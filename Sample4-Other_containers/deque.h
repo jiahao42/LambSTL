@@ -151,6 +151,12 @@ protected:
 	pointer allocate_node() { return data_allocator::allocate(buffer_size()); }
 	void deallocate_node(pointer p) { return data_allocator::deallocate(p, buffer_size()); }
 	
+	void destroy_map_and_nodes() {
+		for (map_pointer cur = start.node; cur <= finish.node; ++cur)
+			deallocate_node(*cur);
+		map_allocator::deallocate(map, map_size);
+	}
+	
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
 		map_pointer cur;
@@ -302,7 +308,8 @@ public:
 	}
 	
 	~Deque(){
-		map_allocator::deallocate(map,map_size);
+		destroy(start, finish);
+		destroy_map_and_nodes();
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }

@@ -126,6 +126,7 @@ class Deque {
 public:
 	typedef T value_type;
 	typedef value_type& reference;
+	typedef const value_type& const_reference;
 	typedef value_type* pointer;
 	typedef size_t size_type;
 	typedef ptrdiff_t difference_type;
@@ -149,6 +150,12 @@ protected:
 	static size_type initial_map_size() { return 8; } //默认有八个缓冲区
 	pointer allocate_node() { return data_allocator::allocate(buffer_size()); }
 	void deallocate_node(pointer p) { return data_allocator::deallocate(p, buffer_size()); }
+	
+	void destroy_map_and_nodes() {
+		for (map_pointer cur = start.node; cur <= finish.node; ++cur)
+			deallocate_node(*cur);
+		map_allocator::deallocate(map, map_size);
+	}
 	
 	void fill_initialize(size_type n, const value_type& value){
 		create_map_and_node(n);
@@ -301,7 +308,8 @@ public:
 	}
 	
 	~Deque(){
-		map_allocator::deallocate(map,map_size);
+		destroy(start, finish);
+		destroy_map_and_nodes();
 	}
 	iterator begin() { return start; }
 	iterator end() { return finish; }
