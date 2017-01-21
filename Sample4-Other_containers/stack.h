@@ -33,7 +33,7 @@ public:
 	typedef typename Sequence::size_type size_type;
 	typedef typename Sequence::reference reference;
 	typedef typename Sequence::const_reference const_reference;
-public:
+protected:
 	Sequence c;
 public:
 	bool empty() const { return c.empty(); }

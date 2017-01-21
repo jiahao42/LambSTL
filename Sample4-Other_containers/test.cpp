@@ -26,7 +26,6 @@ template <class T, class Sequence = Deque<T>>
 void _test_stack(Stack<T, Sequence> s){
 	TEST_INT(1, s.empty());
 	for (int i = 0; i < 10; i++){
-		//TEST_SIZE_TYPE(i, s.size());
 		s.push(i);
 		TEST_SIZE_TYPE(i + 1, s.size());
 		TEST_INT(i, s.top());
