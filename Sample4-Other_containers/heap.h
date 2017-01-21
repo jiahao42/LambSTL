@@ -57,10 +57,29 @@ void ___adjust_heap(RandomAccessIterator first, Distance holeIndex, Distance len
 }
 
 
+template <class RandomAccessIterator>
+void sort_heap(RandomAccessIterator first, RandomAccessIterator last){
+	while (last - first > 1)
+		pop_heap(first, last--);
+}
 
+template <class RandomAccessIterator>
+inline void make_heap(RandomAccessIterator first, RandomAccessIterator last){
+	__make_heap(first, last, value_type(first), distance_type(first));
+}
 
-
-
+template <class RandomAccessIterator, class T, class Distance>
+void __make_heap(RandomAccessIterator first, RandomAccessIterator last, T*, Distance*){
+	if (last - first < 2)	return;
+	Distance len = last - first;
+	Distance parent = (len - 2) / 2;
+	
+	while (true){
+		__adjust_heap(first, parent, len, T(*(first + parent)));
+		if (parent == 0)	return;
+		parent--;
+	}
+}
 
 
 #endif
