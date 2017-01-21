@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "queue.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -23,7 +24,7 @@ int main_ret = 0;
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
 template <class T, class Sequence = Deque<T>>
-void _test_stack(Stack<T, Sequence> s){
+void test_stack_aux(Stack<T, Sequence>& s){
 	TEST_INT(1, s.empty());
 	for (int i = 0; i < 10; i++){
 		s.push(i);
@@ -39,21 +40,45 @@ void _test_stack(Stack<T, Sequence> s){
 	TEST_INT(1, s.empty());
 }
 
+template <class T, class Sequence = Deque<T>>
+void test_queue_aux(Queue<T, Sequence>& s){
+	TEST_INT(1, s.empty());
+	for (int i = 0; i < 10; i++){
+		s.push(i);
+		TEST_SIZE_TYPE(i + 1, s.size());
+		TEST_INT(i, s.back());
+	}
+	TEST_INT(0, s.empty());
+	for (int i = 0; i < 10; i++){
+		TEST_SIZE_TYPE(10 - i, s.size());
+		TEST_INT(i, s.front());
+		s.pop();
+	}
+	TEST_INT(1, s.empty());
+}
+
 void test_stack(){
 	Stack<int> s_deque;
-	_test_stack(s_deque);
+	test_stack_aux(s_deque);
 	
 	Stack<int, List<int>> s_list;
-	_test_stack(s_list);
+	test_stack_aux(s_list);
 	
 	Stack<int, Vector<int>> s_vector;
-	_test_stack(s_vector);
+	test_stack_aux(s_vector);
+}
 
-
+void test_queue(){
+	Queue<int> s_deque;
+	test_queue_aux(s_deque);
+	
+	Queue<int, List<int>> s_list;
+	test_queue_aux(s_list);
 }
 
 int main(){
 	test_stack();
+	test_queue();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }

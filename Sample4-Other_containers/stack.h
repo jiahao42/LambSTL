@@ -10,7 +10,7 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
-// forward declare the Foo
+// forward declare the Stack
 template <class T, class Sequence>
 class Stack;
 

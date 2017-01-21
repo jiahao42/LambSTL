@@ -10,7 +10,7 @@
 #include "construct.h"  /* construct() destroy() */
 #include "algorithm.h"
 
-// forward declare the Foo
+// forward declare the Stack
 template <class T, class Sequence>
 class Stack;
 
@@ -33,7 +33,7 @@ public:
 	typedef typename Sequence::size_type size_type;
 	typedef typename Sequence::reference reference;
 	typedef typename Sequence::const_reference const_reference;
-public:
+protected:
 	Sequence c;
 public:
 	bool empty() const { return c.empty(); }
