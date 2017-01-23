@@ -137,9 +137,10 @@ void test_heap(){
 		TEST_INT(result_3[i], v[i]);
 	}
 	
+	const int result_4[v.size()] = {0, 1, 2, 3, 3, 4, 5, 7, 8};
 	sort_heap(v.begin(), v.end());
 	for (int i = 0; i < v.size(); i++){
-		TEST_INT(i, v[i]);
+		TEST_INT(result_4[i], v[i]);
 	}
 }
 
