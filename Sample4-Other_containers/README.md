@@ -1,5 +1,5 @@
 # LeanSTL - Sample 4 - Other containers
 
-Including Stack, Queue...
+Including Stack, Queue, Heap(implicit repressentation), Priority_Queue, Slist...
 
 
