@@ -91,12 +91,18 @@ public:
 		destroy(finish);
 	}
 	
-	/*
-	not standard, just write it for stack.h
-	*/
 	reference back(){
-		iterator i = finish;
-		return *--i;
+		return *(end() - 1);
+	}
+	const_reference back(){
+		return *(end() - 1);
+	}
+	
+	reference front(){
+		return *begin();
+	}
+	const_reference front(){
+		return *begin();
 	}
 	
 	
