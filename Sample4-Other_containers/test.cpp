@@ -1,5 +1,7 @@
 #include "stack.h"
 #include "queue.h"
+#include "heap.h"
+#include "vector.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -76,9 +78,75 @@ void test_queue(){
 	test_queue_aux(s_list);
 }
 
+void test_heap(){
+	const int init[9] = {0, 1, 2, 3, 4, 8, 9, 3, 5};
+	Vector<int> v;
+	for (int i = 0; i < sizeof(init) / sizeof(*init); i++){
+		v.push_back(init[i]);
+	}
+	make_heap(v.begin(), v.end());
+	/*
+			 9 
+		  /    \
+		 5      8
+	   /  \    /  \
+	  3   4   0    2
+	 / \
+	3	1
+	
+	*/
+	const int result_1[v.size()] = {9, 5, 8, 3, 4, 0, 2, 3, 1};
+	for (int i = 0; i < v.size(); i++){
+		TEST_INT(result_1[i], v[i]);
+	}
+	
+	v.push_back(7);
+	push_heap(v.begin(), v.end());
+	/*
+	先将7插入末尾，然后执行上溯：若遇到比7小的结点，则交换之
+				 9 
+			  /     \
+			7        8
+		  /   \    /   \
+		 3    5   0    2
+	   /  \  /
+	  3	  1 4
+	
+	*/
+	const int result_2[v.size()] = {9, 7, 8, 3, 5, 0, 2, 3, 1, 4};
+	for (int i = 0; i < v.size(); i++){
+		TEST_INT(result_2[i], v[i]);
+	}
+	
+	pop_heap(v.begin(), v.end());
+	TEST_INT(9, v[v.size() - 1]);
+	v.pop_back();
+	/*
+	将根节点9与其左右孩子中较大者对调，直到到达叶子节点
+	将数组末尾的数字放到该叶子节点中，进行上溯
+				 8 
+			  /     \
+			7        4
+		  /   \    /   \
+		 3    5   0    2
+	   /  \  
+	  3	  1
+	*/
+	const int result_3[v.size()] = {8, 7, 4, 3, 5, 0, 2, 3, 1};
+	for (int i = 0; i < v.size(); i++){
+		TEST_INT(result_3[i], v[i]);
+	}
+	
+	sort_heap(v.begin(), v.end());
+	for (int i = 0; i < v.size(); i++){
+		TEST_INT(i, v[i]);
+	}
+}
+
 int main(){
 	test_stack();
 	test_queue();
+	test_heap();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
