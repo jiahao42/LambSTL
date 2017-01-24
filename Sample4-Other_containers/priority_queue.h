@@ -1,6 +1,7 @@
 #ifndef __PRIORITY_QUEUE_H_
 #define __PRIORITY_QUEUE_H_
 
+#include "algorithm.h"
 #include "vector.h"
 #include "heap.h"
 

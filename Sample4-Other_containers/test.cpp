@@ -144,10 +144,33 @@ void test_heap(){
 	}
 }
 
+# if 0
+void test_priority_queue() {
+	const int init[9] = {0, 1, 2, 3, 4, 8, 9, 3, 5};
+	Priority_Queue<int> p;
+	for (int i : init)	p.push(i);
+	/*
+				 9 
+			  /     \
+			8        5
+		  /   \    /   \
+		 4    3   3    2
+	   /  \  
+	  1	  0
+	*/
+	const int result[9] = {9, 8, 5, 4, 3, 3, 2, 1, 0};
+	for (int i = 0; i < p.size(); i++){
+		TEST_INT(result[i], p.top());
+		p.pop();
+	}
+}
+# endif
+
 int main(){
 	test_stack();
 	test_queue();
 	test_heap();
+	//test_priority_queue();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
