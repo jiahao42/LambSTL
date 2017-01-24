@@ -2,6 +2,7 @@
 #include "queue.h"
 #include "heap.h"
 #include "vector.h"
+#include "slist.h"
 #include <cstdlib>
 #include <cstdio>
 
@@ -166,11 +167,20 @@ void test_priority_queue() {
 }
 # endif
 
+void test_slist() {
+	Slist<int> s;
+	for (int i = 0; i < 10; i++){
+		s.push_front(i);
+		TEST_INT(i, *s.begin());
+	}
+}
+
 int main(){
 	test_stack();
 	test_queue();
 	test_heap();
 	//test_priority_queue();
+	test_slist();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }

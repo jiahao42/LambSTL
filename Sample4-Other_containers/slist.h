@@ -2,6 +2,7 @@
 #define __SLIST_H_
 
 #include "simple_alloc.h"
+#include "iterator.h"
 
 struct __slist_node_base {
 	__slist_node_base* next;
@@ -15,7 +16,7 @@ struct __slist_node : public __slist_node_base {
 inline __slist_node_base* __slist_make_link(__slist_node_base* prev_node, __slist_node_base* new_node) {
 	new_node -> next = prev_node -> next;
 	prev_node -> next = new_node;
-	return new_node;
+	return new_node;//prev->new->...
 }
 
 inline size_t __slist_size(__slist_node_base* node) {
@@ -33,13 +34,13 @@ struct __slist_iterator_base {
 	__slist_node_base* node;
 	__slist_iterator_base(__slist_node_base* x) : node(x) {}
 	
-	void incr() { node = node -> next};
+	void incr() { node = node -> next; }
 	bool operator== (const __slist_iterator_base& x) const {
 		return node == x.node;
 	}
 	bool operator!= (const __slist_iterator_base& x) const {
 		return node != x.node;
-	}	
+	}
 };
 
 
@@ -71,7 +72,7 @@ struct __slist_iterator : public __slist_iterator_base {
 		incr();
 		return tmp;
 	}
-}
+};
 
 
 template <class T, class Alloc = alloc>
@@ -134,8 +135,8 @@ public:
 	}
 public:
 	reference front() { return ((list_node*)head.next)->data; }
-	void push_front(const value_type& x) {
-		__slist_make_link(&head, create_node(x));
+	void push_front(const value_type& x) {//从头部插入元素
+		__slist_make_link(&head, create_node(x));//head->new->...
 	}
 	
 	//no push_back
@@ -145,22 +146,14 @@ public:
 		head.next = node -> next;
 		destroy_node(node);
 	}
+	
+	void clear() {
+		for (int i = 0; i < size(); i++){
+			pop_front();
+		}
+		head.next = 0;
+	}
 };
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
 
 
 
