@@ -169,10 +169,19 @@ void test_priority_queue() {
 
 void test_slist() {
 	Slist<int> s;
+	TEST_INT(1, s.empty());
 	for (int i = 0; i < 10; i++){
 		s.push_front(i);
 		TEST_INT(i, *s.begin());
 	}
+	TEST_SIZE_TYPE(10, s.size());
+	for (int i = 0; i < 5; i++){
+		TEST_INT(9 - i, *s.begin());
+		s.pop_front();
+	}
+	TEST_SIZE_TYPE(5, s.size());
+	s.clear();
+	TEST_INT(1, s.empty());
 }
 
 int main(){
