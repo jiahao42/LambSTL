@@ -1,4 +1,4 @@
-objects = test.o stack.o queue.o slist.h
+objects = test.o stack.o queue.o slist.o
 res = test.cpp stack.h queue.h slist.h
 CXX=g++
 CXXFLAGS= -g -O3 -std=c++11

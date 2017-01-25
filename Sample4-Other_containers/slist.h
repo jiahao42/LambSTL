@@ -1,5 +1,5 @@
-#ifndef SLIST_H_
-#define SLIST_H_
+#ifndef __SLIST_H_
+#define __SLIST_H_
 
 #include "simple_alloc.h"
 #include "iterator.h"
@@ -135,7 +135,7 @@ public:
 	}
 public:
 	reference front() { return ((list_node*)head.next)->data; }
-	void push_front(const value_type& x) {//ä»Žå¤´éƒ¨æ’å…¥å…ƒç´ 
+	void push_front(const value_type& x) {//´ÓÍ·²¿²åÈëÔªËØ
 		__slist_make_link(&head, create_node(x));//head->new->...
 	}
 	
