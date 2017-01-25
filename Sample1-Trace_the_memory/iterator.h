@@ -1,5 +1,5 @@
-#ifndef __ITERATOR_H_
-#define __ITERATOR_H_
+#ifndef ITERATOR_H_
+#define ITERATOR_H_
 #include "stl_config.h"
 #include "iterator_traits.h"
 #include "type_traits.h"

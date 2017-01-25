@@ -1,5 +1,5 @@
-#ifndef __SIMPLE_ALLOC_H_
-#define __SIMPLE_ALLOC_H_
+#ifndef SIMPLE_ALLOC_H_
+#define SIMPLE_ALLOC_H_
 
 #include "malloc_alloc.h"
 #include "default_alloc.h"

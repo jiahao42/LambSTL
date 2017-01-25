@@ -1,5 +1,5 @@
-#ifndef __UNINITIALIZED_H_
-#define __UNINITIALIZED_H_
+#ifndef UNINITIALIZED_H_
+#define UNINITIALIZED_H_
 #include "iterator.h"
 #include <iostream>
 

@@ -1,5 +1,5 @@
-#ifndef __VECTOR_H_
-#define __VECTOR_H_
+#ifndef VECTOR_H_
+#define VECTOR_H_
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */

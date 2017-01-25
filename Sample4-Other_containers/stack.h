@@ -1,5 +1,5 @@
-#ifndef __STACK_H_
-#define __STACK_H_
+#ifndef STACK_H_
+#define STACK_H_
 
 #include <cstddef>	/* size_t */
 #include "deque.h" /* Deque */

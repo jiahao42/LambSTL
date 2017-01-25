@@ -1,5 +1,5 @@
-#ifndef __STL_CONFIG_H_
-#define __STL_CONFIG_H_
+#ifndef STL_CONFIG_H_
+#define STL_CONFIG_H_
 
 #ifdef _PTHREADS
 #	define __STL_PTHREADS

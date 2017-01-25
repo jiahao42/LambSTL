@@ -1,5 +1,5 @@
-#ifndef __QUEUE_H_
-#define __QUEUE_H_
+#ifndef QUEUE_H_
+#define QUEUE_H_
 
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */

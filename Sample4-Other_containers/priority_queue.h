@@ -1,5 +1,5 @@
-#ifndef __PRIORITY_QUEUE_H_
-#define __PRIORITY_QUEUE_H_
+#ifndef PRIORITY_QUEUE_H_
+#define PRIORITY_QUEUE_H_
 
 #include "algorithm.h"
 #include "vector.h"

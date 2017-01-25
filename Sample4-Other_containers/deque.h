@@ -1,5 +1,5 @@
-#ifndef __DEQUE_H_
-#define __DEQUE_H_
+#ifndef DEQUE_H_
+#define DEQUE_H_
 
 #include <cstddef>	/* size_t */
 #include "simple_alloc.h" /* alloc */

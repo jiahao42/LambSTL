@@ -1,5 +1,5 @@
-#ifndef __ALLOCATOR_H_
-#define __ALLOCATOR_H_
+#ifndef ALLOCATOR_H_
+#define ALLOCATOR_H_
 
 #include <new>		/* placement new */
 #include <cstddef>	/* for ptrdiff_t, size_t */

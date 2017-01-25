@@ -1,5 +1,5 @@
-#ifndef __SLIST_H_
-#define __SLIST_H_
+#ifndef SLIST_H_
+#define SLIST_H_
 
 #include "simple_alloc.h"
 #include "iterator.h"

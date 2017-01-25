@@ -1,5 +1,5 @@
-#ifndef __TYPE_TRAITS_H_
-#define __TYPE_TRAITS_H_
+#ifndef TYPE_TRAITS_H_
+#define TYPE_TRAITS_H_
 
 struct __true_type{};
 struct __false_type{};
