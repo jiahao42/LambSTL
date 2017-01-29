@@ -1,4 +1,4 @@
-# LeanSTL - Sample 3 - How Deque works
+# LeanSTL - Sample 4 - How Deque works
 
 Try to figure out how Deque works
 

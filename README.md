@@ -9,13 +9,18 @@ Print how memory allocates and deallocates when using Vector
 
 Passing raw pointer such as int* to the template with **partial template specialization**
 
-* Sample3 - How Deque works
+* Sample3 - List && Slist
+
+
+* Sample4 - How Deque works
 
 Try to figure out the data structure of deque, such as its iterator and its map
 
-* Sample4 - Other Containers
+* Sample5 - Other Containers
 
 Including Stack, Queue, Heap(implicit repressentation), Priority_Queue, Slist
+
+* Sample6 - Red-Black Tree
 
 ## TODO
 
