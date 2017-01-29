@@ -104,10 +104,66 @@ struct __rb_tree_iterator : public __rb_tree_base_iterator {
 		decrement();
 		return tmp;
 	}
-	
-	
-	
 };
+
+template <class Key, class Value, class KeyOfValue, class Compare, class Alloc = alloc>
+class rb_tree {
+protected:
+	typedef void* void_pointer;
+	typedef __rb_tree_node_base* base_ptr;
+	typedef __rb_tree_node<Value> rb_tree_node;
+	typedef simple_alloc<rb_tree_node, Alloc> rb_tree_node_allocator;
+	typedef __rb_tree_color_type color_type;
+	
+public:
+	typedef Key key_value;
+	typedef Value value_type;
+	typedef value_type* pointer;
+	typedef const value_type* const_pointer;
+	typedef value_type& reference;
+	typedef const value_type& const_reference;
+	typedef rb_tree_node* link_type;
+	typedef size_t size_type;
+	typedef ptrdiff_t difference_type;
+
+protected:
+	link_type get_node() { return rb_tree_node_allocator::allocate(); }
+	void put_node(link_type p) { rb_tree_node_allocator::deallocate(p); }
+	
+	link_type create_node(const value_type& x) {
+		link_type tmp = get_node();
+		__STL_TRY {
+			construct(&tmp -> value_field, x);
+		}
+		__STL_UNWIND(put_node(tmp));
+		return tmp;
+	}
+	
+	link_type clone_node(link_type x) {
+		link_type tmp = create_node(x -> value_field);
+		tmp -> color = x -> color;
+		tmp -> left = 0;
+		tmp -> right = 0;
+		return tmp;
+	}
+	
+	void destroy_node(link_type p) {
+		destroy(&p -> value_field);
+		put_node(p);
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
