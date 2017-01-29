@@ -1,6 +1,7 @@
 #ifndef LIST_H_
 #define LIST_H_
 #include <cstddef>	/* size_t */
+#include "algorithm.h"
 #include "simple_alloc.h" /* alloc */
 #include "iterator.h"	/* __true_type __false_type */
 #include "construct.h"	/* construct() destroy() */

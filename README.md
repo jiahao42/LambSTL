@@ -9,7 +9,7 @@ Print how memory allocates and deallocates when using Vector
 
 Passing raw pointer such as int* to the template with **partial template specialization**
 
-* Sample3 - List && Slist
+* Sample3 - List and Slist
 
 
 * Sample4 - How Deque works
