@@ -23,6 +23,19 @@ int main_ret = 0;
 #define TEST_SIZE_TYPE(expect,actual)	TEST_EQ_BASE \
 ((static_cast<size_t>(expect) == (actual)),static_cast<size_t>(expect),actual,"%zu")
 
+void test_list_iterator() {
+	List<int> l;
+	for (int i = 0; i < 20; i++) {
+		l.push_back(i);
+		TEST_INT(i, l.back());
+	}
+	auto it = l.begin();
+	for (int i = 0; i < 20; i++) {
+		TEST_INT(i, *it++);
+	}
+}
+
+
 void test_list_push_pop(){
 	List<int> l;
 	TEST_INT(1, l.empty());
@@ -142,11 +155,12 @@ void test_list_sort(){
 
 /* test List */
 void test_list(){
+	test_list_iterator();
 	test_list_push_pop();
 	test_list_insert();
 	test_list_remove();
 	test_list_transfer();
-	test_list_swap();
+	//test_list_swap();
 	//test_list_sort();
 }
 

@@ -20,8 +20,8 @@ struct __list_iterator {
 	//为什么要分Ref,Ptr 与 T&,T*
 	//Ref = const T& Ptr = const T*
 	//而不影响iterator
-	typedef __list_iterator<T, T&, T*>	iterator;
-	typedef __list_iterator<T, Ref, Ptr>	self;
+	typedef __list_iterator<T, T&, T*> iterator;
+	typedef __list_iterator<T, Ref, Ptr> self;
 	
 	typedef bidirectional_iterator_tag iterator_category;//不是原生指针，不支持随机存储
 	typedef T value_type;
@@ -41,8 +41,9 @@ struct __list_iterator {
 	bool operator== (const self& x) const { return node == x.node; }
 	bool operator!= (const self& x) const { return node != x.node; }
 	reference operator*() const { return (*node).data; }//返回reference，返回左值
+#ifndef __SGI_STL_NO_ARROW_OPERATOR
 	pointer operator->() const { return &(operator*()); }//迭代器成员存取(member access)的标准做法
-	
+#endif
 	//pre-increment operator
 	self& operator++(){//移动自身，返回左值引用
 		node = (link_type)((*node).next);
@@ -127,6 +128,11 @@ public:
 		clear();
 		put_node(node);
 	}
+	/*
+	link_type : __list_node<T>*
+	iterator : __list_iterator<T, T&, T*>
+	利用iterator的构造函数来建立一个iterator
+	*/
 	iterator begin(){
 		return (link_type)((*node).next);//node是尾端的空白结点
 	}
