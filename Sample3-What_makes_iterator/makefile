@@ -1,5 +1,5 @@
-objects = list.o slist.o test.o
-res = test.cpp list.h slist.h
+objects = list.o test.o
+res = test.cpp list.h 
 CXX=g++
 CXXFLAGS= -g -O3 -std=c++11
 program=test
@@ -10,8 +10,6 @@ test: $(objects)
 test.o : test.cpp
 
 list.o : list.cpp list.h
-
-slist.o : slist.cpp slist.h
 
 clean:
 	rm $(objects)

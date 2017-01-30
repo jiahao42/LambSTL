@@ -1,4 +1,3 @@
-#include "slist.h"
 #include "list.h"
 #include <cstdlib>
 #include <cstdio>
@@ -32,6 +31,9 @@ void test_list_iterator() {
 	auto it = l.begin();
 	for (int i = 0; i < 20; i++) {
 		TEST_INT(i, *it++);
+	}
+	for (int i = 19; i >=0; i--) {
+		TEST_INT(i, *--it);
 	}
 }
 
@@ -127,15 +129,20 @@ void test_list_transfer(){
 }
 
 void test_list_swap(){
-	List<int> l1,l2;
+	List<int> l1;
+	List<int> l2;
 	for (int i = 0; i < 10; i++){
 		l1.push_back(i);//[0,1,2,...,9]
 		l2.push_back(9 - i);//[9,8,7,...,0]
 	}
+	for (int i = 0; i < 10; i++){
+		cout<<*l1[i]<<" "<<*l2[i]<<endl;
+	}
 	l1.swap(l2);
 	for (int i = 0; i < 10; i++){
-		TEST_INT(i, *l2[i]);//[0,1,2,...,9]
-		TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+		//TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+		//TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+		cout<<*l1[i]<<" "<<*l2[i]<<endl;
 	}
 }
 
@@ -160,7 +167,7 @@ void test_list(){
 	test_list_insert();
 	test_list_remove();
 	test_list_transfer();
-	//test_list_swap();
+	test_list_swap();
 	//test_list_sort();
 }
 

@@ -1,5 +1,5 @@
 # LeanSTL
-SGI STL
+Follow SGI STL
 
 * Sample1 - Trace the memory
 
@@ -9,8 +9,9 @@ Print how memory allocates and deallocates when using Vector
 
 Passing raw pointer such as int* to the template with **partial template specialization**
 
-* Sample3 - List and Slist
+* Sample3 - What makes iterator
 
+Figure out what makes iterator using List, iterator is not just a pointer!
 
 * Sample4 - How Deque works
 

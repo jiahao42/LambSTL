@@ -261,7 +261,7 @@ public:
 			if (first2 != last2) transfer(last1, first2, last2);
 		}
 	}
-	void reverse(){
+	void reverse() {
 		if (node -> next == node || link_type(node -> next) -> next == node)
 			return;
 		iterator first = begin();
@@ -273,14 +273,14 @@ public:
 		}
 	}
 	
-	void swap(List& x){
+	void swap(List<T>& x) {
 		List<T> tmp;
 		tmp = x;
 		x = *this;
 		*this = tmp;
 	}
 	//quick sort
-	void sort(){
+	void sort() {
 		if (node -> next == node || link_type(node -> next) -> next == node)
 			return;
 		List<T> carry;
