@@ -11,7 +11,7 @@ Passing raw pointer such as int* to the template with **partial template special
 
 * Sample3 - What makes iterator
 
-Figure out what makes iterator using List, iterator is not just a pointer!
+Figure out what makes iterator using List, **iterator is not just a pointer!**
 
 * Sample4 - How Deque works
 

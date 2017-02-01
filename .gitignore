@@ -1,6 +1,10 @@
 # Visio files
 *.vsdx
 
+# Word files
+*.doc
+*.docx
+
 # Compiled Object files
 *.slo
 *.lo

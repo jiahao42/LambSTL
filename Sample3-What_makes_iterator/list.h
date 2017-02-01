@@ -40,15 +40,17 @@ struct __list_iterator {
 	
 	bool operator== (const self& x) const { return node == x.node; }
 	bool operator!= (const self& x) const { return node != x.node; }
-	reference operator*() const { return (*node).data; }//返回reference，返回左值
+	reference operator*() const  { return (*node).data; }//返回reference，返回左值
 #ifndef __SGI_STL_NO_ARROW_OPERATOR
 	pointer operator->() const { return &(operator*()); }//迭代器成员存取(member access)的标准做法
 #endif
+
 	//pre-increment operator
 	self& operator++(){//移动自身，返回左值引用
 		node = (link_type)((*node).next);
 		return *this;
 	}
+	
 	//post-increment operator
 	self operator++(int){//移动结点，返回右值
 		self tmp = *this;
@@ -170,6 +172,14 @@ public:
 		}
 		return position;
 	}
+	void insert(iterator position, iterator first, iterator last) {
+		for ( ; first != last; ++first)
+			insert(position, *first);
+	}
+	void insert(iterator position, const_iterator first, const_iterator last) {
+		for ( ; first != last; ++first)
+			insert(position, *first);
+	}
 	void push_front(const T& x){ insert(begin(), x); }
 	void push_back(const T& x) { insert(end(), x); }
 	iterator erase(iterator position){//移除position所在节点，并返回下一个节点的迭代器
@@ -179,6 +189,10 @@ public:
 		next_node -> prev = prev_node;
 		destroy_node(position.node);
 		return iterator(next_node);
+	}
+	iterator erase(iterator first, iterator last) {
+		while (first != last) erase(first++);
+		return last;
 	}
 	void pop_front(){
 		erase(begin());
@@ -272,13 +286,28 @@ public:
 			transfer(begin(), old, first);//不停将first插到头部
 		}
 	}
+
+	List<T>& operator=(const List<T>& x) {
+		if (this != &x) {
+			iterator first1 = begin();
+			iterator last1 = end();
+			const_iterator first2 = x.begin();
+			const_iterator last2 = x.end();
+			while (first1 != last1 && first2 != last2) *first1++ = *first2++;
+			if (first2 == last2)
+				erase(first1, last1);
+			else
+				insert(last1, first2, last2);
+		}
+		return *this;
+	}
 	
 	void swap(List<T>& x) {
-		List<T> tmp;
-		tmp = x;
+		List<T> tmp = x;
 		x = *this;
 		*this = tmp;
 	}
+	
 	//quick sort
 	void sort() {
 		if (node -> next == node || link_type(node -> next) -> next == node)
