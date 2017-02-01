@@ -4,7 +4,7 @@ Figure out what makes iterator using List, iterator is not just a pointer!
 
 ---
 
-![]()
+![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample3-What_makes_iterator/structure%20of%20iterator.png)
 
 We must aware of this: List is a data structure which is made of a series of nodes which can both move forward or move backward.
 
