@@ -36,3 +36,13 @@ __list_iterator(link_type x) : node(x) {}
 This function receives a link_type(```__list_node<T>*```), and when the ```begin() or end()```returns a value, it will invoke the constructor of the iterator automatically and create a temporary iterator to return.
 
 * **Q2: Why ```__list_iterator``` has a typedef named iterator and another typedef named self**
+```
+template<class T, class Ref, class Ptr>
+struct __list_iterator {
+	typedef __list_iterator<T, T&, T*> iterator;
+	typedef __list_iterator<T, Ref, Ptr> self;
+	typedef T value_type;
+	typedef Ptr pointer;
+	...
+};
+```
