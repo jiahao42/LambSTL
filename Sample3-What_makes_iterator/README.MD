@@ -29,4 +29,12 @@ iterator end(){
 	return node;
 }
 ```
-As we can see in the source file, the begin() and end() functions return link_type instead of iterator. However, the link_type is a typedef of ```__list_node<T>*```, and iterator is a typedef of ```__list_iterator<T, T&, T*>```
+As we can see in the source file, the ```begin()``` and ```end()``` functions return ```link_type``` instead of iterator. However, the ```link_type``` is a typedef of ```__list_node<T>*```, and iterator is a typedef of ```__list_iterator<T, T&, T*>```, which is different at all.
+
+The key to the answer is the constructor of the iterator, we can find a constructor like this:
+```
+__list_iterator(link_type x) : node(x) {}
+```
+This function receives a link_type(```__list_node<T>*```), and when the ```begin() or end()```returns a value, it will invoke the constructor of the iterator automatically and create a temporary iterator to return.
+
+* ##### Q2
