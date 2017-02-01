@@ -1,6 +1,6 @@
 # LeanSTL - Sample 3 - What makes iterator
 
-Figure out what makes iterator using List, iterator is not just a pointer!
+#### Figure out what makes iterator using List, iterator is not just a pointer!
 
 ---
 
@@ -17,7 +17,7 @@ We must aware of these:
 If you are carefully enough, you may find some questions when figuring out the source files as I did, and here is my answers.
 
 
-* **Q1 Why begin() and end() returns link_type instead of iterator?**
+* **Q1: Why begin() and end() returns link_type instead of iterator?**
 
 ```
 iterator begin(){		
@@ -35,4 +35,4 @@ __list_iterator(link_type x) : node(x) {}
 ```
 This function receives a link_type(```__list_node<T>*```), and when the ```begin() or end()```returns a value, it will invoke the constructor of the iterator automatically and create a temporary iterator to return.
 
-* **Q2**
+* **Q2: Why ```__list_iterator``` has a typedef named iterator and another typedef named self**
