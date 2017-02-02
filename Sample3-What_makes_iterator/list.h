@@ -21,6 +21,7 @@ struct __list_iterator {
 	//Ref = const T& Ptr = const T*
 	//而不影响iterator
 	typedef __list_iterator<T, T&, T*> iterator;
+	typedef __list_iterator<T, const T&, const T*> const_iterator;
 	typedef __list_iterator<T, Ref, Ptr> self;
 	
 	typedef bidirectional_iterator_tag iterator_category;//不是原生指针，不支持随机存储

@@ -6,7 +6,7 @@
 
 ![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample3-What_makes_iterator/structure%20of%20iterator.png)
 
-We must aware of these:
+**We must aware of these:**
 * List is a data structure which is made of a series of nodes which can both move forward or move backward.
 * The node contains two void pointers and a value, which is the very basic part of the List.
 * The iterator must have the ability to traverse the List, which means it can represent any node in the List and move as a real node.
@@ -40,6 +40,7 @@ This function receives a link_type(```__list_node<T>*```), and when the ```begin
 template<class T, class Ref, class Ptr>
 struct __list_iterator {
 	typedef __list_iterator<T, T&, T*> iterator;
+	typedef __list_iterator<T, const T&, const T*> const_iterator;
 	typedef __list_iterator<T, Ref, Ptr> self;
 	typedef T value_type;
 	typedef Ptr pointer;
