@@ -21,7 +21,7 @@ Try to figure out the data structure of deque, such as its iterator and its map
 
 Including Stack, Queue, Heap(implicit repressentation), Priority_Queue, Slist
 
-* **Sample6 - Custom your own container
+* **Sample6 - Custom your own container**
 
 
 * **Sample7 - Red-Black Tree**
