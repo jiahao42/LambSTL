@@ -47,3 +47,5 @@ struct __list_iterator {
 	...
 };
 ```
+
+Because the program cannot know whether the iterator itself is **normal iterator** or **const_iterator**, so it need a typedef named self represent the iterator itself. 
