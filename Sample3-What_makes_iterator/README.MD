@@ -6,7 +6,7 @@
 
 ![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample3-What_makes_iterator/structure%20of%20iterator.png)
 
-**We must aware of these:**
+**We must be aware of these:**
 * List is a data structure which is made of a series of nodes which can both move forward or move backward.
 * The node contains two void pointers and a value, which is the very basic part of the List.
 * The iterator must have the ability to traverse the List, which means it can represent any node in the List and move as a real node.
@@ -48,4 +48,16 @@ struct __list_iterator {
 };
 ```
 
-Because the program cannot know whether the iterator itself is **normal iterator** or **const_iterator**, so it need a typedef named self represent the iterator itself. 
+Because the program cannot know whether the iterator itself is **normal iterator** or **const_iterator**, so it need a typedef named self represent the iterator itself.
+
+
+* **Q3: Why does the author use Dot(.) operator more than Arrow(->) operator in the source file?**
+
+For example, ```(*last.node).prev)``` instead of ```last -> node -> prev```
+
+**We must be aware of these about Arrow(->) operator and Dot(.) operator:**
+* The Arrow(->) operator is syntactic sugar.  last->node is the same as (*last).node.
+* The Dot(.) operator can't be overloaded, Arrow (->) operator can be overloaded.
+* The Dot(.) operator can't be applied to pointers.
+
+As a result, I think this is just the author's personal preference.
