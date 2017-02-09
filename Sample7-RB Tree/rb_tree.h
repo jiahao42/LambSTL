@@ -181,6 +181,40 @@ protected:
 	static link_type maximum(link_type x) {
 		return (link_type) __rb_tree_node_base::maximum(x);
 	}
+
+public:
+	typedef __rb_tree_iterator<value_type, reference, pointer> iterator;
+
+private:
+	iterator __insert(base_ptr x, base_ptr y, const value_type& v);
+	link_type __copy(link_type x, link_type p);
+	void __erase(link_type x);
+	void init() {
+		header = get_node();
+		color(header) = __rb_tree_red;
+		
+		root() = 0;
+		leftmost = header;
+		rightmost = header;
+	}
+public:
+	rb_tree(const Compare& comp = Compare()) : node_count(0), key_compare(comp) { init(); }
+	~rb_tree() {
+		clear();
+		put_node(header);
+	}
+	rb_tree<Key, Value, KeyOfValue, Compare, Alloc>& operator= (const rb_tree<Key, Value, KeyOfValue, Compare, Alloc>& x);
+public:
+	Compare key_comp() const { return key_compare; }
+	iterator begin() { return leftmost(); }
+	iterator end() { return header; }
+	bool empty() const { return node_count == 0};
+	size_type size() const { return node_count; }
+	size_type max_size() const { return size_type(-1); }
+public:
+	pair<iterator, bool> insert_unique(const value_type& x);
+	iterator insert_equal(const value_type& x);
+	//...
 };
 
 
