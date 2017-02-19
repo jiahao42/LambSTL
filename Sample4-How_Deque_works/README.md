@@ -11,5 +11,5 @@ This is what the deque looks like, when
 * The first buffer and the last buffer are all vacant, it makes Deque more efficient when either pushing back or pushing front, cause in many case, Deque don't need to allocate another two buffer(both back and front) dynamically.
 
 
-![](https://raw.githubusercontent.com/Jameeeees/LeanSTL/master/Sample3-How_Deque_works/deque.png)
+![](https://raw.githubusercontent.com/Jameeeees/STL-Tutorial/master/Sample4-How_Deque_works/deque.png)
 
