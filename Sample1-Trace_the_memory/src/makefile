@@ -1,4 +1,4 @@
-objects = vector.o vector_test.o
+objects = vector_test.o
 CXX=g++
 CXXFLAGS= -g -O3
 program=test
@@ -8,7 +8,7 @@ test: $(objects)
 
 vector_test.o:vector_test.cpp vector.h
 
-vector.o:vector.h vector.cpp
+vector.o:vector.h
 
 clean:
 	rm $(objects)

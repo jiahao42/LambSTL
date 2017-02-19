@@ -186,7 +186,35 @@ public:
 	typedef __rb_tree_iterator<value_type, reference, pointer> iterator;
 
 private:
-	iterator __insert(base_ptr x, base_ptr y, const value_type& v);
+	inline void __rb_tree_rebalance(__rb_tree_node_base* x, __rb_tree_node_base*& root) {
+		//TODO
+	}
+	iterator __insert(base_ptr x_, base_ptr y_, const value_type& v) {
+		link_type x = (link_type) x_;
+		link_type y = (link_type) y_;
+		link_type z;
+		if (y == header || x != 0 || key_compare(KeyOfValue()(v), key(y))) {
+			z = create_node(v);
+			left(y) = z;
+			if (y == header) {
+				root() = z;
+				rightmost() = z;
+			}else if (y == leftmost())
+				leftmost() = z;
+		}else {
+			z = create_node(v);
+			right(y) = z;
+			if (y == rightmost())
+				rightmost() = z;
+		}
+		parent(z) = y;
+		left(z) = 0;
+		right(z) = 0;
+		
+		__rb_tree_rebalance(z, header -> parent);
+		++node_count;
+		return iterator(z);
+	}
 	link_type __copy(link_type x, link_type p);
 	void __erase(link_type x);
 	void init() {
@@ -212,8 +240,34 @@ public:
 	size_type size() const { return node_count; }
 	size_type max_size() const { return size_type(-1); }
 public:
-	pair<iterator, bool> insert_unique(const value_type& x);
-	iterator insert_equal(const value_type& x);
+	pair<iterator, bool> insert_unique(const value_type& v) {
+		link_type y = header;
+		link_type x = root();
+		bool comp = true;
+		while (x != 0) {
+			y = x;
+			comp = key_compare(KeyOfValue()(v), key(x));
+			x = comp ? left(x) : right(x);
+		}
+		iterator j = iterator(y);
+		if (comp)
+			if (j == begin())
+				return pair<iterator,bool>(__insert(x,y,v), true);
+			else
+				--j;
+		if (key_compare(key(j.node), KeyOfValue()(v)))
+			return pair<iterator, bool>(__insert(x,y,v), true);
+		return pair<iterator, bool>(j, false);
+	}
+	iterator insert_equal(const value_type& x) {
+		link_type y = header;
+		link_type x = root();
+		while (x != 0) {
+			y = x;
+			x = key_compare(KeyOfValue()(v), key(x)) ? left(x) : right (x);
+		}
+		return __insert(x, y, v);
+	}
 	//...
 };
 
