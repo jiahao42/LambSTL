@@ -8,7 +8,6 @@ test: $(objects)
 
 vector_test.o:vector_test.cpp vector.h
 
-vector.o:vector.h
 
 clean:
 	rm $(objects)

@@ -221,6 +221,7 @@ void test_list_transfer(){
 }
 
 void test_list_swap(){
+	//TODO
 	List<int> l1,l2;
 	for (int i = 0; i < 10; i++){
 		l1.push_back(i);//[0,1,2,...,9]
