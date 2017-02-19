@@ -187,7 +187,76 @@ public:
 
 private:
 	inline void __rb_tree_rebalance(__rb_tree_node_base* x, __rb_tree_node_base*& root) {
-		//TODO
+		x -> color = __rb_tree_red;
+		while (x != root && x -> parent -> color == __rb_tree_red) {
+			if (x -> parent == x -> parent -> parent -> left) {
+				__rb_tree_node_base* y = x -> parent -> parent -> right;
+				if (y && y -> color == __rb_tree_red) {
+					x -> parent -> color = __rb_tree_black;
+					y -> color = __rb_tree_black;
+					x -> parent -> parent -> color = __rb_tree_red;
+					x = x -> parent -> parent;
+				} else {
+					if (x == x -> parent -> right) {
+						x = x -> parent;
+						__rb_tree_rotate_left(x, root);
+					}
+					x -> parent -> color = __rb_tree_black;
+					x -> parent -> parent -> color = __rb_tree_red;
+					__rb_tree_rotate_right(x -> parent -> parent, root);
+				}
+			} else {
+				__rb_tree_node_base* y = x -> parent -> parent -> left;
+				if (y && y -> color == __rb_tree_red) {
+					x -> parent -> color = __rb_tree_black;
+					y -> color = __rb_tree_black;
+					x -> parent -> parent -> color = __rb_tree_red;
+					x = x -> parent -> parent;
+				} else {
+					if (x == x -> parent -> parent) {
+						x = x -> parent;
+						__rb_tree_rotate_right(x, root);
+					}
+					x -> parent -> color = __rb_tree_black;
+					x -> parent -> parent -> color = __rb_tree_red;
+					__rb_tree_rotate_left(x -> parent -> parent, root);
+				}
+			}
+		}
+		root -> color = __rb_tree_black;
+	}
+	inline void __rb_tree_rotate_left(__rb_tree_node_base* x, __rb_tree_node_base*& root) {
+		__rb_tree_node_base* y = x -> right;
+		x -> right = y -> left;
+		if (y -> left != 0)
+			y -> left -> parent = x;
+		y -> parent = x -> parent;
+		
+		if (x == root)
+			root = y;
+		else if (x == x -> parent -> left)
+			x -> parent -> left = y;
+		else 
+			x -> parent -> right = y;
+		y -> left = x;
+		x -> parent = y;
+	}
+	
+	inline void __rb_tree_rotate_right(__rb_tree_node_base* x, __rb_tree_node_base*& root) {
+		__rb_tree_node_base* y = x -> left;
+		x -> left = y -> right;
+		if (y -> right != 0)
+			y -> right -> parent = x;
+		y -> parent = x -> parent;
+		
+		if (x == root)
+			root = y;
+		else if (x == x -> parent -> right)
+			x -> parent -> right = y;
+		else
+			x -> parent -> left = y;
+		y -> right = x;
+		x -> parent = y;
 	}
 	iterator __insert(base_ptr x_, base_ptr y_, const value_type& v) {
 		link_type x = (link_type) x_;
@@ -269,6 +338,18 @@ public:
 		return __insert(x, y, v);
 	}
 	//...
+	iterator find (const key_value& k) {
+		link_type y = header;
+		link_type x = root();
+		
+		while (x != 0)
+			if (!key_compare(key(x), k))
+				y = x, x = left(x);
+			else 
+				x = right(x);
+		iterator j = iterator(y);
+		return (j == end() || key_compare(k, key(j.node))) ? end() : j;
+	}
 };
 
 
