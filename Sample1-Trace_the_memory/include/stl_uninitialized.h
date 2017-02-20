@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_UNINITIALIZED_H_
-#define __LAMB_STL_UNINITIALIZED_H_
+#ifndef __LAMB_STL_INTERNAL_UNINITIALIZED_H_
+#define __LAMB_STL_INTERNAL_UNINITIALIZED_H_
 #include "stl_iterator.h"
 #include <iostream>
 

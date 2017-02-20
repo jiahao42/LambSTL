@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_RB_TREE_H_
-#define __LAMB_STL_RB_TREE_H_
+#ifndef __LAMB_STL_INTERNAL_RB_TREE_H_
+#define __LAMB_STL_INTERNAL_RB_TREE_H_
 
 typedef bool __rb_tree_color_type;
 const __rb_tree_color_type __rb_tree_red = false;

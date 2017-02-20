@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_VECTOR_H_
-#define __LAMB_STL_VECTOR_H_
+#ifndef __LAMB_STL_INTERNAL_VECTOR_H_
+#define __LAMB_STL_INTERNAL_VECTOR_H_
 #include <cstddef>	/* size_t */
 #include "stl_simple_alloc.h"
 #include "stl_iterator.h"

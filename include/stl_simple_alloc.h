@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_SIMPLE_ALLOC_H_
-#define __LAMB_STL_SIMPLE_ALLOC_H_
+#ifndef __LAMB_STL_INTERNAL_SIMPLE_ALLOC_H_
+#define __LAMB_STL_INTERNAL_SIMPLE_ALLOC_H_
 
 #include "stl_malloc_alloc.h"
 #include "stl_default_alloc.h"

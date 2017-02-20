@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_DEQUE_H_
-#define __LAMB_STL_DEQUE_H_
+#ifndef __LAMB_STL_INTERNAL_DEQUE_H_
+#define __LAMB_STL_INTERNAL_DEQUE_H_
 
 #include <cstddef>	/* size_t */
 #include "stl_simple_alloc.h" /* alloc */

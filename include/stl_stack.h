@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_STACK_H_
-#define __LAMB_STL_STACK_H_
+#ifndef __LAMB_STL_INTERNAL_STACK_H_
+#define __LAMB_STL_INTERNAL_STACK_H_
 
 #include <cstddef>	/* size_t */
 #include "stl_deque.h" /* Deque */

@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_LIST_H_
-#define __LAMB_STL_LIST_H_
+#ifndef __LAMB_STL_INTERNAL_LIST_H_
+#define __LAMB_STL_INTERNAL_LIST_H_
 #include <cstddef>	/* size_t */
 #include "stl_algorithm.h"
 #include "stl_simple_alloc.h" /* alloc */

@@ -1,5 +1,5 @@
-#ifndef __LAMB_STL_STL_HEAP_H_
-#define __LAMB_STL_STL_HEAP_H_
+#ifndef __LAMB_STL_INTERNAL_HEAP_H_
+#define __LAMB_STL_INTERNAL_HEAP_H_
 
 template <class RandomAccessIterator, class Distance, class T>
 void __push_heap(RandomAccessIterator first, Distance holeIndex, Distance topIndex, T value){
