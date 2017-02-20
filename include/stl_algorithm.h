@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_H_
-#define ALGORITHM_H_
+#ifndef __LAMB_STL_ALGORITHM_H_
+#define __LAMB_STL_ALGORITHM_H_
 
 
 template <class InputIterator, class OutputIterator>

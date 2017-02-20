@@ -1,5 +1,5 @@
-#ifndef DEFAULT_ALLOC_H_
-#define DEFAULT_ALLOC_H_
+#ifndef __LAMB_STL_DEFAULT_ALLOC_H_
+#define __LAMB_STL_DEFAULT_ALLOC_H_
 
 
 #include <new>		/* placement new */

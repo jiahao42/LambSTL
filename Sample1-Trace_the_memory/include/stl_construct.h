@@ -1,5 +1,5 @@
-#ifndef CONSTRUCT_H_
-#define CONSTRUCT_H_
+#ifndef __LAMB_STL_CONSTRUCT_H_
+#define __LAMB_STL_CONSTRUCT_H_
 #include "type_traits.h"
 #include <new>
 

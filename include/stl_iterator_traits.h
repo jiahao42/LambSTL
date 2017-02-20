@@ -1,5 +1,5 @@
-#ifndef ITERATOR_TRAITS_H_
-#define ITERATOR_TRAITS_H_
+#ifndef __LAMB_STL_ITERATOR_TRAITS_H_
+#define __LAMB_STL_ITERATOR_TRAITS_H_
 
 
 struct input_iterator_tag{};

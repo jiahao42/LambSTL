@@ -1,0 +1,1 @@
+#ifndef __LAMB_STL_

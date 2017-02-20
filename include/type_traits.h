@@ -1,5 +1,5 @@
-#ifndef TYPE_TRAITS_H_
-#define TYPE_TRAITS_H_
+#ifndef __LAMB_STL_TYPE_TRAITS_H_
+#define __LAMB_STL_TYPE_TRAITS_H_
 
 struct __true_type{};
 struct __false_type{};

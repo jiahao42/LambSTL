@@ -1,5 +1,5 @@
-#ifndef MALLOC_ALLOC_H_
-#define MALLOC_ALLOC_H_
+#ifndef __LAMB_STL_MALLOC_ALLOC_H_
+#define __LAMB_STL_MALLOC_ALLOC_H_
 
 #include <new>		/* placement new */
 #include <cstddef>	/* for ptrdiff_t, size_t */

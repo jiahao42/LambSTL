@@ -1,5 +1,5 @@
-#ifndef QUEUE_H_
-#define QUEUE_H_
+#ifndef __LAMB_STL_QUEUE_H_
+#define __LAMB_STL_QUEUE_H_
 
 #include <iostream> /* std::cout */
 #include "stl_deque.h"	/* Deque */

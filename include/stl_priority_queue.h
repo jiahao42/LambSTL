@@ -1,5 +1,5 @@
-#ifndef PRIORITY_QUEUE_H_
-#define PRIORITY_QUEUE_H_
+#ifndef __LAMB_STL_PRIORITY_QUEUE_H_
+#define __LAMB_STL_PRIORITY_QUEUE_H_
 
 #include "stl_algorithm.h"
 #include "stl_vector.h"
