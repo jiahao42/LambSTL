@@ -1,7 +1,7 @@
 #ifndef UNINITIALIZED_H_
 #define UNINITIALIZED_H_
-#include "algorithm.h"
-#include "iterator.h"
+#include "stl_algorithm.h"
+#include "stl_iterator.h"
 #include <iostream>
 
 /* start of uninitialized_fill_n */

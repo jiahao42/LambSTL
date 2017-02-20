@@ -1,11 +1,11 @@
 #ifndef VECTOR_H_
 #define VECTOR_H_
 #include <cstddef>	/* size_t */
-#include "simple_alloc.h" /* alloc */
-#include "iterator.h"	/* __true_type __false_type */
-#include "construct.h"	/* construct destroy */
-#include "uninitialized.h" /* uninitialized_copy uninitialized_fill_n ...*/
-#include "algorithm.h" /* fill() */
+#include "stl_simple_alloc.h" /* alloc */
+#include "stl_iterator.h"	/* __true_type __false_type */
+#include "stl_construct.h"	/* construct destroy */
+#include "stl_uninitialized.h" /* uninitialized_copy uninitialized_fill_n ...*/
+#include "stl_algorithm.h" /* fill() */
 #include <iostream>
 
 

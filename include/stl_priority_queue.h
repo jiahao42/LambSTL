@@ -1,9 +1,9 @@
 #ifndef PRIORITY_QUEUE_H_
 #define PRIORITY_QUEUE_H_
 
-#include "algorithm.h"
-#include "vector.h"
-#include "heap.h"
+#include "stl_algorithm.h"
+#include "stl_vector.h"
+#include "stl_heap.h"
 
 template <class T, class Sequence = Vector<T>, class Compare = less<typename Sequence::value_type>>
 class Priority_Queue {

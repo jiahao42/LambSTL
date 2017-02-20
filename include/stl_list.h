@@ -1,10 +1,10 @@
 #ifndef LIST_H_
 #define LIST_H_
 #include <cstddef>	/* size_t */
-#include "algorithm.h"
-#include "simple_alloc.h" /* alloc */
-#include "iterator.h"	/* __true_type __false_type */
-#include "construct.h"	/* construct() destroy() */
+#include "stl_algorithm.h"
+#include "stl_simple_alloc.h" /* alloc */
+#include "stl_iterator.h"	/* __true_type __false_type */
+#include "stl_construct.h"	/* construct() destroy() */
 #include <iostream> /* std::cout */
 
 template <class T>
@@ -267,7 +267,7 @@ public:
 		}
 	}
 	
-	void swap(List<T,Alloc>& x){
+	void swap(List<T,Alloc>& x){//swap node即可, 因为node即为end()
 		link_type tmp = get_node();
 		tmp = x.node;
 		x.node = node;

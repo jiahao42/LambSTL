@@ -1,8 +1,8 @@
 #ifndef __SLIST_H_
 #define __SLIST_H_
 
-#include "simple_alloc.h"
-#include "iterator.h"
+#include "stl_simple_alloc.h"
+#include "stl_iterator.h"
 
 struct __slist_node_base {
 	__slist_node_base* next;

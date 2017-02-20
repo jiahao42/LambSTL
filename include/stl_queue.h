@@ -2,8 +2,8 @@
 #define QUEUE_H_
 
 #include <iostream> /* std::cout */
-#include "deque.h"	/* Deque */
-#include "list.h"	/* List */
+#include "stl_deque.h"	/* Deque */
+#include "stl_list.h"	/* List */
 
 
 // forward declare the Queue

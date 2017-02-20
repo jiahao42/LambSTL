@@ -2,13 +2,13 @@
 #define STACK_H_
 
 #include <cstddef>	/* size_t */
-#include "deque.h" /* Deque */
-#include "vector.h" /* Vector */
-#include "list.h" /* List */
-#include "simple_alloc.h" /* alloc */
-#include "iterator.h"	/* __true_type __false_type */
-#include "construct.h"  /* construct() destroy() */
-#include "algorithm.h"
+#include "stl_deque.h" /* Deque */
+#include "stl_vector.h" /* Vector */
+#include "stl_list.h" /* List */
+#include "stl_simple_alloc.h" /* alloc */
+#include "stl_iterator.h"	/* __true_type __false_type */
+#include "stl_construct.h"  /* construct() destroy() */
+#include "stl_algorithm.h"
 
 // forward declare the Stack
 template <class T, class Sequence>
