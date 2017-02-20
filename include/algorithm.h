@@ -50,4 +50,11 @@ void distance(InputIterator first, InputIterator last, Size& size){
 	}
 }
 
+template <class T>
+inline void swap(T& a, T& b) {
+  T tmp = a;
+  a = b;
+  b = tmp;
+}
+
 #endif

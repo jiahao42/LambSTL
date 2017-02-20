@@ -267,12 +267,13 @@ public:
 		}
 	}
 	
-	void swap(List& x){
-		List<T> tmp;
-		tmp = x;
-		x = *this;
-		*this = tmp;
+	void swap(List<T,Alloc>& x){
+		link_type tmp = get_node();
+		tmp = x.node;
+		x.node = node;
+		node = tmp;
 	}
+	
 	//quick sort
 	void sort(){
 		if (node -> next == node || link_type(node -> next) -> next == node)
