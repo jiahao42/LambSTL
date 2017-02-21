@@ -166,7 +166,50 @@ public:
 			}
 		}
 	}
+	
+	#ifdef __STL_MEMBER_TEMPLATES
+    template <class ForwardIterator>
+    iterator allocate_and_copy(size_type n, ForwardIterator first, ForwardIterator last) {
+		iterator result = data_allocator::allocate(n);
+		__STL_TRY {
+		  uninitialized_copy(first, last, result);
+		  return result;
+		}
+		__STL_UNWIND(data_allocator::deallocate(result, n));
+	}
+	#else /* __STL_MEMBER_TEMPLATES */
+	iterator allocate_and_copy(size_type n, const_iterator first, const_iterator last) {
+		iterator result = data_allocator::allocate(n);
+		__STL_TRY {
+		  uninitialized_copy(first, last, result);
+		  return result;
+		}
+		__STL_UNWIND(data_allocator::deallocate(result, n));
+	}
+#endif /* __STL_MEMBER_TEMPLATES */
 
+	Vector<T, Alloc>& operator=(const Vector<T, Alloc>& x) {
+	  if (&x != this) {
+		if (x.size() > capacity()) {
+		  iterator tmp = allocate_and_copy(x.end() - x.begin(),
+										   x.begin(), x.end());
+		  destroy(start, finish);
+		  deallocate();
+		  start = tmp;
+		  end_of_storage = start + (x.end() - x.begin());
+		}
+		else if (size() >= x.size()) {
+		  iterator i = copy(x.begin(), x.end(), begin());
+		  destroy(i, finish);
+		}
+		else {
+		  copy(x.begin(), x.begin() + size(), start);
+		  uninitialized_copy(x.begin() + size(), x.end(), finish);
+		}
+		finish = start + x.size();
+	  }
+	  return *this;
+	}
 };
 
 #endif

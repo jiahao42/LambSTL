@@ -47,5 +47,4 @@ struct negate : public unary_function<T, T> {
 };
 
 
-
 # endif
