@@ -72,10 +72,35 @@ void test_arithmetic() {
 	}
 }
 
+void test_relation() {
+	TEST_INT(1, less<int>()(1, 2));
+	TEST_INT(0, less<int>()(2, 1));
+	TEST_INT(1, greater<int>()(2, 1));
+	TEST_INT(0, greater<int>()(1, 2));
+	TEST_INT(1, equal_to<int>()(3, 3));
+	TEST_INT(0, equal_to<int>()(2, 3));
+	TEST_INT(1, not_equal_to<int>()(2, 3));
+	TEST_INT(0, not_equal_to<int>()(2, 2));
+	TEST_INT(1, greater_equal<int>()(3, 3));
+	TEST_INT(0, greater_equal<int>()(2, 3));
+	TEST_INT(1, less_equal<int>()(2, 3));
+	TEST_INT(0, less_equal<int>()(3, 2));
+}
+
+void test_logical() {
+	TEST_INT(1, logical_and<int>()(1, 1));
+	TEST_INT(0, logical_and<int>()(1, 0));
+	TEST_INT(1, logical_or<int>()(1, 1));
+	TEST_INT(0, logical_or<int>()(0, 0));
+	TEST_INT(1, logical_not<int>()(0));
+	TEST_INT(0, logical_not<int>()(1));
+}
 
 
 int main(){
 	test_arithmetic();
+	test_relation();
+	test_logical();
 	printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
     return main_ret;
 }
