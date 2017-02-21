@@ -186,29 +186,30 @@ public:
 		}
 		__STL_UNWIND(data_allocator::deallocate(result, n));
 	}
-#endif /* __STL_MEMBER_TEMPLATES */
+	#endif /* __STL_MEMBER_TEMPLATES */
 
 	Vector<T, Alloc>& operator=(const Vector<T, Alloc>& x) {
-	  if (&x != this) {
-		if (x.size() > capacity()) {
-		  iterator tmp = allocate_and_copy(x.end() - x.begin(),
-										   x.begin(), x.end());
-		  destroy(start, finish);
-		  deallocate();
-		  start = tmp;
-		  end_of_storage = start + (x.end() - x.begin());
+		if (&x != this) {
+			if (x.size() > capacity()) {//目标size过大
+				iterator tmp = allocate_and_copy(x.end() - x.begin(), x.begin(), x.end());
+				destroy(start, finish);
+				deallocate();
+				start = tmp;
+				end_of_storage = start + (x.end() - x.begin());
+			} else if (size() >= x.size()) {
+				iterator i = copy(x.begin(), x.end(), begin());
+				destroy(i, finish);
+			} else {
+				copy(x.begin(), x.begin() + size(), start);//size之前的elements必然已经construct完毕
+				/* 
+				TODO: 此处用法存疑,因为x中size之后的元素尚未被construct,那么复制过来的时候应该也无需construct,直接调用copy即可
+				无论x中元素是否为POD
+				*/
+				uninitialized_copy(x.begin() + size(), x.end(), finish);//size之后的elements尚未被construct
+			}
+			finish = start + x.size();
 		}
-		else if (size() >= x.size()) {
-		  iterator i = copy(x.begin(), x.end(), begin());
-		  destroy(i, finish);
-		}
-		else {
-		  copy(x.begin(), x.begin() + size(), start);
-		  uninitialized_copy(x.begin() + size(), x.end(), finish);
-		}
-		finish = start + x.size();
-	  }
-	  return *this;
+		return *this;
 	}
 };
 

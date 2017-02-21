@@ -41,8 +41,6 @@ inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first, Size n,
 	return fill_n(first, n, x);//调用高阶函数
 }
 
-
-
 /* end of uninitialized_fill_n */
 
 
@@ -78,10 +76,6 @@ inline ForwardIterator uninitialized_copy(InputIterator first, InputIterator las
 	return __uninitialized_copy(first, last, result, value_type(result));//先取出type
 }
 
-
-
-
-
 /* end of uninitialized_copy */
 
 
@@ -116,8 +110,6 @@ template <class ForwardIterator, class T>
 inline void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T& x){
 	__uninitialized_fill(first,last,x,value_type(first));
 }
-
-
 
 /* end of uninitialized_fill */
 
