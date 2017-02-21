@@ -1,10 +1,6 @@
 #ifndef __LAMB_STL_INTERNAL_PRIORITY_QUEUE_H_
 #define __LAMB_STL_INTERNAL_PRIORITY_QUEUE_H_
 
-#include "stl_algorithm.h"
-#include "stl_vector.h"
-#include "stl_heap.h"
-
 template <class T, class Sequence = Vector<T>, class Compare = less<typename Sequence::value_type>>
 class Priority_Queue {
 public:

@@ -1,0 +1,8 @@
+# ifndef __LAMB_STL_HEAP_H_
+# define __LAMB_STL_HEAP_H_
+
+#include "stl_iterator.h"
+#include "stl_heap.h"
+
+
+# endif

@@ -1,0 +1,828 @@
+In file included from test.cpp:1:0:
+../include/stl_list.h:20:10: error: ‘bidirectional_iterator_tag’ does not name a type
+  typedef bidirectional_iterator_tag iterator_category;//不是原生指针，不支持随机存储
+          ^
+../include/stl_list.h:25:10: error: ‘size_t’ does not name a type
+  typedef size_t size_type;
+          ^
+../include/stl_list.h:26:10: error: ‘ptrdiff_t’ does not name a type
+  typedef ptrdiff_t difference_type;
+          ^
+../include/stl_list.h:66:34: error: ‘alloc’ does not name a type
+ template <class T, class Alloc = alloc>
+                                  ^
+../include/stl_list.h:70:10: error: ‘simple_alloc’ does not name a type
+  typedef simple_alloc<list_node, Alloc> list_node_allocator;
+          ^
+../include/stl_list.h:77:10: error: ‘size_t’ does not name a type
+  typedef size_t size_type;
+          ^
+../include/stl_list.h:78:10: error: ‘ptrdiff_t’ does not name a type
+  typedef ptrdiff_t difference_type;
+          ^
+../include/stl_list.h:140:2: error: ‘size_type’ does not name a type
+  size_type size() const {
+  ^
+../include/stl_list.h:155:49: error: ‘size_type’ has not been declared
+  iterator insert(iterator position, const T& x, size_type n){//TODO : fix return value
+                                                 ^
+../include/stl_list.h:297:23: error: ‘size_type’ has not been declared
+  iterator operator[] (size_type n){//根据下标返回迭代器，STL标准应该使用advance()来移动迭代器
+                       ^
+../include/stl_list.h: In member function ‘List<T, Alloc>::list_node* List<T, Alloc>::get_node()’:
+../include/stl_list.h:84:10: error: ‘list_node_allocator’ has not been declared
+   return list_node_allocator::allocate();
+          ^
+../include/stl_list.h: In member function ‘void List<T, Alloc>::put_node(List<T, Alloc>::link_type)’:
+../include/stl_list.h:87:3: error: ‘list_node_allocator’ has not been declared
+   list_node_allocator::deallocate(p);
+   ^
+../include/stl_list.h: In member function ‘void List<T, Alloc>::sort()’:
+../include/stl_list.h:275:9: error: template argument 2 is invalid
+   List<T> carry;
+         ^
+../include/stl_list.h:275:16: error: invalid type in declaration before ‘;’ token
+   List<T> carry;
+                ^
+../include/stl_list.h:276:9: error: template argument 2 is invalid
+   List<T> counter[64];
+         ^
+../include/stl_list.h:276:22: error: invalid type in declaration before ‘;’ token
+   List<T> counter[64];
+                      ^
+../include/stl_list.h:280:10: error: request for member ‘splice’ in ‘carry’, which is of non-class type ‘int’
+    carry.splice(carry.begin(), *this, begin());
+          ^
+../include/stl_list.h:280:23: error: request for member ‘begin’ in ‘carry’, which is of non-class type ‘int’
+    carry.splice(carry.begin(), *this, begin());
+                       ^
+../include/stl_list.h:282:35: error: request for member ‘empty’ in ‘counter[i]’, which is of non-class type ‘int’
+    while (i < fill && !counter[i].empty()){
+                                   ^
+../include/stl_list.h:283:16: error: request for member ‘merge’ in ‘counter[i]’, which is of non-class type ‘int’
+     counter[i].merge(carry);
+                ^
+../include/stl_list.h:284:11: error: request for member ‘swap’ in ‘carry’, which is of non-class type ‘int’
+     carry.swap(counter[i++]);
+           ^
+../include/stl_list.h:286:10: error: request for member ‘swap’ in ‘carry’, which is of non-class type ‘int’
+    carry.swap(counter[i]);
+          ^
+../include/stl_list.h:290:15: error: request for member ‘merge’ in ‘counter[i]’, which is of non-class type ‘int’
+    counter[i].merge(counter[i - 1]);
+               ^
+test.cpp: In function ‘void test_list_iterator()’:
+test.cpp:26:10: error: template argument 2 is invalid
+  List<int> l;
+          ^
+test.cpp:26:13: error: invalid type in declaration before ‘;’ token
+  List<int> l;
+             ^
+test.cpp:28:5: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+   l.push_back(i);
+     ^
+test.cpp:29:17: error: request for member ‘back’ in ‘l’, which is of non-class type ‘int’
+   TEST_INT(i, l.back());
+                 ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:29:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, l.back());
+   ^
+test.cpp:29:17: error: request for member ‘back’ in ‘l’, which is of non-class type ‘int’
+   TEST_INT(i, l.back());
+                 ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:29:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, l.back());
+   ^
+test.cpp:31:14: error: request for member ‘begin’ in ‘l’, which is of non-class type ‘int’
+  auto it = l.begin();
+              ^
+test.cpp: In function ‘void test_list_push_pop()’:
+test.cpp:42:10: error: template argument 2 is invalid
+  List<int> l;
+          ^
+test.cpp:42:13: error: invalid type in declaration before ‘;’ token
+  List<int> l;
+             ^
+test.cpp:43:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.empty());
+                ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:43:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.empty());
+  ^
+test.cpp:43:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.empty());
+                ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:43:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.empty());
+  ^
+test.cpp:45:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+   TEST_SIZE_TYPE(i, l.size());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:45:3: note: in expansion of macro ‘TEST_SIZE_TYPE’
+   TEST_SIZE_TYPE(i, l.size());
+   ^
+test.cpp:45:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+   TEST_SIZE_TYPE(i, l.size());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:45:3: note: in expansion of macro ‘TEST_SIZE_TYPE’
+   TEST_SIZE_TYPE(i, l.size());
+   ^
+test.cpp:46:5: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+   l.push_back(i);
+     ^
+test.cpp:47:17: error: request for member ‘back’ in ‘l’, which is of non-class type ‘int’
+   TEST_INT(i, l.back());
+                 ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:47:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, l.back());
+   ^
+test.cpp:47:17: error: request for member ‘back’ in ‘l’, which is of non-class type ‘int’
+   TEST_INT(i, l.back());
+                 ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:47:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, l.back());
+   ^
+test.cpp:49:4: error: request for member ‘push_front’ in ‘l’, which is of non-class type ‘int’
+  l.push_front(999);//[999,0,1,2,3,...]
+    ^
+test.cpp:50:20: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(999, *l[0]);
+                    ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:50:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(999, *l[0]);
+  ^
+test.cpp:50:20: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(999, *l[0]);
+                    ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:50:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(999, *l[0]);
+  ^
+test.cpp:51:17: error: request for member ‘erase’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+                 ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+  ^
+test.cpp:51:26: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+                          ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+  ^
+test.cpp:51:17: error: request for member ‘erase’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+                 ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+  ^
+test.cpp:51:26: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+                          ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, *l.erase(l[0]));//[0,1,2,3,...]
+  ^
+test.cpp:54:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(0, l.empty());
+                ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:54:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, l.empty());
+  ^
+test.cpp:54:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(0, l.empty());
+                ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:54:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(0, l.empty());
+  ^
+test.cpp:55:4: error: request for member ‘clear’ in ‘l’, which is of non-class type ‘int’
+  l.clear();
+    ^
+test.cpp:56:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.empty());
+                ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:56:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.empty());
+  ^
+test.cpp:56:16: error: request for member ‘empty’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.empty());
+                ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:56:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.empty());
+  ^
+test.cpp: In function ‘void test_list_insert()’:
+test.cpp:60:10: error: template argument 2 is invalid
+  List<int> l;
+          ^
+test.cpp:60:13: error: invalid type in declaration before ‘;’ token
+  List<int> l;
+             ^
+test.cpp:61:4: error: request for member ‘insert’ in ‘l’, which is of non-class type ‘int’
+  l.insert(l.begin(), 1);
+    ^
+test.cpp:61:13: error: request for member ‘begin’ in ‘l’, which is of non-class type ‘int’
+  l.insert(l.begin(), 1);
+             ^
+test.cpp:63:16: error: request for member ‘front’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.front());
+                ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:63:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.front());
+  ^
+test.cpp:63:16: error: request for member ‘front’ in ‘l’, which is of non-class type ‘int’
+  TEST_INT(1, l.front());
+                ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:63:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, l.front());
+  ^
+test.cpp:64:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(1, *l[0]);
+                  ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:64:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, *l[0]);
+  ^
+test.cpp:64:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(1, *l[0]);
+                  ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:64:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, *l[0]);
+  ^
+test.cpp:66:5: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+   l.push_back(i);
+     ^
+test.cpp:69:4: error: request for member ‘insert’ in ‘l’, which is of non-class type ‘int’
+  l.insert(l[5],100);
+    ^
+test.cpp:69:14: error: invalid types ‘int[int]’ for array subscript
+  l.insert(l[5],100);
+              ^
+test.cpp:71:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(3, *l[4]);
+                  ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:71:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(3, *l[4]);
+  ^
+test.cpp:71:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(3, *l[4]);
+                  ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:71:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(3, *l[4]);
+  ^
+test.cpp:72:20: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(100, *l[5]);
+                    ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:72:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(100, *l[5]);
+  ^
+test.cpp:72:20: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(100, *l[5]);
+                    ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:72:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(100, *l[5]);
+  ^
+test.cpp:73:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(4, *l[6]);
+                  ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:73:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(4, *l[6]);
+  ^
+test.cpp:73:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(4, *l[6]);
+                  ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:73:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(4, *l[6]);
+  ^
+test.cpp:75:4: error: request for member ‘clear’ in ‘l’, which is of non-class type ‘int’
+  l.clear();
+    ^
+test.cpp:76:4: error: request for member ‘insert’ in ‘l’, which is of non-class type ‘int’
+  l.insert(l[0], 2, 10);
+    ^
+test.cpp:76:14: error: invalid types ‘int[int]’ for array subscript
+  l.insert(l[0], 2, 10);
+              ^
+test.cpp:77:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10, l.size());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:77:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10, l.size());
+  ^
+test.cpp:77:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10, l.size());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:77:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10, l.size());
+  ^
+test.cpp:78:24: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  for (int i = 0; i < l.size(); i++){
+                        ^
+test.cpp:79:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(2, *l[i]);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:79:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(2, *l[i]);
+   ^
+test.cpp:79:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(2, *l[i]);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:79:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(2, *l[i]);
+   ^
+test.cpp:81:4: error: request for member ‘insert’ in ‘l’, which is of non-class type ‘int’
+  l.insert(l[5], 1, 5);
+    ^
+test.cpp:81:14: error: invalid types ‘int[int]’ for array subscript
+  l.insert(l[5], 1, 5);
+              ^
+test.cpp:82:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(15, l.size());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:82:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(15, l.size());
+  ^
+test.cpp:82:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(15, l.size());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:82:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(15, l.size());
+  ^
+test.cpp:84:23: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(1, *l[5 + i]);
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:84:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(1, *l[5 + i]);
+   ^
+test.cpp:84:23: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(1, *l[5 + i]);
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:84:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(1, *l[5 + i]);
+   ^
+test.cpp: In function ‘void test_list_remove()’:
+test.cpp:89:10: error: template argument 2 is invalid
+  List<int> l;
+          ^
+test.cpp:89:13: error: invalid type in declaration before ‘;’ token
+  List<int> l;
+             ^
+test.cpp:92:6: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+    l.push_back(1);
+      ^
+test.cpp:94:6: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+    l.push_back(2);
+      ^
+test.cpp:97:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(30, l.size());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:97:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(30, l.size());
+  ^
+test.cpp:97:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(30, l.size());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:97:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(30, l.size());
+  ^
+test.cpp:98:4: error: request for member ‘remove’ in ‘l’, which is of non-class type ‘int’
+  l.remove(1);//[2,2,2,2...]
+    ^
+test.cpp:99:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(15, l.size());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:99:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(15, l.size());
+  ^
+test.cpp:99:23: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(15, l.size());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:99:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(15, l.size());
+  ^
+test.cpp:101:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(2, *l[i]);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:101:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(2, *l[i]);
+   ^
+test.cpp:101:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(2, *l[i]);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:101:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(2, *l[i]);
+   ^
+test.cpp:103:4: error: request for member ‘unique’ in ‘l’, which is of non-class type ‘int’
+  l.unique();
+    ^
+test.cpp:104:22: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(1, l.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:104:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(1, l.size());
+  ^
+test.cpp:104:22: error: request for member ‘size’ in ‘l’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(1, l.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:104:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(1, l.size());
+  ^
+test.cpp:105:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(2, *l[0]);
+                  ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:105:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(2, *l[0]);
+  ^
+test.cpp:105:18: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(2, *l[0]);
+                  ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:105:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(2, *l[0]);
+  ^
+test.cpp: In function ‘void test_list_transfer()’:
+test.cpp:109:10: error: template argument 2 is invalid
+  List<int> l1;
+          ^
+test.cpp:109:14: error: invalid type in declaration before ‘;’ token
+  List<int> l1;
+              ^
+test.cpp:110:10: error: template argument 2 is invalid
+  List<int> l2;
+          ^
+test.cpp:110:14: error: invalid type in declaration before ‘;’ token
+  List<int> l2;
+              ^
+test.cpp:112:6: error: request for member ‘push_back’ in ‘l1’, which is of non-class type ‘int’
+   l1.push_back(i);
+      ^
+test.cpp:113:6: error: request for member ‘push_back’ in ‘l2’, which is of non-class type ‘int’
+   l2.push_back(i + 30);
+      ^
+test.cpp:115:5: error: request for member ‘splice’ in ‘l1’, which is of non-class type ‘int’
+  l1.splice(l1[10], l2);//l1 : [0,1,2...,9,30,31,...59,10,11...29]
+     ^
+test.cpp:115:17: error: invalid types ‘int[int]’ for array subscript
+  l1.splice(l1[10], l2);//l1 : [0,1,2...,9,30,31,...59,10,11...29]
+                 ^
+test.cpp:117:25: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i + 20, *l1[i]);
+                         ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:117:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i + 20, *l1[i]);
+   ^
+test.cpp:117:25: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i + 20, *l1[i]);
+                         ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:117:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i + 20, *l1[i]);
+   ^
+test.cpp:119:5: error: request for member ‘push_back’ in ‘l2’, which is of non-class type ‘int’
+  l2.push_back(123);
+     ^
+test.cpp:120:5: error: request for member ‘splice’ in ‘l1’, which is of non-class type ‘int’
+  l1.splice(l1[23], l2, l2.begin());
+     ^
+test.cpp:120:17: error: invalid types ‘int[int]’ for array subscript
+  l1.splice(l1[23], l2, l2.begin());
+                 ^
+test.cpp:120:27: error: request for member ‘begin’ in ‘l2’, which is of non-class type ‘int’
+  l1.splice(l1[23], l2, l2.begin());
+                           ^
+test.cpp:121:22: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(123, *l1[23]);
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:121:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(123, *l1[23]);
+  ^
+test.cpp:121:22: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(123, *l1[23]);
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:121:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(123, *l1[23]);
+  ^
+test.cpp:123:6: error: request for member ‘push_back’ in ‘l2’, which is of non-class type ‘int’
+   l2.push_back(i);
+      ^
+test.cpp:125:5: error: request for member ‘splice’ in ‘l1’, which is of non-class type ‘int’
+  l1.splice(l1[5], l2, l2[2], l2[5]);
+     ^
+test.cpp:125:16: error: invalid types ‘int[int]’ for array subscript
+  l1.splice(l1[5], l2, l2[2], l2[5]);
+                ^
+test.cpp:125:27: error: invalid types ‘int[int]’ for array subscript
+  l1.splice(l1[5], l2, l2[2], l2[5]);
+                           ^
+test.cpp:125:34: error: invalid types ‘int[int]’ for array subscript
+  l1.splice(l1[5], l2, l2[2], l2[5]);
+                                  ^
+test.cpp:126:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(775, *l1[5]);
+                     ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:126:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(775, *l1[5]);
+  ^
+test.cpp:126:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(775, *l1[5]);
+                     ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:126:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(775, *l1[5]);
+  ^
+test.cpp:127:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(774, *l1[6]);
+                     ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:127:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(774, *l1[6]);
+  ^
+test.cpp:127:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(774, *l1[6]);
+                     ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:127:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(774, *l1[6]);
+  ^
+test.cpp:128:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(773, *l1[7]);
+                     ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:128:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(773, *l1[7]);
+  ^
+test.cpp:128:21: error: invalid types ‘int[int]’ for array subscript
+  TEST_INT(773, *l1[7]);
+                     ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:128:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(773, *l1[7]);
+  ^
+test.cpp: In function ‘void test_list_swap()’:
+test.cpp:132:10: error: template argument 2 is invalid
+  List<int> l1;
+          ^
+test.cpp:132:14: error: invalid type in declaration before ‘;’ token
+  List<int> l1;
+              ^
+test.cpp:133:10: error: template argument 2 is invalid
+  List<int> l2;
+          ^
+test.cpp:133:14: error: invalid type in declaration before ‘;’ token
+  List<int> l2;
+              ^
+test.cpp:136:6: error: request for member ‘push_back’ in ‘l1’, which is of non-class type ‘int’
+   l1.push_back(i);//[0,1,2,...,9]
+      ^
+test.cpp:137:6: error: request for member ‘push_back’ in ‘l2’, which is of non-class type ‘int’
+   l2.push_back(9 - i);//[9,8,7,...,0]
+      ^
+test.cpp:139:5: error: request for member ‘swap’ in ‘l1’, which is of non-class type ‘int’
+  l1.swap(l2);
+     ^
+test.cpp:141:20: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+                    ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:141:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+   ^
+test.cpp:141:20: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+                    ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:141:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, *l2[i]);//[0,1,2,...,9]
+   ^
+test.cpp:142:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+                        ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:142:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+   ^
+test.cpp:142:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+                        ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:142:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(9 - i, *l1[i]);//[9,8,7,...,0]
+   ^
+test.cpp: In function ‘void test_list_sort()’:
+test.cpp:147:10: error: template argument 2 is invalid
+  List<int> l;
+          ^
+test.cpp:147:13: error: invalid type in declaration before ‘;’ token
+  List<int> l;
+             ^
+test.cpp:149:5: error: request for member ‘push_back’ in ‘l’, which is of non-class type ‘int’
+   l.push_back(i);//[0,1,2,3...29]
+     ^
+test.cpp:150:4: error: request for member ‘reverse’ in ‘l’, which is of non-class type ‘int’
+  l.reverse();//[29,28,27,26...0]
+    ^
+test.cpp:152:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(29 - i, *l[i]);
+                        ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:152:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(29 - i, *l[i]);
+   ^
+test.cpp:152:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(29 - i, *l[i]);
+                        ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:152:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(29 - i, *l[i]);
+   ^
+test.cpp:154:4: error: request for member ‘sort’ in ‘l’, which is of non-class type ‘int’
+  l.sort();//[0,1,2,3...29]
+    ^
+test.cpp:156:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i, *l[i]);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:156:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, *l[i]);
+   ^
+test.cpp:156:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(i, *l[i]);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:156:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(i, *l[i]);
+   ^
+make: *** [test.o] Error 1

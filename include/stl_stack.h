@@ -1,15 +1,6 @@
 #ifndef __LAMB_STL_INTERNAL_STACK_H_
 #define __LAMB_STL_INTERNAL_STACK_H_
 
-#include <cstddef>	/* size_t */
-#include "stl_deque.h" /* Deque */
-#include "stl_vector.h" /* Vector */
-#include "stl_list.h" /* List */
-#include "stl_simple_alloc.h" /* alloc */
-#include "stl_iterator.h"	/* __true_type __false_type */
-#include "stl_construct.h"  /* construct() destroy() */
-#include "stl_algorithm.h"
-
 // forward declare the Stack
 template <class T, class Sequence>
 class Stack;

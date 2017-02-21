@@ -1,4 +1,4 @@
-#include "stl_list.h"
+#include "list"
 #include <cstdlib>
 #include <cstdio>
 

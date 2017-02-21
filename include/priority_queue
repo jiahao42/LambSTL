@@ -1,0 +1,11 @@
+# ifndef __LAMB_STL_PRIORITY_QUEUE_H_
+# define __LAMB_STL_PRIORITY_QUEUE_H_
+
+#include "stl_iterator.h"
+#include "stl_algorithm.h"
+#include "stl_vector.h"
+#include "stl_heap.h"
+#include "stl_priority_queue.h"
+
+
+# endif

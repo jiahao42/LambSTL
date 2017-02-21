@@ -1,11 +1,5 @@
 #ifndef __LAMB_STL_INTERNAL_LIST_H_
 #define __LAMB_STL_INTERNAL_LIST_H_
-#include <cstddef>	/* size_t */
-#include "stl_algorithm.h"
-#include "stl_simple_alloc.h" /* alloc */
-#include "stl_iterator.h"	/* __true_type __false_type */
-#include "stl_construct.h"	/* construct() destroy() */
-#include <iostream> /* std::cout */
 
 template <class T>
 struct __list_node {//list结点，双向链表

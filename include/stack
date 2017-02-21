@@ -1,0 +1,17 @@
+# ifndef __LAMB_STL_STACK_H_
+# define __LAMB_STL_STACK_H_
+
+#include "stl_simple_alloc.h" 
+#include "stl_iterator.h"	
+#include "stl_construct.h"  
+#include "stl_algorithm.h"
+#include "stl_uninitialized.h"
+#include "stl_deque.h" 
+#include "stl_vector.h" 
+#include "stl_list.h" 
+#include "stl_slist.h"
+#include "stl_stack.h"
+
+
+
+# endif

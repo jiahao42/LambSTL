@@ -1,12 +1,6 @@
 #ifndef __LAMB_STL_INTERNAL_DEQUE_H_
 #define __LAMB_STL_INTERNAL_DEQUE_H_
 
-#include <cstddef>	/* size_t */
-#include "stl_simple_alloc.h" /* alloc */
-#include "stl_iterator.h"	/* __true_type __false_type */
-#include "stl_construct.h"  /* construct() destroy() */
-#include "stl_algorithm.h"
-
 
 inline size_t __deque_buf_size(size_t n, size_t sz){//如果没有指定BufSize则默认使用512字节的缓冲区
 	return n != 0 ? n : (sz < 512 ? size_t(512 / sz) : size_t (1));

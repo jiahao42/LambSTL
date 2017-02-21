@@ -1,0 +1,10 @@
+# ifndef __LAMB_STL_QUEUE_H_
+# define __LAMB_STL_QUEUE_H_
+
+
+#include "stl_deque.h"	
+#include "stl_list.h"	
+#include "stl_queue.h"
+
+
+# endif

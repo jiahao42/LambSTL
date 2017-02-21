@@ -1,0 +1,7 @@
+# ifndef __LAMB_STL_ALGORITHM_
+# define __LAMB_STL_ALGORITHM_
+
+#include "stl_algorithm.h"
+
+
+# endif

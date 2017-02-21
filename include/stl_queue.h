@@ -1,11 +1,6 @@
 #ifndef __LAMB_STL_INTERNAL_QUEUE_H_
 #define __LAMB_STL_INTERNAL_QUEUE_H_
 
-#include <iostream> /* std::cout */
-#include "stl_deque.h"	/* Deque */
-#include "stl_list.h"	/* List */
-
-
 // forward declare the Queue
 template <class T, class Sequence>
 class Queue;

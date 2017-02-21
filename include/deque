@@ -1,0 +1,12 @@
+# ifndef __LAMB_STL_DEQUE_
+# define __LAMB_STL_DEQUE_
+
+#include "stl_iterator.h"
+#include "stl_simple_alloc.h"
+#include "stl_construct.h"  
+#include "stl_algorithm.h"
+#include "stl_uninitialized.h"
+#include "stl_deque.h"
+
+
+# endif

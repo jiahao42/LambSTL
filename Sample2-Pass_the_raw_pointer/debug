@@ -1,0 +1,566 @@
+In file included from ../include/vector:4:0,
+                 from test.cpp:1:
+../include/stl_vector.h:4:34: error: ‘alloc’ does not name a type
+ template <class T, class Alloc = alloc>
+                                  ^
+../include/stl_vector.h:13:10: error: ‘size_t’ does not name a type
+  typedef size_t  size_type;
+          ^
+../include/stl_vector.h:14:10: error: ‘ptrdiff_t’ does not name a type
+  typedef ptrdiff_t difference_type;
+          ^
+../include/stl_vector.h:17:10: error: ‘simple_alloc’ does not name a type
+  typedef simple_alloc<value_type,alloc> data_allocator;
+          ^
+../include/stl_vector.h:57:23: error: ‘size_type’ has not been declared
+  void fill_initialize(size_type n, const T& value){
+                       ^
+../include/stl_vector.h:68:2: error: ‘size_type’ does not name a type
+  size_type size() const { return size_type(end() - begin()); }
+  ^
+../include/stl_vector.h:69:2: error: ‘size_type’ does not name a type
+  size_type capacity() const {
+  ^
+../include/stl_vector.h:73:23: error: ‘size_type’ has not been declared
+  reference operator[](size_type n){ return *(begin() + n); }
+                       ^
+../include/stl_vector.h:126:33: error: ‘size_type’ has not been declared
+  void insert(iterator position, size_type n, const T& x){
+                                 ^
+../include/stl_vector.h: In member function ‘void Vector<T, Alloc>::insert_aux(Vector<T, Alloc>::iterator, const T&)’:
+../include/stl_vector.h:29:10: error: ‘size_type’ does not name a type
+    const size_type old_size = size();
+          ^
+../include/stl_vector.h:30:10: error: ‘size_type’ does not name a type
+    const size_type len = old_size != 0 ? 2 * old_size : 1;//初始化/扩大 size
+          ^
+../include/stl_vector.h:32:25: error: ‘data_allocator’ has not been declared
+    iterator new_start = data_allocator::allocate(len);
+                         ^
+../include/stl_vector.h:32:50: error: ‘len’ was not declared in this scope
+    iterator new_start = data_allocator::allocate(len);
+                                                  ^
+../include/stl_vector.h:41:5: error: ‘data_allocator’ has not been declared
+     data_allocator::deallocate(new_start, len);
+     ^
+../include/stl_vector.h: In member function ‘void Vector<T, Alloc>::deallocate()’:
+../include/stl_vector.h:55:4: error: ‘data_allocator’ has not been declared
+    data_allocator::deallocate(start,end_of_storage - start);
+    ^
+../include/stl_vector.h: In member function ‘void Vector<T, Alloc>::insert(Vector<T, Alloc>::iterator, int, const T&)’:
+../include/stl_vector.h:130:11: error: ‘size_type’ does not name a type
+     const size_type elems_after = finish - position;
+           ^
+../include/stl_vector.h:132:9: error: ‘elems_after’ was not declared in this scope
+     if (elems_after > n){
+         ^
+../include/stl_vector.h:145:11: error: ‘size_type’ does not name a type
+     const size_type old_size = size();
+           ^
+../include/stl_vector.h:146:11: error: ‘size_type’ does not name a type
+     const size_type len = old_size + max(old_size, n);
+           ^
+../include/stl_vector.h:147:26: error: ‘data_allocator’ has not been declared
+     iterator new_start = data_allocator::allocate(len);
+                          ^
+../include/stl_vector.h:147:51: error: ‘len’ was not declared in this scope
+     iterator new_start = data_allocator::allocate(len);
+                                                   ^
+../include/stl_vector.h:149:5: error: ‘__STL_TRY’ was not declared in this scope
+     __STL_TRY{
+     ^
+test.cpp: In function ‘void test_push_pop()’:
+test.cpp:27:13: error: template argument 2 is invalid
+  Vector<int*> v;
+             ^
+test.cpp:27:16: error: invalid type in declaration before ‘;’ token
+  Vector<int*> v;
+                ^
+test.cpp:35:31: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  for(int i = 0; i < 3; i++) v.push_back(p[i]);
+                               ^
+test.cpp:38:19: error: invalid types ‘int[int]’ for array subscript
+    TEST_INT(j, v[i][j]);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:38:4: note: in expansion of macro ‘TEST_INT’
+    TEST_INT(j, v[i][j]);
+    ^
+test.cpp:38:19: error: invalid types ‘int[int]’ for array subscript
+    TEST_INT(j, v[i][j]);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:38:4: note: in expansion of macro ‘TEST_INT’
+    TEST_INT(j, v[i][j]);
+    ^
+test.cpp:41:31: error: request for member ‘pop_back’ in ‘v’, which is of non-class type ‘int’
+  for(int i = 0; i < 3; i++) v.pop_back();
+                               ^
+test.cpp:42:16: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1, v.empty());
+                ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:42:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, v.empty());
+  ^
+test.cpp:42:16: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1, v.empty());
+                ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:42:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1, v.empty());
+  ^
+test.cpp: In function ‘void test_size()’:
+test.cpp:49:13: error: template argument 2 is invalid
+  Vector<int*> v;
+             ^
+test.cpp:49:16: error: invalid type in declaration before ‘;’ token
+  Vector<int*> v;
+                ^
+test.cpp:51:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.size());
+  ^
+test.cpp:51:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:51:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.size());
+  ^
+test.cpp:52:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.capacity());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:52:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.capacity());
+  ^
+test.cpp:52:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.capacity());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:52:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.capacity());
+  ^
+test.cpp:53:4: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  v.push_back(p);
+    ^
+test.cpp:54:4: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  v.push_back(p);
+    ^
+test.cpp:55:4: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  v.push_back(p);
+    ^
+test.cpp:56:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(3, v.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:56:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(3, v.size());
+  ^
+test.cpp:56:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(3, v.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:56:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(3, v.size());
+  ^
+test.cpp:57:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(4, v.capacity());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:57:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(4, v.capacity());
+  ^
+test.cpp:57:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(4, v.capacity());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:57:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(4, v.capacity());
+  ^
+test.cpp:58:4: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  v.push_back(p);
+    ^
+test.cpp:59:4: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+  v.push_back(p);
+    ^
+test.cpp:60:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(5, v.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:60:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(5, v.size());
+  ^
+test.cpp:60:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(5, v.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:60:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(5, v.size());
+  ^
+test.cpp:61:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(8, v.capacity());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:61:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(8, v.capacity());
+  ^
+test.cpp:61:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(8, v.capacity());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:61:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(8, v.capacity());
+  ^
+test.cpp:62:4: error: request for member ‘clear’ in ‘v’, which is of non-class type ‘int’
+  v.clear();
+    ^
+test.cpp:63:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:63:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.size());
+  ^
+test.cpp:63:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(0, v.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:63:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(0, v.size());
+  ^
+test.cpp:64:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(8, v.capacity());//still 8
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:64:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(8, v.capacity());//still 8
+  ^
+test.cpp:64:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(8, v.capacity());//still 8
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:64:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(8, v.capacity());//still 8
+  ^
+test.cpp: In function ‘void test_iterator()’:
+test.cpp:68:13: error: template argument 2 is invalid
+  Vector<int*> v;
+             ^
+test.cpp:68:16: error: invalid type in declaration before ‘;’ token
+  Vector<int*> v;
+                ^
+test.cpp:71:15: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1,v.empty());
+               ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:71:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1,v.empty());
+  ^
+test.cpp:71:15: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1,v.empty());
+               ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:71:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1,v.empty());
+  ^
+test.cpp:73:5: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+   v.push_back(p);
+     ^
+test.cpp:75:13: error: template argument 2 is invalid
+  Vector<int*>::iterator begin = v.begin();
+             ^
+test.cpp:75:25: error: expected initializer before ‘begin’
+  Vector<int*>::iterator begin = v.begin();
+                         ^
+test.cpp:76:13: error: template argument 2 is invalid
+  Vector<int*>::iterator end = v.end();
+             ^
+test.cpp:76:25: error: expected initializer before ‘end’
+  Vector<int*>::iterator end = v.end();
+                         ^
+test.cpp:78:22: error: no post-increment operator for type
+   TEST_INT(0, **begin++);
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:78:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, **begin++);
+   ^
+test.cpp:78:22: error: no post-increment operator for type
+   TEST_INT(0, **begin++);
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:78:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, **begin++);
+   ^
+test.cpp:81:19: error: no pre-decrement operator for type
+   TEST_INT(0, **--end);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:81:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, **--end);
+   ^
+test.cpp:81:19: error: no pre-decrement operator for type
+   TEST_INT(0, **--end);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:81:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, **--end);
+   ^
+test.cpp: In function ‘void test_erase()’:
+test.cpp:88:13: error: template argument 2 is invalid
+  Vector<int*> v;
+             ^
+test.cpp:88:16: error: invalid type in declaration before ‘;’ token
+  Vector<int*> v;
+                ^
+test.cpp:92:5: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+   v.push_back(p);
+     ^
+test.cpp:95:18: error: request for member ‘erase’ in ‘v’, which is of non-class type ‘int’
+   int temp = **v.erase(v.begin());
+                  ^
+test.cpp:95:26: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+   int temp = **v.erase(v.begin());
+                          ^
+test.cpp:101:5: error: request for member ‘push_back’ in ‘v’, which is of non-class type ‘int’
+   v.push_back(p);
+     ^
+test.cpp:103:4: error: request for member ‘erase’ in ‘v’, which is of non-class type ‘int’
+  v.erase(v.begin(), v.begin() + 10);
+    ^
+test.cpp:103:12: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+  v.erase(v.begin(), v.begin() + 10);
+            ^
+test.cpp:103:23: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+  v.erase(v.begin(), v.begin() + 10);
+                       ^
+test.cpp:105:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0, *v[i - 10]);
+                        ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:105:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, *v[i - 10]);
+   ^
+test.cpp:105:24: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0, *v[i - 10]);
+                        ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:105:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, *v[i - 10]);
+   ^
+test.cpp:108:4: error: request for member ‘clear’ in ‘v’, which is of non-class type ‘int’
+  v.clear();
+    ^
+test.cpp:109:15: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1,v.empty());
+               ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:109:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1,v.empty());
+  ^
+test.cpp:109:15: error: request for member ‘empty’ in ‘v’, which is of non-class type ‘int’
+  TEST_INT(1,v.empty());
+               ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:109:2: note: in expansion of macro ‘TEST_INT’
+  TEST_INT(1,v.empty());
+  ^
+test.cpp: In function ‘void test_insert()’:
+test.cpp:117:13: error: template argument 2 is invalid
+  Vector<int*> v;
+             ^
+test.cpp:117:16: error: invalid type in declaration before ‘;’ token
+  Vector<int*> v;
+                ^
+test.cpp:120:4: error: request for member ‘insert’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 10, p);//capacity += 10
+    ^
+test.cpp:120:13: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 10, p);//capacity += 10
+             ^
+test.cpp:122:18: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0,*v[i]);
+                  ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:122:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0,*v[i]);
+   ^
+test.cpp:122:18: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0,*v[i]);
+                  ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:122:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0,*v[i]);
+   ^
+test.cpp:124:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10,v.size());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:124:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10,v.size());
+  ^
+test.cpp:124:22: error: request for member ‘size’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10,v.size());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:124:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10,v.size());
+  ^
+test.cpp:125:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10,v.capacity());
+                      ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:125:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10,v.capacity());
+  ^
+test.cpp:125:22: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(10,v.capacity());
+                      ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:125:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(10,v.capacity());
+  ^
+test.cpp:126:4: error: request for member ‘insert’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 20, p);//capacity += 20
+    ^
+test.cpp:126:13: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 20, p);//capacity += 20
+             ^
+test.cpp:127:23: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(30, v.capacity());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:127:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(30, v.capacity());
+  ^
+test.cpp:127:23: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(30, v.capacity());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:127:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(30, v.capacity());
+  ^
+test.cpp:128:4: error: request for member ‘insert’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 5, p);//vector should double it's capacity
+    ^
+test.cpp:128:13: error: request for member ‘begin’ in ‘v’, which is of non-class type ‘int’
+  v.insert(v.begin(), 5, p);//vector should double it's capacity
+             ^
+test.cpp:129:23: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(60, v.capacity());
+                       ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:129:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(60, v.capacity());
+  ^
+test.cpp:129:23: error: request for member ‘capacity’ in ‘v’, which is of non-class type ‘int’
+  TEST_SIZE_TYPE(60, v.capacity());
+                       ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:129:2: note: in expansion of macro ‘TEST_SIZE_TYPE’
+  TEST_SIZE_TYPE(60, v.capacity());
+  ^
+test.cpp:131:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0, *v[i]);
+                   ^
+test.cpp:13:7: note: in definition of macro ‘TEST_EQ_BASE’
+   if (equality){ \
+       ^
+test.cpp:131:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, *v[i]);
+   ^
+test.cpp:131:19: error: invalid types ‘int[int]’ for array subscript
+   TEST_INT(0, *v[i]);
+                   ^
+test.cpp:17:93: note: in definition of macro ‘TEST_EQ_BASE’
+    fprintf(stderr,"%s:%d: expect: " format " actual: " format "\n",__FILE__,__LINE__,expect,actual);\
+                                                                                             ^
+test.cpp:131:3: note: in expansion of macro ‘TEST_INT’
+   TEST_INT(0, *v[i]);
+   ^
+make: *** [test.o] Error 1

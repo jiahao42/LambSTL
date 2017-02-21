@@ -1,4 +1,4 @@
-#include "stl_deque.h"
+#include "deque"
 #include <cstdlib>
 #include <cstdio>
 

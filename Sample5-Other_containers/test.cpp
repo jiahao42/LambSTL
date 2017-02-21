@@ -1,8 +1,8 @@
-#include "stl_stack.h"
-#include "stl_queue.h"
-#include "stl_heap.h"
-#include "stl_vector.h"
-#include "stl_slist.h"
+#include "stack"
+#include "queue"
+#include "heap"
+#include "vector"
+#include "slist"
 #include <cstdlib>
 #include <cstdio>
 

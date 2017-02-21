@@ -1,12 +1,5 @@
 #ifndef __LAMB_STL_INTERNAL_VECTOR_H_
 #define __LAMB_STL_INTERNAL_VECTOR_H_
-#include <cstddef>	/* size_t */
-#include "stl_simple_alloc.h"
-#include "stl_iterator.h"
-#include "stl_construct.h"
-#include "stl_uninitialized.h"
-#include <iostream>
-
 
 template<class BidirectionalIterator1, class BidirectionalIterator2>
 BidirectionalIterator2 copy_backward ( BidirectionalIterator1 first, BidirectionalIterator1 last, BidirectionalIterator2 result )

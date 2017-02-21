@@ -1,0 +1,10 @@
+# ifndef __LAMB_STL_VECTOR_H_
+# define __LAMB_STL_VECTOR_H_
+
+#include "stl_simple_alloc.h"
+#include "stl_iterator.h"
+#include "stl_construct.h"
+#include "stl_uninitialized.h"
+#include "stl_vector.h"
+
+# endif

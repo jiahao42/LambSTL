@@ -1,4 +1,4 @@
-#include "stl_vector.h"
+#include "vector"
 #include <cstdlib>
 #include <cstdio>
 
