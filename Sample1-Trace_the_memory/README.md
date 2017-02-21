@@ -1,4 +1,4 @@
-# STL-Tutorial - Sample 1 - Trace the memory
+# LambSTL - Sample 1 - Trace the memory
 观察Vector使用时，内存的分配过程。
 
 See what does the memory look like when using Vector

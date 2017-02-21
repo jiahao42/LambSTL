@@ -1,5 +1,5 @@
-# STL-Tutorial
-Following SGI STL
+# LambSTL
+STL Tutorial, Following SGI STL
 
 * **Sample1 - Trace the memory**
 
@@ -25,8 +25,3 @@ Including Stack, Queue, Heap(implicit repressentation), Priority_Queue, Slist
 
 
 * **Sample7 - Red-Black Tree**
-
-## TODO
-
-* implement more algorithms
-* implement more containers

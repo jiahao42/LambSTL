@@ -1,4 +1,4 @@
-# STL-Tutorial - Sample 4 - How Deque works
+# LambSTL - Sample 4 - How Deque works
 
 Try to figure out how Deque works
 

@@ -1,4 +1,4 @@
-# STL-Tutorial - Sample 3 - What makes iterator
+# LambSTL - Sample 3 - What makes iterator
 
 #### Figure out what makes iterator using List, iterator is not just a pointer!
 
