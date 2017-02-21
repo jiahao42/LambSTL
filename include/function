@@ -1,0 +1,9 @@
+# ifndef __LAMB_STL_FUNCTION_
+# define __LAMB_STL_FUNCTION_
+
+#include <cstddef>
+#include "stl_config.h"
+#include "stl_function.h"
+
+
+# endif
