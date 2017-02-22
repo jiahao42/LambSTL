@@ -8,17 +8,31 @@
 For example:
 
 ```
+typedef bool (*func)();
 bool callback() {
 	return true;
+}
+void invoker(func f) {
+	f();
+}
+int main() {
+	invoker(callback);
 }
 ```
 
 There does have one way which can store local state : add a static data member, like this:
 
 ```
-bool callback() {
+typedef bool (*func)();
+bool callback() {//what if multiple threads fighting for the static member?
 	static bool result = true;
-	return result;
+	return true;
+}
+void invoker(func f) {
+	f();
+}
+int main() {
+	invoker(callback);
 }
 ```
 
@@ -27,19 +41,46 @@ However, this way is not safe in multiple threads without the additional overhea
 So, here comes function object, like this:
 
 ```
-struct callback {
-	bool result;
+class callback {
+public:
 	callback(bool _result) : result(_result) {}
 	bool operator() () { return result; }
+private:
+	bool result;
+};
+
+void invoker(callback f) {
+	f();
 }
 
 int main() {
-	struct callback c1(true);
-	struct callback c2(false);
+	callback c1(true);
+	callback c2(false);
+	invoker(c1);
+	invoker(c2);
 }
 ```
 
 With the help of function object, we can easily create different instances of function with different local state.
+
+
+Without local state, function pointer can cause more problems. Let's say we expect 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
