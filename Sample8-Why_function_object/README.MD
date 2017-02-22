@@ -64,23 +64,59 @@ int main() {
 With the help of function object, we can easily create different instances of function with different local state.
 
 
-Without local state, function pointer can cause more problems. Let's say we expect 
+Without local state, function pointer can cause more problems. Let's say we expect only one parameter but use a 3rd party function as the callback. There is a solution to create an adaptor to wrap the functions, but what if the situations are too many, then you have write an adaptor for each and every permutation, not to mention this way is not flexible at all.
 
+For example:
 
+```
+typedef void (*func)(int n);
 
+void callback(int, int, int) { printf("I'm here!\n"); }
 
+void adaptor1(int n) {
+	callback(n, 1, 1);
+}
 
+void adaptor2(int n) {//what if there are more situations than [1, 1] and [1, 2]?
+	callback(n, 1, 2);
+}
 
+void invoker(func f) {
+	f(int());
+}
 
+int main() {
+	invoker(adaptor1);
+	invoker(adaptor2);
+}
+```
 
+As the code above, the function pointer cannot have different instances, so we have to hard code those adaptors in the compiling phase, which is very bad choice. At this time, we should choose function object.
 
+```
+class callback {
+public:
+	callback(int _a, int _b, int _c) : a(_a), b(_b), c(_c) {}
+	callback(int _a) : a(_a), b(0), c(0) {}
+	void operator() (int n) { printf("I'm here!\n"); }
+private:
+	int a,b,c;
+};
 
+void invoker(callback f) {
+	f(int());
+}
 
+int main() {
+	callback c1(1);
+	callback c2(1,2,3);
+	//... 
+	//Create as many as you like...
+	invoker(c1);
+	invoker(c2);
+}
+```
 
-
-
-
-
-
+With function object, we can create as many as we need **in the runtime**.
 
 

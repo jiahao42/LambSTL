@@ -71,7 +71,7 @@ public:
 	}
 	bool empty() const { return begin() == end();}
 	reference operator[](size_type n){ return *(begin() + n); }
-	Vector():start(0),finish(0), end_of_storage(0){}
+	Vector():start(0), finish(0), end_of_storage(0){}
 	~Vector(){
 		destroy(start,finish);
 		deallocate();
