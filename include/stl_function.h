@@ -117,4 +117,6 @@ template <class Arg1, class Arg2>
 struct project2nd : public binary_function<Arg1, Arg2, Arg2> {
 	Arg2 operator() (const Arg1&, const Arg2& y) const { return y; }
 };
+
+
 # endif
