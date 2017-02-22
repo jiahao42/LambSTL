@@ -1,11 +1,11 @@
 # LambSTL
-STL Tutorial, Following SGI STL
+#### STL Tutorial, Following SGI STL
 
 * **Sample1 - Trace the memory**
 
 Print how memory allocates and deallocates when using vector.
 
-You should be aware that the LambSTL is using a memory pool to avoid the possible memory fragment.
+You should be aware that the LambSTL is using a **memory pool** to avoid the possible memory fragment.
 
 * **Sample2 - Pass the raw pointer**
 
@@ -25,7 +25,7 @@ Try to figure out the data structure of deque, how it is structured, what makes 
 
 Now we have some basic containers, and we can try to use them.
 
-We can make a stack using deque, vector or list, or make a queue using list or deque.
+We can build a stack using deque, vector or list, or build a queue using list or deque.
 
 Also, there is heap(implicit repressentation), priority_Queue and slist.
 
@@ -35,10 +35,10 @@ Not figured out yet.
 
 * **Sample7 - Red-Black Tree**
 
-Do you know that set and map can be based on Red-Black Tree, let's discuss it
+Do you know that set and map can be based on Red-Black Tree, let's see it
 
 * **Sample8 - Why function object**
 
 Why use function object instead of function pointer? 
 
-In C programming, we use function pointer a lot, but it has some drawbacks comparing to function object in C++
+In C programming, we use function pointer a lot, but it has some drawbacks comparing to function object in C++, what's these?
