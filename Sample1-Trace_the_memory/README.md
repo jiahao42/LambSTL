@@ -3,7 +3,7 @@
 
 See what does the memory look like when using Vector
 
-You can turn on/off the logs in **stl_config.h**
+You can turn on/off the logs in **test.cpp**
 
 ```
 //just remove or add this macro to turn on/off the logs

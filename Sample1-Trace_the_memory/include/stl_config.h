@@ -161,8 +161,6 @@
 #	define __stl_assert(expr)
 # endif
 
-#define __SHOW_LOGS
-
 #ifdef __SHOW_LOGS
 #define LOG(operation, parameter, value) \
 	do { \

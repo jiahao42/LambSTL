@@ -1,3 +1,5 @@
+#define __SHOW_LOGS
+
 #include "vector"
 #include <cstdlib>
 #include <cstdio>

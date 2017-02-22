@@ -1,3 +1,5 @@
+#define __SHOW_LOGS
+
 #include "deque"
 #include <cstdlib>
 #include <cstdio>

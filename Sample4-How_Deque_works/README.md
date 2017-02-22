@@ -2,6 +2,13 @@
 
 Try to figure out how Deque works
 
+You can turn on/off the logs in **test.cpp**
+
+```
+//just remove or add this macro to turn on/off the logs
+#define __SHOW_LOGS
+```
+
 This is what the deque looks like, when
 
 * The map size is 6, which means it has 6 buffers
