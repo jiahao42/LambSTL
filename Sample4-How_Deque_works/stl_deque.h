@@ -224,7 +224,7 @@ protected:
 	}
 	
 	void reserve_map_at_front (size_type nodes_to_add = 1){//若前端结点不足
-		if (nodes_to_add > start.node - map){
+		if (nodes_to_add > static_cast<size_t>(start.node - map)){
 			LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
 			LOG("reserve_map_at_front", "start.node - map", (int)(start.node - map));
 			reallocate_map(nodes_to_add, true);
@@ -275,7 +275,7 @@ protected:
 	iterator insert_aux(iterator pos, const value_type& x){
 		difference_type index = pos - start;
 		value_type x_copy = x;
-		if (index < size() / 2){
+		if (index < static_cast<int>(size() / 2)){
 			push_front(front());
 			iterator front1 = start;
 			++front1;
@@ -388,7 +388,7 @@ public:
 		iterator next = pos;
 		++next;
 		difference_type index = pos - start;
-		if (index < (size() >> 1)){
+		if (static_cast<size_t>(index) < (size() >> 1)){
 			copy_backward(start, pos, next);
 			pop_front();
 		}else{
@@ -407,7 +407,7 @@ public:
 		}else{
 			difference_type n = last - first;
 			difference_type elems_before = first - start;
-			if (elems_before < (size() - n) / 2){
+			if (static_cast<size_t>(elems_before) < (size() - n) / 2){
 				copy_backward(start, first, last);
 				iterator new_start = start + n;
 				destroy(start, new_start);

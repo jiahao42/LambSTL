@@ -161,10 +161,14 @@
 #	define __stl_assert(expr)
 # endif
 
+inline bool check_para(const char* v) {
+	return *v == '\x00';
+}
+
 #ifdef __SHOW_LOGS
 #define LOG(operation, parameter, value) \
 	do { \
-		if (parameter == ""){ \
+		if (check_para(parameter)){ \
 			fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,operation);\
 		}else { \
 			fprintf(stderr,"%s:%d: %s, [%s]: %d\n",__FILE__,__LINE__,operation,parameter,static_cast<int>(value));\
