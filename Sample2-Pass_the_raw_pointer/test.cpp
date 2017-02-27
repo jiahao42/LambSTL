@@ -47,7 +47,7 @@ void test_push_pop(){
 
 void test_size(){
 	Vector<int*> v;
-	int *p;
+	int *p = NULL;
 	TEST_SIZE_TYPE(0, v.size());
 	TEST_SIZE_TYPE(0, v.capacity());
 	v.push_back(p);
