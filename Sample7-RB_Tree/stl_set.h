@@ -85,7 +85,8 @@ public:
 	
 	//operations
 	iterator find(const key_type& x) const { return t.find(x); }
-	size_type count(const key_type&)
+	size_type count(const key_type&) const  { return t.count(x); }
+	
 	
 };
 
