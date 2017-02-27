@@ -145,7 +145,7 @@ public:
 	}
 	
 	void clear() {
-		for (int i = 0; i < size(); i++){
+		for (size_t i = 0; i < size(); i++){
 			pop_front();
 		}
 		head.next = 0;

@@ -80,9 +80,10 @@ void test_queue(){
 }
 
 void test_heap(){
+	size_t i;
 	const int init[9] = {0, 1, 2, 3, 4, 8, 9, 3, 5};
 	Vector<int> v;
-	for (int i = 0; i < sizeof(init) / sizeof(*init); i++){
+	for (i = 0; i < sizeof(init) / sizeof(*init); i++){
 		v.push_back(init[i]);
 	}
 	make_heap(v.begin(), v.end());
@@ -97,7 +98,7 @@ void test_heap(){
 	
 	*/
 	const int result_1[v.size()] = {9, 5, 8, 3, 4, 0, 2, 3, 1};
-	for (int i = 0; i < v.size(); i++){
+	for (i = 0; i < v.size(); i++){
 		TEST_INT(result_1[i], v[i]);
 	}
 	
@@ -115,7 +116,7 @@ void test_heap(){
 	
 	*/
 	const int result_2[v.size()] = {9, 7, 8, 3, 5, 0, 2, 3, 1, 4};
-	for (int i = 0; i < v.size(); i++){
+	for (i = 0; i < v.size(); i++){
 		TEST_INT(result_2[i], v[i]);
 	}
 	
@@ -134,13 +135,13 @@ void test_heap(){
 	  3	  1
 	*/
 	const int result_3[v.size()] = {8, 7, 4, 3, 5, 0, 2, 3, 1};
-	for (int i = 0; i < v.size(); i++){
+	for (i = 0; i < v.size(); i++){
 		TEST_INT(result_3[i], v[i]);
 	}
 	
 	const int result_4[v.size()] = {0, 1, 2, 3, 3, 4, 5, 7, 8};
 	sort_heap(v.begin(), v.end());
-	for (int i = 0; i < v.size(); i++){
+	for (i = 0; i < v.size(); i++){
 		TEST_INT(result_4[i], v[i]);
 	}
 }

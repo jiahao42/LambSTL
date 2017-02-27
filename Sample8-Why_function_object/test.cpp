@@ -37,7 +37,7 @@ template <class T, class BinaryOperation>
 Vector<T> test_arithmetic_aux(Vector<T>& v1, Vector<T> v2, BinaryOperation f) {
 	assert(v1.size() == v2.size());
 	Vector<T> tmp;
-	for (int i = 0; i < v1.size(); i++) {
+	for (size_t i = 0; i < v1.size(); i++) {
 		tmp.push_back(f(v1[i], v2[i]));
 	}
 	return tmp;
