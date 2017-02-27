@@ -1,0 +1,12 @@
+# ifndef __LAMB_STL_SET_
+# define __LAMB_STL_SET_
+
+#include "stl_iterator.h"
+#include "stl_algorithm.h"
+#include "stl_simple_alloc.h"
+#include "stl_construct.h"	
+#include "stl_uninitialized.h"
+#include "stl_rb_tree.h"
+#include "stl_set.h"
+
+#endif
