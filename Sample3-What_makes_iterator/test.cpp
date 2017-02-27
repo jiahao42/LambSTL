@@ -75,7 +75,7 @@ void test_list_insert(){
 	l.clear();
 	l.insert(l[0], 2, 10);
 	TEST_SIZE_TYPE(10, l.size());
-	for (int i = 0; i < l.size(); i++){
+	for (size_t i = 0; i < l.size(); i++){
 		TEST_INT(2, *l[i]);
 	}
 	l.insert(l[5], 1, 5);

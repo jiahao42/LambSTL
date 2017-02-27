@@ -153,7 +153,7 @@ public:
 		return tmp;//将数据插入在position前方，插入后返回插入数据
 	}
 	iterator insert(iterator position, const T& x, size_type n){//TODO : fix return value
-		for (int i = 0; i < n; i++){
+		for (size_t i = 0; i < n; i++){
 			insert(position, x);
 		}
 		return position;
@@ -295,7 +295,7 @@ public:
 	
 	/* This function is not standard stl, just for convenience */
 	iterator operator[] (size_type n){//根据下标返回迭代器，STL标准应该使用advance()来移动迭代器
-		int count = 0;
+		size_t count = 0;
 		iterator cur = begin();
 		while (count != n){
 			cur++;
