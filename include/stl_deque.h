@@ -131,11 +131,11 @@ protected:
 	typedef simple_alloc<value_type, Alloc> data_allocator;//for element
 	typedef simple_alloc<pointer, Alloc> map_allocator;//for buffer
 	
-	map_pointer map;
-	size_type map_size;
-	
 	iterator start;
 	iterator finish;
+	
+	map_pointer map;
+	size_type map_size;
 	
 protected:
 	static size_type buffer_size() {
