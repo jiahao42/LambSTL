@@ -1,0 +1,472 @@
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::create_map_and_node(Deque<T, Alloc, BufSiz>::size_type)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:165:3: note: in expansion of macro ‘LOG’
+   LOG("create_map_and_node", "num elements", (int)num_elements);
+   ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:166:3: note: in expansion of macro ‘LOG’
+   LOG("buffer size", "size", (int)buffer_size());
+   ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:170:3: note: in expansion of macro ‘LOG’
+   LOG("creating map","map_size",map_size);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_back(Deque<T, Alloc, BufSiz>::size_type)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:220:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:221:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "map_size - (finish.node - map)", (int)(map_size - (finish.node - map)));
+    ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_front(Deque<T, Alloc, BufSiz>::size_type)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:228:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:229:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "start.node - map", (int)(start.node - map));
+    ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::reallocate_map(Deque<T, Alloc, BufSiz>::size_type, bool)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:236:3: note: in expansion of macro ‘LOG’
+   LOG("reallocate_map", "nodes to add", (int)nodes_to_add);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:331:3: note: in expansion of macro ‘LOG’
+   LOG("pushing back", "value", t);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:341:3: note: in expansion of macro ‘LOG’
+   LOG("pushing front", "value", t);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::pop_back()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:351:3: note: in expansion of macro ‘LOG’
+   LOG("poping back", "", 0);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::pop_front()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:361:3: note: in expansion of macro ‘LOG’
+   LOG("poping front", "", 0);
+   ^
+stl_deque.h: In member function ‘void Deque<T, Alloc, BufSiz>::clear()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:371:3: note: in expansion of macro ‘LOG’
+   LOG("clearing", "", 0);
+   ^
+stl_deque.h: In member function ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:387:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "position", *pos);
+   ^
+stl_deque.h: In member function ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator, Deque<T, Alloc, BufSiz>::iterator)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:402:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "from", *first);
+   ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:403:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "to", *last);
+   ^
+stl_deque.h: In member function ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::insert(Deque<T, Alloc, BufSiz>::iterator, const value_type&)’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:431:3: note: in expansion of macro ‘LOG’
+   LOG("inserting", "position", *position);
+   ^
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+stl_deque.h:432:3: note: in expansion of macro ‘LOG’
+   LOG("inserting", "value", x);
+   ^
+test.cpp: In function ‘void test_deque_push_pop()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+test.cpp:28:2: note: in expansion of macro ‘LOG’
+  LOG("**start to test deque push and pop...**", "", 0);
+  ^
+test.cpp: In function ‘void test_deque_size()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+test.cpp:61:2: note: in expansion of macro ‘LOG’
+  LOG("**start to test deque size...**", "", 0);
+  ^
+test.cpp: In function ‘void test_deque_iterator()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+test.cpp:68:2: note: in expansion of macro ‘LOG’
+  LOG("**start to test iterator...**", "", 0);
+  ^
+test.cpp: In function ‘void test_deque_erase()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+test.cpp:86:2: note: in expansion of macro ‘LOG’
+  LOG("**start to test erase...**", "", 0);
+  ^
+test.cpp: In function ‘void test_deque_insert()’:
+../include/stl_config.h:167:20: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                    ^
+test.cpp:104:2: note: in expansion of macro ‘LOG’
+  LOG("**start to test insert...**", "", 0);
+  ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::Deque() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul]’:
+test.cpp:29:23:   required from here
+stl_deque.h:136:11: warning: ‘Deque<int, __default_alloc_template<false, 0>, 5ul>::finish’ will be initialized after [-Wreorder]
+  iterator finish;
+           ^
+stl_deque.h:132:14: warning:   ‘Deque<int, __default_alloc_template<false, 0>, 5ul>::value_type** Deque<int, __default_alloc_template<false, 0>, 5ul>::map’ [-Wreorder]
+  map_pointer map;
+              ^
+stl_deque.h:306:2: warning:   when initialized here [-Wreorder]
+  Deque() : start(), finish(), map(0), map_size(0){
+  ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’:
+test.cpp:31:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:331:3: note: in expansion of macro ‘LOG’
+   LOG("pushing back", "value", t);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::pop_back() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul]’:
+test.cpp:34:13:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:351:3: note: in expansion of macro ‘LOG’
+   LOG("poping back", "", 0);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’:
+test.cpp:41:22:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:341:3: note: in expansion of macro ‘LOG’
+   LOG("pushing front", "value", t);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::pop_front() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul]’:
+test.cpp:50:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:361:3: note: in expansion of macro ‘LOG’
+   LOG("poping front", "", 0);
+   ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::Deque() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul]’:
+test.cpp:62:13:   required from here
+stl_deque.h:136:11: warning: ‘Deque<int>::finish’ will be initialized after [-Wreorder]
+  iterator finish;
+           ^
+stl_deque.h:132:14: warning:   ‘Deque<int>::value_type** Deque<int>::map’ [-Wreorder]
+  map_pointer map;
+              ^
+stl_deque.h:306:2: warning:   when initialized here [-Wreorder]
+  Deque() : start(), finish(), map(0), map_size(0){
+  ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’:
+test.cpp:71:17:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:341:3: note: in expansion of macro ‘LOG’
+   LOG("pushing front", "value", t);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’:
+test.cpp:79:16:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:331:3: note: in expansion of macro ‘LOG’
+   LOG("pushing back", "value", t);
+   ^
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>]’:
+test.cpp:92:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:387:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "position", *pos);
+   ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h:391:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (index < (size() >> 1)){
+             ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator, Deque<T, Alloc, BufSiz>::iterator) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>]’:
+test.cpp:98:23:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:402:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "from", *first);
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:403:3: note: in expansion of macro ‘LOG’
+   LOG("eraseing", "to", *last);
+   ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h:410:21: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (elems_before < (size() - n) / 2){
+                     ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::insert(Deque<T, Alloc, BufSiz>::iterator, const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>; Deque<T, Alloc, BufSiz>::value_type = int]’:
+test.cpp:107:18:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:431:3: note: in expansion of macro ‘LOG’
+   LOG("inserting", "position", *position);
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:432:3: note: in expansion of macro ‘LOG’
+   LOG("inserting", "value", x);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::create_map_and_node(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:307:24:   required from ‘Deque<T, Alloc, BufSiz>::Deque() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul]’
+test.cpp:29:23:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:165:3: note: in expansion of macro ‘LOG’
+   LOG("create_map_and_node", "num elements", (int)num_elements);
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:166:3: note: in expansion of macro ‘LOG’
+   LOG("buffer size", "size", (int)buffer_size());
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:170:3: note: in expansion of macro ‘LOG’
+   LOG("creating map","map_size",map_size);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::create_map_and_node(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:307:24:   required from ‘Deque<T, Alloc, BufSiz>::Deque() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul]’
+test.cpp:62:13:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:165:3: note: in expansion of macro ‘LOG’
+   LOG("create_map_and_node", "num elements", (int)num_elements);
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:166:3: note: in expansion of macro ‘LOG’
+   LOG("buffer size", "size", (int)buffer_size());
+   ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:170:3: note: in expansion of macro ‘LOG’
+   LOG("creating map","map_size",map_size);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::pop_front() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul]’:
+stl_deque.h:393:14:   required from ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>]’
+test.cpp:92:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:361:3: note: in expansion of macro ‘LOG’
+   LOG("poping front", "", 0);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::pop_back() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul]’:
+stl_deque.h:396:13:   required from ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>]’
+test.cpp:92:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:351:3: note: in expansion of macro ‘LOG’
+   LOG("poping back", "", 0);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::clear() [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul]’:
+stl_deque.h:405:10:   required from ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::erase(Deque<T, Alloc, BufSiz>::iterator, Deque<T, Alloc, BufSiz>::iterator) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>]’
+test.cpp:98:23:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:371:3: note: in expansion of macro ‘LOG’
+   LOG("clearing", "", 0);
+   ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::insert_aux(Deque<T, Alloc, BufSiz>::iterator, const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>; Deque<T, Alloc, BufSiz>::value_type = int]’:
+stl_deque.h:442:33:   required from ‘Deque<T, Alloc, BufSiz>::iterator Deque<T, Alloc, BufSiz>::insert(Deque<T, Alloc, BufSiz>::iterator, const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::iterator = __deque_iterator<int, int&, int*, 0ul>; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:107:18:   required from here
+stl_deque.h:278:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (index < size() / 2){
+             ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_back(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:191:23:   required from ‘void Deque<T, Alloc, BufSiz>::push_back_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:336:19:   required from ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:31:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:220:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:221:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "map_size - (finish.node - map)", (int)(map_size - (finish.node - map)));
+    ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_front(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:203:24:   required from ‘void Deque<T, Alloc, BufSiz>::push_front_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:346:20:   required from ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:41:22:   required from here
+stl_deque.h:227:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (nodes_to_add > start.node - map){
+                    ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:228:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:229:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "start.node - map", (int)(start.node - map));
+    ^
+In file included from deque:8:0,
+                 from test.cpp:3:
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_front(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:203:24:   required from ‘void Deque<T, Alloc, BufSiz>::push_front_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:346:20:   required from ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:71:17:   required from here
+stl_deque.h:227:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (nodes_to_add > start.node - map){
+                    ^
+In file included from ../include/stl_iterator.h:5:0,
+                 from deque:5,
+                 from test.cpp:3:
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:228:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:229:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_front", "start.node - map", (int)(start.node - map));
+    ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_back(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:191:23:   required from ‘void Deque<T, Alloc, BufSiz>::push_back_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:336:19:   required from ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:79:16:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:220:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "nodes to add", (int)nodes_to_add);
+    ^
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:221:4: note: in expansion of macro ‘LOG’
+    LOG("reserve_map_at_back", "map_size - (finish.node - map)", (int)(map_size - (finish.node - map)));
+    ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reallocate_map(Deque<T, Alloc, BufSiz>::size_type, bool) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:222:38:   required from ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_back(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’
+stl_deque.h:191:23:   required from ‘void Deque<T, Alloc, BufSiz>::push_back_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:336:19:   required from ‘void Deque<T, Alloc, BufSiz>::push_back(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 5ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:31:15:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:236:3: note: in expansion of macro ‘LOG’
+   LOG("reallocate_map", "nodes to add", (int)nodes_to_add);
+   ^
+stl_deque.h: In instantiation of ‘void Deque<T, Alloc, BufSiz>::reallocate_map(Deque<T, Alloc, BufSiz>::size_type, bool) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’:
+stl_deque.h:230:37:   required from ‘void Deque<T, Alloc, BufSiz>::reserve_map_at_front(Deque<T, Alloc, BufSiz>::size_type) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::size_type = long unsigned int]’
+stl_deque.h:203:24:   required from ‘void Deque<T, Alloc, BufSiz>::push_front_aux(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+stl_deque.h:346:20:   required from ‘void Deque<T, Alloc, BufSiz>::push_front(const value_type&) [with T = int; Alloc = __default_alloc_template<false, 0>; long unsigned int BufSiz = 0ul; Deque<T, Alloc, BufSiz>::value_type = int]’
+test.cpp:71:17:   required from here
+../include/stl_config.h:167:17: warning: comparison with string literal results in unspecified behaviour [-Waddress]
+   if (parameter == ""){ \
+                 ^
+stl_deque.h:236:3: note: in expansion of macro ‘LOG’
+   LOG("reallocate_map", "nodes to add", (int)nodes_to_add);
+   ^
