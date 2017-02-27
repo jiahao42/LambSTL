@@ -307,7 +307,7 @@ public:
 	Compare key_comp() const { return key_compare; }
 	iterator begin() { return leftmost(); }
 	iterator end() { return header; }
-	bool empty() const { return node_count == 0};
+	bool empty() const { return node_count == 0; }
 	size_type size() const { return node_count; }
 	size_type max_size() const { return size_type(-1); }
 public:
@@ -330,12 +330,12 @@ public:
 			return pair<iterator, bool>(__insert(x,y,v), true);
 		return pair<iterator, bool>(j, false);
 	}
-	iterator insert_equal(const value_type& x) {
+	iterator insert_equal(const value_type& v) {
 		link_type y = header;
 		link_type x = root();
 		while (x != 0) {
 			y = x;
-			x = key_compare(KeyOfValue()(v), key(x)) ? left(x) : right (x);
+			x = key_compare(KeyOfValue()(v), key(v)) ? left(x) : right (x);
 		}
 		return __insert(x, y, v);
 	}

@@ -2,11 +2,11 @@ objects = test.o
 CXX = g++
 RES = test.cpp
 INC = ../include/
-CXXFLAGS = -g -O3 -std=c++11 -I$(INC)
+CXXFLAGS = -g -Wall -O3 -std=c++11 -I$(INC)
 program=test
 
 test: $(objects)
-	$(CXX) $(CXXFLAGS) -o $(program) $(objects)
+	$(CXX) $(CXXFLAGS) -o $(program) $(objects) 2>debug
 
 
 clean:
