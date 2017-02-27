@@ -1,0 +1,342 @@
+In file included from set:9:0,
+                 from test.cpp:1:
+stl_rb_tree.h: In static member function ‘static rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::value_type& rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::value(rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::base_ptr)’:
+stl_rb_tree.h:175:62: error: ‘struct __rb_tree_node_base’ has no member named ‘value_field’
+  static reference value(base_ptr x) { return (link_type)x -> value_field; }
+                                                              ^
+stl_rb_tree.h: In destructor ‘rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::~rb_tree()’:
+stl_rb_tree.h:302:9: error: there are no arguments to ‘clear’ that depend on a template parameter, so a declaration of ‘clear’ must be available [-fpermissive]
+   clear();
+         ^
+stl_rb_tree.h:302:9: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+stl_rb_tree.h: In member function ‘bool rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::empty() const’:
+stl_rb_tree.h:310:45: error: expected ‘;’ before ‘}’ token
+  bool empty() const { return node_count == 0};
+                                             ^
+stl_rb_tree.h: In member function ‘rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::iterator rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::insert_equal(const value_type&)’:
+stl_rb_tree.h:335:13: error: declaration of ‘rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::rb_tree_node* x’ shadows a parameter
+   link_type x = root();
+             ^
+stl_rb_tree.h:338:33: error: ‘v’ was not declared in this scope
+    x = key_compare(KeyOfValue()(v), key(x)) ? left(x) : right (x);
+                                 ^
+stl_rb_tree.h:340:25: error: ‘v’ was not declared in this scope
+   return __insert(x, y, v);
+                         ^
+In file included from set:10:0,
+                 from test.cpp:1:
+stl_set.h: At global scope:
+stl_set.h:4:38: error: ‘less’ does not name a type
+ template <class Key, class Compare = less<Key>, class Alloc = alloc>
+                                      ^
+stl_set.h:4:42: error: expected ‘>’ before ‘<’ token
+ template <class Key, class Compare = less<Key>, class Alloc = alloc>
+                                          ^
+stl_set.h:13:40: error: ‘identity’ was not declared in this scope
+  typedef rb_tree<key_type, value_type, identity<value_type>, key_compare, Alloc> rep_type;
+                                        ^
+stl_set.h:13:59: error: wrong number of template arguments (3, should be 5)
+  typedef rb_tree<key_type, value_type, identity<value_type>, key_compare, Alloc> rep_type;
+                                                           ^
+In file included from set:9:0,
+                 from test.cpp:1:
+stl_rb_tree.h:112:7: error: provided for ‘template<class Key, class Value, class KeyOfValue, class Compare, class Alloc> class rb_tree’
+ class rb_tree {
+       ^
+In file included from set:10:0,
+                 from test.cpp:1:
+stl_set.h:13:60: error: expected unqualified-id before ‘,’ token
+  typedef rb_tree<key_type, value_type, identity<value_type>, key_compare, Alloc> rep_type;
+                                                            ^
+stl_set.h:14:2: error: ‘rep_type’ does not name a type
+  rep_type t;
+  ^
+stl_set.h:16:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_pointer pointer;
+                   ^
+stl_set.h:17:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_pointer const_pointer;
+                   ^
+stl_set.h:18:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_reference reference;
+                   ^
+stl_set.h:19:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_reference const_reference;
+                   ^
+stl_set.h:21:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_iterator const_iterator;
+                   ^
+stl_set.h:22:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_reverse_iterator reverse_iterator;
+                   ^
+stl_set.h:23:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::const_reverse_iterator const_reverse_iterator;
+                   ^
+stl_set.h:24:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::size_type size_type;
+                   ^
+stl_set.h:25:19: error: ‘rep_type’ has not been declared
+  typedef typename rep_type::difference_type difference_type;
+                   ^
+stl_set.h:36:30: error: ‘Alloc’ was not declared in this scope
+  set(const set<Key, Compare, Alloc>& x) : t(x.t) {}
+                              ^
+stl_set.h:36:35: error: wrong number of template arguments (3, should be 2)
+  set(const set<Key, Compare, Alloc>& x) : t(x.t) {}
+                                   ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:37:20: error: ‘Alloc’ was not declared in this scope
+  set<Key, Compare, Alloc>& operator=(const set<Key, Compare, Alloc>& x) {
+                    ^
+stl_set.h:37:25: error: wrong number of template arguments (3, should be 2)
+  set<Key, Compare, Alloc>& operator=(const set<Key, Compare, Alloc>& x) {
+                         ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:37:62: error: ‘Alloc’ was not declared in this scope
+  set<Key, Compare, Alloc>& operator=(const set<Key, Compare, Alloc>& x) {
+                                                              ^
+stl_set.h:37:67: error: wrong number of template arguments (3, should be 2)
+  set<Key, Compare, Alloc>& operator=(const set<Key, Compare, Alloc>& x) {
+                                                                   ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:45:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator begin() const { return t.begin(); }
+  ^
+stl_set.h:46:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator end() const { return t.end(); }
+  ^
+stl_set.h:52:30: error: ‘Alloc’ was not declared in this scope
+  void swap(set<Key, Compare, Alloc>& x) { t.swap(x.t); }
+                              ^
+stl_set.h:52:35: error: wrong number of template arguments (3, should be 2)
+  void swap(set<Key, Compare, Alloc>& x) { t.swap(x.t); }
+                                   ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:54:29: error: type/value mismatch at argument 1 in template parameter list for ‘template<class T1, class T2> struct pair’
+  typedef pair<iterator, bool> pair_iterator_bool;
+                             ^
+stl_set.h:54:29: error:   expected a type, got ‘iterator’
+stl_set.h:55:21: error: type/value mismatch at argument 1 in template parameter list for ‘template<class T1, class T2> struct pair’
+  pair<iterator, bool> insert(const value_type& x) {
+                     ^
+stl_set.h:55:21: error:   expected a type, got ‘iterator’
+stl_set.h:60:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator insert(iterator position, const value_type& x) {
+  ^
+stl_set.h:70:13: error: ‘iterator’ is not a type
+  void erase(iterator position) {
+             ^
+stl_set.h:79:13: error: ‘iterator’ is not a type
+  void erase(iterator first, iterator last) {
+             ^
+stl_set.h:79:29: error: ‘iterator’ is not a type
+  void erase(iterator first, iterator last) {
+                             ^
+stl_set.h:87:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator find(const key_type& x) const { return t.find(x); }
+  ^
+stl_set.h:89:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator lower_bound(const key_type& x) const { return t.lower_bound(x); }
+  ^
+stl_set.h:90:2: error: invalid use of template-name ‘iterator’ without an argument list
+  iterator upper_bound(const key_type& x) const { return t.upper_bound(x); }
+  ^
+stl_set.h:91:25: error: type/value mismatch at argument 1 in template parameter list for ‘template<class T1, class T2> struct pair’
+  pair<iterator, iterator> equal_range(const key_type& x) const { return t.equal_range(x); }
+                         ^
+stl_set.h:91:25: error:   expected a type, got ‘iterator’
+stl_set.h:91:25: error: type/value mismatch at argument 2 in template parameter list for ‘template<class T1, class T2> struct pair’
+stl_set.h:91:25: error:   expected a type, got ‘iterator’
+stl_set.h: In constructor ‘set<Key, Compare>::set()’:
+stl_set.h:27:10: error: class ‘set<Key, Compare>’ does not have any field named ‘t’
+  set() : t(Compare()) {}
+          ^
+stl_set.h: In constructor ‘set<Key, Compare>::set(const Compare&)’:
+stl_set.h:28:38: error: class ‘set<Key, Compare>’ does not have any field named ‘t’
+  explicit set(const Compare& comp) : t(comp) {}
+                                      ^
+stl_set.h: In constructor ‘set<Key, Compare>::set(InputIterator, InputIterator)’:
+stl_set.h:31:49: error: class ‘set<Key, Compare>’ does not have any field named ‘t’
+  set(InputIterator first, InputIterator last) : t(Compare()) { t.insert_unique(first,last); }
+                                                 ^
+stl_set.h:31:64: error: ‘t’ was not declared in this scope
+  set(InputIterator first, InputIterator last) : t(Compare()) { t.insert_unique(first,last); }
+                                                                ^
+stl_set.h: In constructor ‘set<Key, Compare>::set(InputIterator, InputIterator, const Compare&)’:
+stl_set.h:34:70: error: class ‘set<Key, Compare>’ does not have any field named ‘t’
+  set(InputIterator first, InputIterator last, const Compare& comp) : t(comp) { t.insert_unique(first, last); }
+                                                                      ^
+stl_set.h:34:80: error: ‘t’ was not declared in this scope
+  set(InputIterator first, InputIterator last, const Compare& comp) : t(comp) { t.insert_unique(first, last); }
+                                                                                ^
+stl_set.h: In constructor ‘set<Key, Compare>::set(const int&)’:
+stl_set.h:36:43: error: class ‘set<Key, Compare>’ does not have any field named ‘t’
+  set(const set<Key, Compare, Alloc>& x) : t(x.t) {}
+                                           ^
+stl_set.h:36:47: error: request for member ‘t’ in ‘x’, which is of non-class type ‘const int’
+  set(const set<Key, Compare, Alloc>& x) : t(x.t) {}
+                                               ^
+stl_set.h: In member function ‘int& set<Key, Compare>::operator=(const int&)’:
+stl_set.h:38:3: error: ‘t’ was not declared in this scope
+   t = x.t; 
+   ^
+stl_set.h:38:9: error: request for member ‘t’ in ‘x’, which is of non-class type ‘const int’
+   t = x.t; 
+         ^
+stl_set.h: In member function ‘set<Key, Compare>::key_compare set<Key, Compare>::key_comp() const’:
+stl_set.h:43:40: error: ‘t’ was not declared in this scope
+  key_compare key_comp() const { return t.key_comp(); }
+                                        ^
+stl_set.h: In member function ‘set<Key, Compare>::value_compare set<Key, Compare>::value_comp() const’:
+stl_set.h:44:44: error: ‘t’ was not declared in this scope
+  value_compare value_comp() const { return t.key_comp(); }
+                                            ^
+stl_set.h: In member function ‘set<Key, Compare>::reverse_iterator set<Key, Compare>::rbegin() const’:
+stl_set.h:47:43: error: ‘t’ was not declared in this scope
+  reverse_iterator rbegin() const { return t.rbegin(); }
+                                           ^
+stl_set.h: In member function ‘set<Key, Compare>::reverse_iterator set<Key, Compare>::rend() const’:
+stl_set.h:48:34: error: ‘t’ was not declared in this scope
+  reverse_iterator rend() const { t.rend(); }
+                                  ^
+stl_set.h: In member function ‘bool set<Key, Compare>::empty() const’:
+stl_set.h:49:30: error: ‘t’ was not declared in this scope
+  bool empty() const { return t.empty(); }
+                              ^
+stl_set.h: In member function ‘set<Key, Compare>::size_type set<Key, Compare>::size() const’:
+stl_set.h:50:34: error: ‘t’ was not declared in this scope
+  size_type size() const { return t.size(); }
+                                  ^
+stl_set.h: In member function ‘set<Key, Compare>::size_type set<Key, Compare>::max_size() const’:
+stl_set.h:51:38: error: ‘t’ was not declared in this scope
+  size_type max_size() const { return t.max_size(); }
+                                      ^
+stl_set.h: In member function ‘void set<Key, Compare>::swap(int&)’:
+stl_set.h:52:43: error: ‘t’ was not declared in this scope
+  void swap(set<Key, Compare, Alloc>& x) { t.swap(x.t); }
+                                           ^
+stl_set.h:52:52: error: request for member ‘t’ in ‘x’, which is of non-class type ‘int’
+  void swap(set<Key, Compare, Alloc>& x) { t.swap(x.t); }
+                                                    ^
+stl_set.h: In member function ‘int set<Key, Compare>::insert(const value_type&)’:
+stl_set.h:56:41: error: wrong number of template arguments (1, should be 2)
+   pair<typename rep_type::iterator, bool> p = t.insert_unique(x);
+                                         ^
+In file included from ../include/pair:4:0,
+                 from stl_rb_tree.h:4,
+                 from set:9,
+                 from test.cpp:1:
+../include/stl_pair.h:5:8: error: provided for ‘template<class T1, class T2> struct pair’
+ struct pair {
+        ^
+In file included from set:10:0,
+                 from test.cpp:1:
+stl_set.h:56:45: error: invalid type in declaration before ‘=’ token
+   pair<typename rep_type::iterator, bool> p = t.insert_unique(x);
+                                             ^
+stl_set.h:56:47: error: ‘t’ was not declared in this scope
+   pair<typename rep_type::iterator, bool> p = t.insert_unique(x);
+                                               ^
+stl_set.h:57:29: error: type/value mismatch at argument 1 in template parameter list for ‘template<class T1, class T2> struct pair’
+   return pair<iterator, bool>(p.first, p.second);
+                             ^
+stl_set.h:57:29: error:   expected a type, got ‘iterator’
+stl_set.h:57:33: error: request for member ‘first’ in ‘p’, which is of non-class type ‘int’
+   return pair<iterator, bool>(p.first, p.second);
+                                 ^
+stl_set.h:57:42: error: request for member ‘second’ in ‘p’, which is of non-class type ‘int’
+   return pair<iterator, bool>(p.first, p.second);
+                                          ^
+stl_set.h: In member function ‘void set<Key, Compare>::insert(InputIterator, InputIterator)’:
+stl_set.h:67:3: error: ‘t’ was not declared in this scope
+   t.insert_unique(first, last);
+   ^
+stl_set.h: In member function ‘void set<Key, Compare>::erase(int)’:
+stl_set.h:71:20: error: ‘rep_type’ has not been declared
+   typedef typename rep_type::iterator rep_iterator;
+                    ^
+stl_set.h:71:51: error: invalid type in declaration before ‘;’ token
+   typedef typename rep_type::iterator rep_iterator;
+                                                   ^
+stl_set.h:72:3: error: ‘t’ was not declared in this scope
+   t.erase((rep_iterator&)position);
+   ^
+stl_set.h: In member function ‘set<Key, Compare>::size_type set<Key, Compare>::erase(const key_type&)’:
+stl_set.h:76:10: error: ‘t’ was not declared in this scope
+   return t.erase(x);
+          ^
+stl_set.h: In member function ‘void set<Key, Compare>::erase(int, int)’:
+stl_set.h:80:20: error: ‘rep_type’ has not been declared
+   typedef typename rep_type::iterator rep_iterator;
+                    ^
+stl_set.h:80:51: error: invalid type in declaration before ‘;’ token
+   typedef typename rep_type::iterator rep_iterator;
+                                                   ^
+stl_set.h:81:3: error: ‘t’ was not declared in this scope
+   t.erase((rep_iterator&)first, (rep_iterator&)last);
+   ^
+stl_set.h: In member function ‘void set<Key, Compare>::clear()’:
+stl_set.h:84:17: error: ‘t’ was not declared in this scope
+  void clear() { t.clear(); }
+                 ^
+stl_set.h: In member function ‘set<Key, Compare>::size_type set<Key, Compare>::count(const key_type&) const’:
+stl_set.h:88:51: error: ‘t’ was not declared in this scope
+  size_type count(const key_type&) const  { return t.count(x); }
+                                                   ^
+stl_set.h:88:59: error: ‘x’ was not declared in this scope
+  size_type count(const key_type&) const  { return t.count(x); }
+                                                           ^
+stl_set.h: In member function ‘int set<Key, Compare>::equal_range(const key_type&) const’:
+stl_set.h:91:73: error: ‘t’ was not declared in this scope
+  pair<iterator, iterator> equal_range(const key_type& x) const { return t.equal_range(x); }
+                                                                         ^
+stl_set.h: At global scope:
+stl_set.h:97:53: error: wrong number of template arguments (3, should be 2)
+ inline bool operator==(const set<Key, Compare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                     ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:97:88: error: wrong number of template arguments (3, should be 2)
+ inline bool operator==(const set<Key, Compare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                                                        ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:97:92: error: ‘bool operator==(const int&, const int&)’ must have an argument of class or enumerated type
+ inline bool operator==(const set<Key, Compare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                                                            ^
+stl_set.h:102:38: error: ‘ompare’ was not declared in this scope
+ inline bool operator<(const set<Key, ompare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                      ^
+stl_set.h:102:51: error: wrong number of template arguments (3, should be 2)
+ inline bool operator<(const set<Key, ompare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                   ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:102:86: error: wrong number of template arguments (3, should be 2)
+ inline bool operator<(const set<Key, ompare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                                                      ^
+stl_set.h:5:7: error: provided for ‘template<class Key, class Compare> class set’
+ class set {
+       ^
+stl_set.h:102:90: error: ‘bool operator<(const int&, const int&)’ must have an argument of class or enumerated type
+ inline bool operator<(const set<Key, ompare, Alloc>& x, const set<Key, Compare, Alloc>& y) {
+                                                                                          ^
+test.cpp: In function ‘int main()’:
+test.cpp:5:9: error: template argument 2 is invalid
+  set<int> s;
+         ^
+test.cpp:5:12: error: invalid type in declaration before ‘;’ token
+  set<int> s;
+            ^
+make: *** [test.o] Error 1

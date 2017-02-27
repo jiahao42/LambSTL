@@ -1,0 +1,7 @@
+# ifndef __LAMB_STL_PAIR_H_
+# define __LAMB_STL_PAIR_H_
+
+#include "stl_pair.h"
+
+
+# endif 

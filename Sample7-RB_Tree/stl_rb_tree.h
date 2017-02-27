@@ -1,6 +1,8 @@
 #ifndef __LAMB_STL_INTERNAL_RB_TREE_H_
 #define __LAMB_STL_INTERNAL_RB_TREE_H_
 
+#include "pair"
+
 typedef bool __rb_tree_color_type;
 const __rb_tree_color_type __rb_tree_red = false;
 const __rb_tree_color_type __rb_tree_black = true;
@@ -99,7 +101,7 @@ struct __rb_tree_iterator : public __rb_tree_base_iterator {
 		return tmp;
 	}
 	self& operator--() { decrement(); return *this; }
-	self operator(int) {
+	self operator--(int) {
 		self tmp = *this;
 		decrement();
 		return tmp;
@@ -170,9 +172,9 @@ protected:
 	static link_type& left(base_ptr x) { return (link_type&)x -> left; }
 	static link_type& right(base_ptr x) { return (link_type&)x -> right; }
 	static link_type& parent(base_ptr x) { return (link_type&)x -> parent; }
-	static reference value(link_type x) { return (link_type)x -> value_field; }
-	static const Key& key(link_type x) { return KeyOfValue()(value(link_type(x))); }
-	static color_type& color(link_type x) { return (color_type&)link_type(x) -> color; }
+	static reference value(base_ptr x) { return (link_type)x -> value_field; }
+	static const Key& key(base_ptr x) { return KeyOfValue()(value(link_type(x))); }
+	static color_type& color(base_ptr x) { return (color_type&)link_type(x) -> color; }
 	
 	
 	static link_type minimum(link_type x) {
